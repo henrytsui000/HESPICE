@@ -79,7 +79,7 @@ Press Save to save the signal to the specified location
 
 ![](https://i.imgur.com/rkS6714.png)
 
-$ \begin{bmatrix}
+<img src="http://latex.codecogs.com/gif.latex?\begin{bmatrix}
 R1 & -R1 & 1\\
 -R1 & R1+s \cdot C1 + \frac{1}{s\cdot L1} & 0\\
 1 & 0 & 0
@@ -88,22 +88,19 @@ R1 & -R1 & 1\\
 V_1 \\ V_2 \\ I_{v1}
 \end{bmatrix}=\begin{bmatrix}
 0 \\ 0 \\ V_{v1}
-\end{bmatrix} $
+\end{bmatrix} "/>
 
-
-$ 
-\begin{bmatrix}
+<img src="http://latex.codecogs.com/gif.latex?\begin{bmatrix}
 V_1 \\ V_2 \\ x
 \end{bmatrix}
 =\sum^{V_{num}}_{i=0}
 \begin{bmatrix}
 V_{1i} \\ V_{2i} \\ I_{vi}
-\end{bmatrix}
-$
+\end{bmatrix}" />
+
 ### Square Wave
-$
-{\displaystyle {\begin{aligned}x(t)&=\lim_{n\rightarrow	\infty}{\frac {4}{\pi }}\sum _{k=1}^{n}{\frac {\sin \left(2\pi (2k-1)ft\right)}{2k-1}}\\&={\frac {4}{\pi }}\left(\sin(\omega t)+{\frac {1}{3}}\sin(3\omega t)+{\frac {1}{5}}\sin(5\omega t)+\ldots \right),&{\text{where }}\omega =2\pi f.\end{aligned}}}
-$
+<img src="http://latex.codecogs.com/gif.latex?
+{\displaystyle {\begin{aligned}x(t)&=\lim_{n\rightarrow	\infty}{\frac {4}{\pi }}\sum _{k=1}^{n}{\frac {\sin \left(2\pi (2k-1)ft\right)}{2k-1}}\\&={\frac {4}{\pi }}\left(\sin(\omega t)+{\frac {1}{3}}\sin(3\omega t)+{\frac {1}{5}}\sin(5\omega t)+\ldots \right),&{\text{where }}\omega =2\pi f.\end{aligned}}} "/>
 ## Demo Video
 
 The following link is a basic introduction to using this SPICE
