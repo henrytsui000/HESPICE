@@ -1,0 +1,22 @@
+<RCC>
+    <qresource prefix="/pre">
+        <file>C.png</file>
+        <file>GND.png</file>
+        <file>I.png</file>
+        <file>L.png</file>
+        <file>R.png</file>
+        <file>V.png</file>
+        <file>CUT.png</file>
+        <file>MOVE.png</file>
+        <file>WIRE.png</file>
+        <file>BUILD.png</file>
+        <file>WAVE.png</file>
+        <file>ZOOM_IN.png</file>
+        <file>ZOOM_OUT.png</file>
+        <file>WAVE2.png</file>
+        <file>HELP.png</file>
+        <file>CLEAR.png</file>
+        <file>IMAGE.png</file>
+    </qresource>
+    <qresource prefix="/"/>
+</RCC>

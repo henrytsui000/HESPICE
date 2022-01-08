@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>720</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="Circuit" name="graphicsview">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1200</width>
+      <height>720</height>
+     </rect>
+    </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1200</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>36</width>
+     <height>36</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionIMAGE"/>
+   <addaction name="actionR"/>
+   <addaction name="actionL"/>
+   <addaction name="actionC"/>
+   <addaction name="actionV"/>
+   <addaction name="actionI"/>
+   <addaction name="actionGND"/>
+   <addaction name="actionWIRE"/>
+   <addaction name="actionCUT"/>
+   <addaction name="actionMOVE"/>
+   <addaction name="actionZOOM_IN"/>
+   <addaction name="actionZOOM_OUT"/>
+   <addaction name="actionBUILD"/>
+   <addaction name="actionWAVE"/>
+   <addaction name="actionHELP"/>
+   <addaction name="actionCLEAR"/>
+  </widget>
+  <action name="actionR">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="image/resource.qrc">
+     <normaloff>:/pre/R.png</normaloff>:/pre/R.png</iconset>
+   </property>
+   <property name="text">
+    <string>R</string>
+   </property>
+  </action>
+  <action name="actionL">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="image/resource.qrc">
+     <normaloff>:/pre/L.png</normaloff>:/pre/L.png</iconset>
+   </property>
+   <property name="text">
+    <string>L</string>
+   </property>
+  </action>
+  <action name="actionC">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="image/resource.qrc">
+     <normaloff>:/pre/C.png</normaloff>:/pre/C.png</iconset>
+   </property>
+   <property name="text">
+    <string>C</string>
+   </property>
+  </action>
+  <action name="actionV">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="image/resource.qrc">
+     <normaloff>:/pre/V.png</normaloff>:/pre/V.png</iconset>
+   </property>
+   <property name="text">
+    <string>V</string>
+   </property>
+  </action>
+  <action name="actionI">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="image/resource.qrc">
+     <normaloff>:/pre/I.png</normaloff>:/pre/I.png</iconset>
+   </property>
+   <property name="text">
+    <string>I</string>
+   </property>
+  </action>
+  <action name="actionGND">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="image/resource.qrc">
+     <normaloff>:/pre/GND.png</normaloff>:/pre/GND.png</iconset>
+   </property>
+   <property name="text">
+    <string>GND</string>
+   </property>
+  </action>
+  <action name="actionCUT">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="image/resource.qrc">
+     <normaloff>:/pre/CUT.png</normaloff>:/pre/CUT.png</iconset>
+   </property>
+   <property name="text">
+    <string>CUT</string>
+   </property>
+  </action>
+  <action name="actionMOVE">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="image/resource.qrc">
+     <normaloff>:/pre/MOVE.png</normaloff>:/pre/MOVE.png</iconset>
+   </property>
+   <property name="text">
+    <string>MOVE</string>
+   </property>
+  </action>
+  <action name="actionWIRE">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="image/resource.qrc">
+     <normaloff>:/pre/WIRE.png</normaloff>:/pre/WIRE.png</iconset>
+   </property>
+   <property name="text">
+    <string>WIRE</string>
+   </property>
+  </action>
+  <action name="actionBUILD">
+   <property name="icon">
+    <iconset resource="image/resource.qrc">
+     <normaloff>:/pre/BUILD.png</normaloff>:/pre/BUILD.png</iconset>
+   </property>
+   <property name="text">
+    <string>BUILD</string>
+   </property>
+  </action>
+  <action name="actionWAVE">
+   <property name="icon">
+    <iconset resource="image/resource.qrc">
+     <normaloff>:/pre/WAVE.png</normaloff>
+     <disabledoff>:/pre/WAVE2.png</disabledoff>:/pre/WAVE.png</iconset>
+   </property>
+   <property name="text">
+    <string>WAVE</string>
+   </property>
+  </action>
+  <action name="actionZOOM_IN">
+   <property name="icon">
+    <iconset resource="image/resource.qrc">
+     <normaloff>:/pre/ZOOM_IN.png</normaloff>:/pre/ZOOM_IN.png</iconset>
+   </property>
+   <property name="text">
+    <string>ZOOM_IN</string>
+   </property>
+  </action>
+  <action name="actionZOOM_OUT">
+   <property name="icon">
+    <iconset resource="image/resource.qrc">
+     <normaloff>:/pre/ZOOM_OUT.png</normaloff>:/pre/ZOOM_OUT.png</iconset>
+   </property>
+   <property name="text">
+    <string>ZOOM_OUT</string>
+   </property>
+  </action>
+  <action name="actionHELP">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="image/resource.qrc">
+     <normaloff>:/pre/HELP.png</normaloff>:/pre/HELP.png</iconset>
+   </property>
+   <property name="text">
+    <string>HELP</string>
+   </property>
+  </action>
+  <action name="actionCLEAR">
+   <property name="icon">
+    <iconset resource="image/resource.qrc">
+     <normaloff>:/pre/CLEAR.png</normaloff>:/pre/CLEAR.png</iconset>
+   </property>
+   <property name="text">
+    <string>CLEAR</string>
+   </property>
+  </action>
+  <action name="actionIMAGE">
+   <property name="icon">
+    <iconset resource="image/resource.qrc">
+     <normaloff>:/pre/IMAGE.png</normaloff>:/pre/IMAGE.png</iconset>
+   </property>
+   <property name="text">
+    <string>IMAGE</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>Circuit</class>
+   <extends>QGraphicsView</extends>
+   <header location="global">circuit.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="image/resource.qrc"/>
+ </resources>
+ <connections/>
+</ui>

@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/pre">
+        <file>C.png</file>
+        <file>GND.png</file>
+        <file>I.png</file>
+        <file>L.png</file>
+        <file>R.png</file>
+        <file>resource.qrc</file>
+        <file>V.png</file>
+    </qresource>
+</RCC>
