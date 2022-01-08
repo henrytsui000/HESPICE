@@ -3,21 +3,14 @@
 ## What's HESPICE
 It's a Simulation Program with Integrated Circuit Emphasis(SPICE) build by Ogo and me.
 
-My name is Henry, thus the spice Name is 
-
-**H**enry
-
-**E**than
-
-**S**imulation
-
-**P**rogram with
-
-**I**ntegrated
-
-**C**ircuit
-
-**E**mphasis
+My name is Henry, another collaborator named Ethan, thus the spice Name is 
+<font color='red'>H</font>enry
+<font color='red'>E</font>than
+<font color='red'>S</font>imulation
+<font color='red'>P</font>rogram with
+<font color='red'>I</font>ntegrated
+<font color='red'>C</font>ircuit
+<font color='red'>E</font>mphasis
 
 ## How to download
 
@@ -30,7 +23,11 @@ Just double click "./Test/Test.pro" QT will build the environment
 
 
 ## Basic operation
-Instructions:
+
+<details>
+<summary>opeartions</summary>
+
+### Instructions:
 
 placement interface
 
@@ -57,7 +54,7 @@ Press the left button on the component to "operate"
 
 Right-click on the component to adjust parameters or cancel placement
 
-compile interface
+### Compile Interface
 
 Click the build icon to build the circuit
 
@@ -72,9 +69,31 @@ Press Cursor to select wires to trace
 Move in the Graphics view to measure the time-voltage of a wire
 
 Press Save to save the signal to the specified location
+
+</details>
+
 ## Our algorithm
 
 
+### Simulate Part 
+
+![](https://i.imgur.com/rkS6714.png)
+
+$ \begin{bmatrix}
+R1 & -R1 & 1\\
+-R1 & R1+s \cdot C1 + \frac{1}{s\cdot L1} & 0\\
+1 & 0 & 0
+\end{bmatrix} 
+\begin{bmatrix}
+V_1 \\ V_2 \\ I_{v1}
+\end{bmatrix}=\begin{bmatrix}
+0 \\ 0 \\ V_{v1}
+\end{bmatrix} $
+
+### Square Wave
+$
+{\displaystyle {\begin{aligned}x(t)&=\lim_{n\rightarrow	\infty}{\frac {4}{\pi }}\sum _{k=1}^{n}{\frac {\sin \left(2\pi (2k-1)ft\right)}{2k-1}}\\&={\frac {4}{\pi }}\left(\sin(\omega t)+{\frac {1}{3}}\sin(3\omega t)+{\frac {1}{5}}\sin(5\omega t)+\ldots \right),&{\text{where }}\omega =2\pi f.\end{aligned}}}
+$
 ## Demo Video
 
 The following link is a basic introduction to using this SPICE
