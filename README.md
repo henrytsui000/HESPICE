@@ -90,6 +90,16 @@ V_1 \\ V_2 \\ I_{v1}
 0 \\ 0 \\ V_{v1}
 \end{bmatrix} $
 
+
+$ 
+\begin{bmatrix}
+V_1 \\ V_2 \\ x
+\end{bmatrix}
+=\sum^{V_{num}}_{i=0}
+\begin{bmatrix}
+V_{1i} \\ V_{2i} \\ I_{vi}
+\end{bmatrix}
+$
 ### Square Wave
 $
 {\displaystyle {\begin{aligned}x(t)&=\lim_{n\rightarrow	\infty}{\frac {4}{\pi }}\sum _{k=1}^{n}{\frac {\sin \left(2\pi (2k-1)ft\right)}{2k-1}}\\&={\frac {4}{\pi }}\left(\sin(\omega t)+{\frac {1}{3}}\sin(3\omega t)+{\frac {1}{5}}\sin(5\omega t)+\ldots \right),&{\text{where }}\omega =2\pi f.\end{aligned}}}
