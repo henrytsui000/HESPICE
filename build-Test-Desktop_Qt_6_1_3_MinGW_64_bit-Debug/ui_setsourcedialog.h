@@ -38,6 +38,10 @@ public:
     QVBoxLayout *verticalLayout;
     QRadioButton *radioButton_DC;
     QRadioButton *radioButton_AC;
+    QRadioButton *radioButton_SQ;
+    QLabel *label_value_unit;
+    QLabel *label_freq_unit;
+    QLabel *label_value_4;
 
     void setupUi(QDialog *Setsourcedialog)
     {
@@ -49,7 +53,7 @@ public:
         label_name->setGeometry(QRect(70, 40, 47, 12));
         label_freq = new QLabel(Setsourcedialog);
         label_freq->setObjectName(QString::fromUtf8("label_freq"));
-        label_freq->setGeometry(QRect(70, 240, 61, 16));
+        label_freq->setGeometry(QRect(90, 240, 71, 16));
         lineEdit_name = new QLineEdit(Setsourcedialog);
         lineEdit_name->setObjectName(QString::fromUtf8("lineEdit_name"));
         lineEdit_name->setGeometry(QRect(160, 30, 113, 20));
@@ -64,13 +68,13 @@ public:
         pushButton_Cancel->setGeometry(QRect(310, 130, 75, 23));
         label_value = new QLabel(Setsourcedialog);
         label_value->setObjectName(QString::fromUtf8("label_value"));
-        label_value->setGeometry(QRect(70, 190, 81, 16));
+        label_value->setGeometry(QRect(60, 190, 101, 16));
         lineEdit_freq = new QLineEdit(Setsourcedialog);
         lineEdit_freq->setObjectName(QString::fromUtf8("lineEdit_freq"));
         lineEdit_freq->setGeometry(QRect(160, 240, 113, 20));
         label_phase = new QLabel(Setsourcedialog);
         label_phase->setObjectName(QString::fromUtf8("label_phase"));
-        label_phase->setGeometry(QRect(70, 290, 47, 12));
+        label_phase->setGeometry(QRect(110, 290, 51, 16));
         lineEdit_phase = new QLineEdit(Setsourcedialog);
         lineEdit_phase->setObjectName(QString::fromUtf8("lineEdit_phase"));
         lineEdit_phase->setGeometry(QRect(160, 290, 113, 20));
@@ -90,6 +94,20 @@ public:
 
         verticalLayout->addWidget(radioButton_AC);
 
+        radioButton_SQ = new QRadioButton(verticalLayoutWidget);
+        radioButton_SQ->setObjectName(QString::fromUtf8("radioButton_SQ"));
+
+        verticalLayout->addWidget(radioButton_SQ);
+
+        label_value_unit = new QLabel(Setsourcedialog);
+        label_value_unit->setObjectName(QString::fromUtf8("label_value_unit"));
+        label_value_unit->setGeometry(QRect(290, 190, 31, 16));
+        label_freq_unit = new QLabel(Setsourcedialog);
+        label_freq_unit->setObjectName(QString::fromUtf8("label_freq_unit"));
+        label_freq_unit->setGeometry(QRect(290, 240, 31, 16));
+        label_value_4 = new QLabel(Setsourcedialog);
+        label_value_4->setObjectName(QString::fromUtf8("label_value_4"));
+        label_value_4->setGeometry(QRect(290, 290, 31, 16));
 
         retranslateUi(Setsourcedialog);
 
@@ -106,7 +124,11 @@ public:
         label_value->setText(QCoreApplication::translate("Setsourcedialog", "amplitude/value", nullptr));
         label_phase->setText(QCoreApplication::translate("Setsourcedialog", "phase", nullptr));
         radioButton_DC->setText(QCoreApplication::translate("Setsourcedialog", "DC", nullptr));
-        radioButton_AC->setText(QCoreApplication::translate("Setsourcedialog", "AC (SINE)", nullptr));
+        radioButton_AC->setText(QCoreApplication::translate("Setsourcedialog", "SINE", nullptr));
+        radioButton_SQ->setText(QCoreApplication::translate("Setsourcedialog", "SQUARE", nullptr));
+        label_value_unit->setText(QCoreApplication::translate("Setsourcedialog", "V/A", nullptr));
+        label_freq_unit->setText(QCoreApplication::translate("Setsourcedialog", "1/s", nullptr));
+        label_value_4->setText(QCoreApplication::translate("Setsourcedialog", "rad", nullptr));
     } // retranslateUi
 
 };

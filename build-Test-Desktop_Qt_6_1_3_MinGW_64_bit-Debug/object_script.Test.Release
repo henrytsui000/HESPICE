@@ -1,7 +1,6 @@
 release/base.o
 release/capacitor.o
 release/circuit.o
-release/complex.o
 release/current.o
 release/gnd.o
 release/help.o

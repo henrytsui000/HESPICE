@@ -38,6 +38,8 @@ public:
     QAction *actionZOOM_IN;
     QAction *actionZOOM_OUT;
     QAction *actionHELP;
+    QAction *actionCLEAR;
+    QAction *actionIMAGE;
     QWidget *centralwidget;
     Circuit *graphicsview;
     QMenuBar *menubar;
@@ -131,6 +133,16 @@ public:
         QIcon icon13;
         icon13.addFile(QString::fromUtf8(":/pre/HELP.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionHELP->setIcon(icon13);
+        actionCLEAR = new QAction(MainWindow);
+        actionCLEAR->setObjectName(QString::fromUtf8("actionCLEAR"));
+        QIcon icon14;
+        icon14.addFile(QString::fromUtf8(":/pre/CLEAR.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionCLEAR->setIcon(icon14);
+        actionIMAGE = new QAction(MainWindow);
+        actionIMAGE->setObjectName(QString::fromUtf8("actionIMAGE"));
+        QIcon icon15;
+        icon15.addFile(QString::fromUtf8(":/pre/IMAGE.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionIMAGE->setIcon(icon15);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         graphicsview = new Circuit(centralwidget);
@@ -151,6 +163,7 @@ public:
         toolBar->setIconSize(QSize(36, 36));
         MainWindow->addToolBar(Qt::TopToolBarArea, toolBar);
 
+        toolBar->addAction(actionIMAGE);
         toolBar->addAction(actionR);
         toolBar->addAction(actionL);
         toolBar->addAction(actionC);
@@ -165,6 +178,7 @@ public:
         toolBar->addAction(actionBUILD);
         toolBar->addAction(actionWAVE);
         toolBar->addAction(actionHELP);
+        toolBar->addAction(actionCLEAR);
 
         retranslateUi(MainWindow);
 
@@ -188,6 +202,8 @@ public:
         actionZOOM_IN->setText(QCoreApplication::translate("MainWindow", "ZOOM_IN", nullptr));
         actionZOOM_OUT->setText(QCoreApplication::translate("MainWindow", "ZOOM_OUT", nullptr));
         actionHELP->setText(QCoreApplication::translate("MainWindow", "HELP", nullptr));
+        actionCLEAR->setText(QCoreApplication::translate("MainWindow", "CLEAR", nullptr));
+        actionIMAGE->setText(QCoreApplication::translate("MainWindow", "IMAGE", nullptr));
         toolBar->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar", nullptr));
     } // retranslateUi
 

@@ -37,6 +37,15 @@ Wave::Wave(QWidget *parent) :
     aimer[1]->setVisible(cur);
     aimer[2]->setVisible(cur);
 
+    for(int i=0; i<9; i++){
+        label_v[i] = new QLabel(this);
+        label_v[i]->setVisible(false);
+    }
+    for(int i=0; i<11; i++){
+        label_h[i] = new QLabel(this);
+        label_h[i]->setVisible(false);
+    }
+
 }
 
 Wave::~Wave()
@@ -127,11 +136,23 @@ void Wave::on_pushButton_clicked() {
 
     pen->setStyle(Qt::SolidLine);
     pen->setWidth(1);
-    ui->label->setText(QString::number(Vmax, 'f', 3));
-    ui->label_2->setText(QString::number(Vm, 'f', 3));
-    ui->label_3->setText(QString::number(Vmin, 'f', 3));
-    ui->label_4->setText(QString::number(0, 'f', 3));
-    ui->label_5->setText(QString::number(Stime, 'f', 3));
+    /*
+        ui->label->setText(QString::number(Vmax, 'f', 3));
+        ui->label_2->setText(QString::number(Vm, 'f', 3));
+        ui->label_3->setText(QString::number(Vmin, 'f', 3));
+        ui->label_4->setText(QString::number(0, 'f', 3));
+        ui->label_5->setText(QString::number(Stime, 'f', 3));
+    */
+        for(int i=0; i<9; i++){
+            label_v[i]->setText(QString::number(Vmax-(Vmax-Vmin)/8*i, 'f', 3));
+            label_v[i]->setGeometry(20,15+380.0/8*i,50,25+380.0/8*i);
+            label_v[i]->setVisible(true);
+        }
+        for(int i=0; i<11; i++){
+            label_h[i]->setText(QString::number((Stime-0)/10*i, 'f', 3));
+            label_h[i]->setGeometry(90+(800.0/10)*i,420,110+(800.0/10)*i,430);
+            label_h[i]->setVisible(true);
+        }
     for(int i = 0 ; i < circuit->wave_node.size(); i++){
         pen->setColor(col[i%10]);
         for(int j=0; j<vec[i].size()-1; j++){

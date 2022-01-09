@@ -53,7 +53,6 @@ OBJECTS_DIR   = debug
 SOURCES       = ..\Test\base.cpp \
 		..\Test\capacitor.cpp \
 		..\Test\circuit.cpp \
-		..\Test\complex.cpp \
 		..\Test\current.cpp \
 		..\Test\gnd.cpp \
 		..\Test\help.cpp \
@@ -84,7 +83,6 @@ SOURCES       = ..\Test\base.cpp \
 OBJECTS       = debug/base.o \
 		debug/capacitor.o \
 		debug/circuit.o \
-		debug/complex.o \
 		debug/current.o \
 		debug/gnd.o \
 		debug/help.o \
@@ -117,7 +115,6 @@ OBJECTS       = debug/base.o \
 DIST          =  ..\Test\base.h \
 		..\Test\capacitor.h \
 		..\Test\circuit.h \
-		..\Test\complex.h \
 		..\Test\current.h \
 		..\Test\gnd.h \
 		..\Test\help.h \
@@ -138,7 +135,6 @@ DIST          =  ..\Test\base.h \
 		..\Test\wire.h ..\Test\base.cpp \
 		..\Test\capacitor.cpp \
 		..\Test\circuit.cpp \
-		..\Test\complex.cpp \
 		..\Test\current.cpp \
 		..\Test\gnd.cpp \
 		..\Test\help.cpp \
@@ -172,15 +168,15 @@ debug/Test.exe: C:/Qt/6.1.3/mingw81_64/lib/libQt6Widgets.a C:/Qt/6.1.3/mingw81_6
 	$(LINKER) $(LFLAGS) -o $(DESTDIR_TARGET) @object_script.Test.Debug  $(LIBS)
 
 qmake: FORCE
-	@$(QMAKE) -o Makefile.Debug ..\Test\Test.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" "CONFIG-=qtquickcompiler"
+	@$(QMAKE) -o Makefile.Debug ..\Test\Test.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 
 qmake_all: FORCE
 
 dist:
-	$(ZIP) Test.zip $(SOURCES) $(DIST) ..\Test\Test.pro C:\Qt\6.1.3\mingw81_64\mkspecs\features\spec_pre.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\device_config.prf C:\Qt\6.1.3\mingw81_64\mkspecs\common\sanitize.conf C:\Qt\6.1.3\mingw81_64\mkspecs\common\gcc-base.conf C:\Qt\6.1.3\mingw81_64\mkspecs\common\g++-base.conf C:\Qt\6.1.3\mingw81_64\mkspecs\features\win32\windows_vulkan_sdk.prf C:\Qt\6.1.3\mingw81_64\mkspecs\common\windows-vulkan.conf C:\Qt\6.1.3\mingw81_64\mkspecs\common\g++-win32.conf C:\Qt\6.1.3\mingw81_64\mkspecs\common\windows-desktop.conf C:\Qt\6.1.3\mingw81_64\mkspecs\qconfig.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_ext_freetype.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_ext_libpng.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_concurrent.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_concurrent_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_core.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_core_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_dbus.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_dbus_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_designer.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_designer_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_designercomponents_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_entrypoint_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_fb_support_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_gui.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_gui_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_help.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_help_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_labsanimation.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_labsanimation_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_labsfolderlistmodel.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_labsfolderlistmodel_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_labsqmlmodels.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_labsqmlmodels_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_labssettings.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_labssettings_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_labssharedimage.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_labssharedimage_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_labswavefrontmesh.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_labswavefrontmesh_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_linguist.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_linguist_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_network.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_network_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_opengl.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_opengl_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_openglwidgets.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_openglwidgets_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_packetprotocol_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_printsupport.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_printsupport_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_qml.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_qml_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_qmlcompiler_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_qmldebug_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_qmldevtools_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_qmldom_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_qmllocalstorage.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_qmllocalstorage_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_qmlmodels.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_qmlmodels_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_qmltest.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_qmltest_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_qmlworkerscript.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_qmlworkerscript_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_quick.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_quick_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_quickcontrols2.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_quickcontrols2impl.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_quickcontrols2impl_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_quicklayouts.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_quicklayouts_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_quickparticles_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_quickshapes_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_quicktemplates2.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_quickwidgets.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_quickwidgets_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_sql.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_sql_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_svg.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_svg_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_svgwidgets.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_svgwidgets_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_testlib.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_testlib_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_tools_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_uiplugin.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_uitools.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_uitools_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_widgets.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_widgets_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_xml.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_xml_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_zlib_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\features\qt_functions.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\qt_config.prf C:\Qt\6.1.3\mingw81_64\mkspecs\win32-g++\qmake.conf C:\Qt\6.1.3\mingw81_64\mkspecs\features\spec_post.prf .qmake.stash C:\Qt\6.1.3\mingw81_64\mkspecs\features\exclusive_builds.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\toolchain.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\default_pre.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\win32\default_pre.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\resolve_config.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\exclusive_builds_post.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\default_post.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\build_pass.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\qml_debug.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\entrypoint.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\precompile_header.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\warn_on.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\qt.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\resources_functions.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\resources.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\moc.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\win32\opengl.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\uic.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\qmake_use.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\file_copies.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\win32\windows.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\testcase_targets.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\exceptions.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\yacc.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\lex.prf ..\Test\Test.pro ..\Test\image\resource.qrc C:\Qt\6.1.3\mingw81_64\lib\Qt6Widgets.prl C:\Qt\6.1.3\mingw81_64\lib\Qt6Gui.prl C:\Qt\6.1.3\mingw81_64\lib\Qt6Core.prl C:\Qt\6.1.3\mingw81_64\lib\Qt6EntryPoint.prl   ..\Test\image\resource.qrc C:\Qt\6.1.3\mingw81_64\mkspecs\features\data\dummy.cpp ..\Test\base.h ..\Test\capacitor.h ..\Test\circuit.h ..\Test\complex.h ..\Test\current.h ..\Test\gnd.h ..\Test\help.h ..\Test\ic.h ..\Test\inductor.h ..\Test\mainwindow.h ..\Test\node.h ..\Test\pc.h ..\Test\resistor.h ..\Test\scope.h ..\Test\setpcdialog.h ..\Test\setsourcedialog.h ..\Test\simu_time.h ..\Test\source.h ..\Test\tools.h ..\Test\voltage.h ..\Test\wave.h ..\Test\wire.h  ..\Test\base.cpp ..\Test\capacitor.cpp ..\Test\circuit.cpp ..\Test\complex.cpp ..\Test\current.cpp ..\Test\gnd.cpp ..\Test\help.cpp ..\Test\ic.cpp ..\Test\inductor.cpp ..\Test\main.cpp ..\Test\mainwindow.cpp ..\Test\node.cpp ..\Test\pc.cpp ..\Test\resistor.cpp ..\Test\scope.cpp ..\Test\setpcdialog.cpp ..\Test\setsourcedialog.cpp ..\Test\simu_time.cpp ..\Test\source.cpp ..\Test\tools.cpp ..\Test\voltage.cpp ..\Test\wave.cpp ..\Test\wire.cpp ..\Test\help.ui ..\Test\mainwindow.ui ..\Test\setpcdialog.ui ..\Test\setsourcedialog.ui ..\Test\simu_time.ui ..\Test\wave.ui    
+	$(ZIP) Test.zip $(SOURCES) $(DIST) ..\Test\Test.pro C:\Qt\6.1.3\mingw81_64\mkspecs\features\spec_pre.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\device_config.prf C:\Qt\6.1.3\mingw81_64\mkspecs\common\sanitize.conf C:\Qt\6.1.3\mingw81_64\mkspecs\common\gcc-base.conf C:\Qt\6.1.3\mingw81_64\mkspecs\common\g++-base.conf C:\Qt\6.1.3\mingw81_64\mkspecs\features\win32\windows_vulkan_sdk.prf C:\Qt\6.1.3\mingw81_64\mkspecs\common\windows-vulkan.conf C:\Qt\6.1.3\mingw81_64\mkspecs\common\g++-win32.conf C:\Qt\6.1.3\mingw81_64\mkspecs\common\windows-desktop.conf C:\Qt\6.1.3\mingw81_64\mkspecs\qconfig.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_ext_freetype.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_ext_libpng.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_concurrent.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_concurrent_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_core.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_core_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_dbus.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_dbus_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_designer.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_designer_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_designercomponents_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_entrypoint_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_fb_support_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_gui.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_gui_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_help.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_help_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_labsanimation.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_labsanimation_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_labsfolderlistmodel.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_labsfolderlistmodel_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_labsqmlmodels.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_labsqmlmodels_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_labssettings.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_labssettings_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_labssharedimage.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_labssharedimage_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_labswavefrontmesh.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_labswavefrontmesh_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_linguist.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_linguist_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_network.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_network_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_opengl.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_opengl_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_openglwidgets.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_openglwidgets_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_packetprotocol_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_printsupport.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_printsupport_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_qml.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_qml_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_qmlcompiler_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_qmldebug_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_qmldevtools_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_qmldom_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_qmllocalstorage.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_qmllocalstorage_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_qmlmodels.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_qmlmodels_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_qmltest.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_qmltest_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_qmlworkerscript.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_qmlworkerscript_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_quick.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_quick_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_quickcontrols2.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_quickcontrols2impl.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_quickcontrols2impl_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_quicklayouts.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_quicklayouts_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_quickparticles_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_quickshapes_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_quicktemplates2.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_quickwidgets.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_quickwidgets_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_sql.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_sql_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_svg.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_svg_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_svgwidgets.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_svgwidgets_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_testlib.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_testlib_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_tools_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_uiplugin.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_uitools.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_uitools_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_widgets.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_widgets_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_xml.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_xml_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\modules\qt_lib_zlib_private.pri C:\Qt\6.1.3\mingw81_64\mkspecs\features\qt_functions.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\qt_config.prf C:\Qt\6.1.3\mingw81_64\mkspecs\win32-g++\qmake.conf C:\Qt\6.1.3\mingw81_64\mkspecs\features\spec_post.prf .qmake.stash C:\Qt\6.1.3\mingw81_64\mkspecs\features\exclusive_builds.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\toolchain.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\default_pre.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\win32\default_pre.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\resolve_config.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\exclusive_builds_post.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\default_post.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\build_pass.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\qml_debug.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\entrypoint.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\precompile_header.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\warn_on.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\qt.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\resources_functions.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\resources.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\moc.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\win32\opengl.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\uic.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\qmake_use.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\file_copies.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\win32\windows.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\testcase_targets.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\exceptions.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\yacc.prf C:\Qt\6.1.3\mingw81_64\mkspecs\features\lex.prf ..\Test\Test.pro ..\Test\image\resource.qrc C:\Qt\6.1.3\mingw81_64\lib\Qt6Widgets.prl C:\Qt\6.1.3\mingw81_64\lib\Qt6Gui.prl C:\Qt\6.1.3\mingw81_64\lib\Qt6Core.prl C:\Qt\6.1.3\mingw81_64\lib\Qt6EntryPoint.prl   ..\Test\image\resource.qrc C:\Qt\6.1.3\mingw81_64\mkspecs\features\data\dummy.cpp ..\Test\base.h ..\Test\capacitor.h ..\Test\circuit.h ..\Test\current.h ..\Test\gnd.h ..\Test\help.h ..\Test\ic.h ..\Test\inductor.h ..\Test\mainwindow.h ..\Test\node.h ..\Test\pc.h ..\Test\resistor.h ..\Test\scope.h ..\Test\setpcdialog.h ..\Test\setsourcedialog.h ..\Test\simu_time.h ..\Test\source.h ..\Test\tools.h ..\Test\voltage.h ..\Test\wave.h ..\Test\wire.h  ..\Test\base.cpp ..\Test\capacitor.cpp ..\Test\circuit.cpp ..\Test\current.cpp ..\Test\gnd.cpp ..\Test\help.cpp ..\Test\ic.cpp ..\Test\inductor.cpp ..\Test\main.cpp ..\Test\mainwindow.cpp ..\Test\node.cpp ..\Test\pc.cpp ..\Test\resistor.cpp ..\Test\scope.cpp ..\Test\setpcdialog.cpp ..\Test\setsourcedialog.cpp ..\Test\simu_time.cpp ..\Test\source.cpp ..\Test\tools.cpp ..\Test\voltage.cpp ..\Test\wave.cpp ..\Test\wire.cpp ..\Test\help.ui ..\Test\mainwindow.ui ..\Test\setpcdialog.ui ..\Test\setsourcedialog.ui ..\Test\simu_time.ui ..\Test\wave.ui    
 
 clean: compiler_clean 
-	-$(DEL_FILE) debug\base.o debug\capacitor.o debug\circuit.o debug\complex.o debug\current.o debug\gnd.o debug\help.o debug\ic.o debug\inductor.o debug\main.o debug\mainwindow.o debug\node.o debug\pc.o debug\resistor.o debug\scope.o debug\setpcdialog.o debug\setsourcedialog.o debug\simu_time.o debug\source.o debug\tools.o debug\voltage.o debug\wave.o debug\wire.o debug\qrc_resource.o debug\moc_circuit.o debug\moc_help.o debug\moc_mainwindow.o debug\moc_scope.o debug\moc_setpcdialog.o debug\moc_setsourcedialog.o debug\moc_simu_time.o debug\moc_wave.o
+	-$(DEL_FILE) debug\base.o debug\capacitor.o debug\circuit.o debug\current.o debug\gnd.o debug\help.o debug\ic.o debug\inductor.o debug\main.o debug\mainwindow.o debug\node.o debug\pc.o debug\resistor.o debug\scope.o debug\setpcdialog.o debug\setsourcedialog.o debug\simu_time.o debug\source.o debug\tools.o debug\voltage.o debug\wave.o debug\wire.o debug\qrc_resource.o debug\moc_circuit.o debug\moc_help.o debug\moc_mainwindow.o debug\moc_scope.o debug\moc_setpcdialog.o debug\moc_setsourcedialog.o debug\moc_simu_time.o debug\moc_wave.o
 
 distclean: clean 
 	-$(DEL_FILE) .qmake.stash
@@ -205,16 +201,18 @@ debug/qrc_resource.cpp: ../Test/image/resource.qrc \
 		../Test/image/WIRE.png \
 		../Test/image/ZOOM_IN.png \
 		../Test/image/GND.png \
-		../Test/image/HELP.png \
+		../Test/image/IMAGE.png \
 		../Test/image/CUT.png \
-		../Test/image/WAVE.png \
 		../Test/image/C.png \
-		../Test/image/V.png \
 		../Test/image/ZOOM_OUT.png \
 		../Test/image/WAVE2.png \
 		../Test/image/BUILD.png \
-		../Test/image/I.png \
 		../Test/image/L.png \
+		../Test/image/HELP.png \
+		../Test/image/WAVE.png \
+		../Test/image/V.png \
+		../Test/image/CLEAR.png \
+		../Test/image/I.png \
 		../Test/image/MOVE.png \
 		../Test/image/R.png
 	C:\Qt\6.1.3\mingw81_64\bin\rcc.exe -name resource ..\Test\image\resource.qrc -o debug\qrc_resource.cpp
@@ -386,7 +384,6 @@ debug/moc_circuit.cpp: ../Test/circuit.h \
 		../Test/inductor.h \
 		../Test/voltage.h \
 		../Test/source.h \
-		../Test/complex.h \
 		../Test/current.h \
 		../Test/gnd.h \
 		../Test/node.h \
@@ -407,10 +404,19 @@ debug/moc_circuit.cpp: ../Test/circuit.h \
 		../Test/simu.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QWidget \
 		../Test/help.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QFileDialog \
+		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qfiledialog.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qdir.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qfile.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qfiledevice.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qfileinfo.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qdatetime.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qcalendar.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qlocale.h \
 		../Test/simdialog.h \
 		debug/moc_predefs.h \
 		C:/Qt/6.1.3/mingw81_64/bin/moc.exe
-	C:\Qt\6.1.3\mingw81_64\bin\moc.exe $(DEFINES) --include C:/Users/user/Desktop/DEMO3/pro1216/build-Test-Desktop_Qt_6_1_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.1.3/mingw81_64/mkspecs/win32-g++ -IC:/Users/user/Desktop/DEMO3/pro1216/Test -IC:/Qt/6.1.3/mingw81_64/include -IC:/Qt/6.1.3/mingw81_64/include/QtWidgets -IC:/Qt/6.1.3/mingw81_64/include/QtGui -IC:/Qt/6.1.3/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\Test\circuit.h -o debug\moc_circuit.cpp
+	C:\Qt\6.1.3\mingw81_64\bin\moc.exe $(DEFINES) --include D:/NYCU/S3/AOOP/HESPICE/build-Test-Desktop_Qt_6_1_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.1.3/mingw81_64/mkspecs/win32-g++ -ID:/NYCU/S3/AOOP/HESPICE/Test -IC:/Qt/6.1.3/mingw81_64/include -IC:/Qt/6.1.3/mingw81_64/include/QtWidgets -IC:/Qt/6.1.3/mingw81_64/include/QtGui -IC:/Qt/6.1.3/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\Test\circuit.h -o debug\moc_circuit.cpp
 
 debug/moc_help.cpp: ../Test/help.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QDialog \
@@ -542,7 +548,7 @@ debug/moc_help.cpp: ../Test/help.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtGui/QTransform \
 		debug/moc_predefs.h \
 		C:/Qt/6.1.3/mingw81_64/bin/moc.exe
-	C:\Qt\6.1.3\mingw81_64\bin\moc.exe $(DEFINES) --include C:/Users/user/Desktop/DEMO3/pro1216/build-Test-Desktop_Qt_6_1_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.1.3/mingw81_64/mkspecs/win32-g++ -IC:/Users/user/Desktop/DEMO3/pro1216/Test -IC:/Qt/6.1.3/mingw81_64/include -IC:/Qt/6.1.3/mingw81_64/include/QtWidgets -IC:/Qt/6.1.3/mingw81_64/include/QtGui -IC:/Qt/6.1.3/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\Test\help.h -o debug\moc_help.cpp
+	C:\Qt\6.1.3\mingw81_64\bin\moc.exe $(DEFINES) --include D:/NYCU/S3/AOOP/HESPICE/build-Test-Desktop_Qt_6_1_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.1.3/mingw81_64/mkspecs/win32-g++ -ID:/NYCU/S3/AOOP/HESPICE/Test -IC:/Qt/6.1.3/mingw81_64/include -IC:/Qt/6.1.3/mingw81_64/include/QtWidgets -IC:/Qt/6.1.3/mingw81_64/include/QtGui -IC:/Qt/6.1.3/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\Test\help.h -o debug\moc_help.cpp
 
 debug/moc_mainwindow.cpp: ../Test/mainwindow.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QMainWindow \
@@ -687,9 +693,18 @@ debug/moc_mainwindow.cpp: ../Test/mainwindow.h \
 		../Test/help.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QDialog \
 		C:/Qt/6.1.3/mingw81_64/include/QtGui/QKeyEvent \
+		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QFileDialog \
+		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qfiledialog.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qdir.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qfile.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qfiledevice.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qfileinfo.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qdatetime.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qcalendar.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qlocale.h \
 		debug/moc_predefs.h \
 		C:/Qt/6.1.3/mingw81_64/bin/moc.exe
-	C:\Qt\6.1.3\mingw81_64\bin\moc.exe $(DEFINES) --include C:/Users/user/Desktop/DEMO3/pro1216/build-Test-Desktop_Qt_6_1_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.1.3/mingw81_64/mkspecs/win32-g++ -IC:/Users/user/Desktop/DEMO3/pro1216/Test -IC:/Qt/6.1.3/mingw81_64/include -IC:/Qt/6.1.3/mingw81_64/include/QtWidgets -IC:/Qt/6.1.3/mingw81_64/include/QtGui -IC:/Qt/6.1.3/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\Test\mainwindow.h -o debug\moc_mainwindow.cpp
+	C:\Qt\6.1.3\mingw81_64\bin\moc.exe $(DEFINES) --include D:/NYCU/S3/AOOP/HESPICE/build-Test-Desktop_Qt_6_1_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.1.3/mingw81_64/mkspecs/win32-g++ -ID:/NYCU/S3/AOOP/HESPICE/Test -IC:/Qt/6.1.3/mingw81_64/include -IC:/Qt/6.1.3/mingw81_64/include/QtWidgets -IC:/Qt/6.1.3/mingw81_64/include/QtGui -IC:/Qt/6.1.3/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\Test\mainwindow.h -o debug\moc_mainwindow.cpp
 
 debug/moc_scope.cpp: ../Test/scope.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QGraphicsView \
@@ -829,7 +844,7 @@ debug/moc_scope.cpp: ../Test/scope.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtGui/QMouseEvent \
 		debug/moc_predefs.h \
 		C:/Qt/6.1.3/mingw81_64/bin/moc.exe
-	C:\Qt\6.1.3\mingw81_64\bin\moc.exe $(DEFINES) --include C:/Users/user/Desktop/DEMO3/pro1216/build-Test-Desktop_Qt_6_1_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.1.3/mingw81_64/mkspecs/win32-g++ -IC:/Users/user/Desktop/DEMO3/pro1216/Test -IC:/Qt/6.1.3/mingw81_64/include -IC:/Qt/6.1.3/mingw81_64/include/QtWidgets -IC:/Qt/6.1.3/mingw81_64/include/QtGui -IC:/Qt/6.1.3/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\Test\scope.h -o debug\moc_scope.cpp
+	C:\Qt\6.1.3\mingw81_64\bin\moc.exe $(DEFINES) --include D:/NYCU/S3/AOOP/HESPICE/build-Test-Desktop_Qt_6_1_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.1.3/mingw81_64/mkspecs/win32-g++ -ID:/NYCU/S3/AOOP/HESPICE/Test -IC:/Qt/6.1.3/mingw81_64/include -IC:/Qt/6.1.3/mingw81_64/include/QtWidgets -IC:/Qt/6.1.3/mingw81_64/include/QtGui -IC:/Qt/6.1.3/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\Test\scope.h -o debug\moc_scope.cpp
 
 debug/moc_setpcdialog.cpp: ../Test/setpcdialog.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QDialog \
@@ -972,7 +987,6 @@ debug/moc_setpcdialog.cpp: ../Test/setpcdialog.h \
 		../Test/inductor.h \
 		../Test/voltage.h \
 		../Test/source.h \
-		../Test/complex.h \
 		../Test/current.h \
 		../Test/gnd.h \
 		../Test/node.h \
@@ -989,7 +1003,7 @@ debug/moc_setpcdialog.cpp: ../Test/setpcdialog.h \
 		../Test/setsourcedialog.h \
 		debug/moc_predefs.h \
 		C:/Qt/6.1.3/mingw81_64/bin/moc.exe
-	C:\Qt\6.1.3\mingw81_64\bin\moc.exe $(DEFINES) --include C:/Users/user/Desktop/DEMO3/pro1216/build-Test-Desktop_Qt_6_1_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.1.3/mingw81_64/mkspecs/win32-g++ -IC:/Users/user/Desktop/DEMO3/pro1216/Test -IC:/Qt/6.1.3/mingw81_64/include -IC:/Qt/6.1.3/mingw81_64/include/QtWidgets -IC:/Qt/6.1.3/mingw81_64/include/QtGui -IC:/Qt/6.1.3/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\Test\setpcdialog.h -o debug\moc_setpcdialog.cpp
+	C:\Qt\6.1.3\mingw81_64\bin\moc.exe $(DEFINES) --include D:/NYCU/S3/AOOP/HESPICE/build-Test-Desktop_Qt_6_1_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.1.3/mingw81_64/mkspecs/win32-g++ -ID:/NYCU/S3/AOOP/HESPICE/Test -IC:/Qt/6.1.3/mingw81_64/include -IC:/Qt/6.1.3/mingw81_64/include/QtWidgets -IC:/Qt/6.1.3/mingw81_64/include/QtGui -IC:/Qt/6.1.3/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\Test\setpcdialog.h -o debug\moc_setpcdialog.cpp
 
 debug/moc_setsourcedialog.cpp: ../Test/setsourcedialog.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QDialog \
@@ -1132,7 +1146,6 @@ debug/moc_setsourcedialog.cpp: ../Test/setsourcedialog.h \
 		../Test/inductor.h \
 		../Test/voltage.h \
 		../Test/source.h \
-		../Test/complex.h \
 		../Test/current.h \
 		../Test/gnd.h \
 		../Test/node.h \
@@ -1149,7 +1162,7 @@ debug/moc_setsourcedialog.cpp: ../Test/setsourcedialog.h \
 		../Test/setsourcedialog.h \
 		debug/moc_predefs.h \
 		C:/Qt/6.1.3/mingw81_64/bin/moc.exe
-	C:\Qt\6.1.3\mingw81_64\bin\moc.exe $(DEFINES) --include C:/Users/user/Desktop/DEMO3/pro1216/build-Test-Desktop_Qt_6_1_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.1.3/mingw81_64/mkspecs/win32-g++ -IC:/Users/user/Desktop/DEMO3/pro1216/Test -IC:/Qt/6.1.3/mingw81_64/include -IC:/Qt/6.1.3/mingw81_64/include/QtWidgets -IC:/Qt/6.1.3/mingw81_64/include/QtGui -IC:/Qt/6.1.3/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\Test\setsourcedialog.h -o debug\moc_setsourcedialog.cpp
+	C:\Qt\6.1.3\mingw81_64\bin\moc.exe $(DEFINES) --include D:/NYCU/S3/AOOP/HESPICE/build-Test-Desktop_Qt_6_1_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.1.3/mingw81_64/mkspecs/win32-g++ -ID:/NYCU/S3/AOOP/HESPICE/Test -IC:/Qt/6.1.3/mingw81_64/include -IC:/Qt/6.1.3/mingw81_64/include/QtWidgets -IC:/Qt/6.1.3/mingw81_64/include/QtGui -IC:/Qt/6.1.3/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\Test\setsourcedialog.h -o debug\moc_setsourcedialog.cpp
 
 debug/moc_simu_time.cpp: ../Test/simu_time.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QDialog \
@@ -1296,9 +1309,18 @@ debug/moc_simu_time.cpp: ../Test/simu_time.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QWidget \
 		../Test/help.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtGui/QKeyEvent \
+		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QFileDialog \
+		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qfiledialog.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qdir.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qfile.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qfiledevice.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qfileinfo.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qdatetime.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qcalendar.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qlocale.h \
 		debug/moc_predefs.h \
 		C:/Qt/6.1.3/mingw81_64/bin/moc.exe
-	C:\Qt\6.1.3\mingw81_64\bin\moc.exe $(DEFINES) --include C:/Users/user/Desktop/DEMO3/pro1216/build-Test-Desktop_Qt_6_1_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.1.3/mingw81_64/mkspecs/win32-g++ -IC:/Users/user/Desktop/DEMO3/pro1216/Test -IC:/Qt/6.1.3/mingw81_64/include -IC:/Qt/6.1.3/mingw81_64/include/QtWidgets -IC:/Qt/6.1.3/mingw81_64/include/QtGui -IC:/Qt/6.1.3/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\Test\simu_time.h -o debug\moc_simu_time.cpp
+	C:\Qt\6.1.3\mingw81_64\bin\moc.exe $(DEFINES) --include D:/NYCU/S3/AOOP/HESPICE/build-Test-Desktop_Qt_6_1_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.1.3/mingw81_64/mkspecs/win32-g++ -ID:/NYCU/S3/AOOP/HESPICE/Test -IC:/Qt/6.1.3/mingw81_64/include -IC:/Qt/6.1.3/mingw81_64/include/QtWidgets -IC:/Qt/6.1.3/mingw81_64/include/QtGui -IC:/Qt/6.1.3/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\Test\simu_time.h -o debug\moc_simu_time.cpp
 
 debug/moc_wave.cpp: ../Test/wave.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QDialog \
@@ -1434,6 +1456,11 @@ debug/moc_wave.cpp: ../Test/wave.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtGui/qpainterpath.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtCore/QVector \
 		C:/Qt/6.1.3/mingw81_64/include/QtCore/qvector.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QLabel \
+		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qlabel.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qframe.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtGui/qpicture.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtGui/qtextdocument.h \
 		../Test/circuit.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QGraphicsView \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qgraphicsview.h \
@@ -1442,7 +1469,6 @@ debug/moc_wave.cpp: ../Test/wave.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtGui/qpen.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qscrollarea.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qabstractscrollarea.h \
-		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qframe.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qgraphicsscene.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtGui/QMouseEvent \
 		C:/Qt/6.1.3/mingw81_64/include/QtGui/QKeyEvent \
@@ -1462,7 +1488,6 @@ debug/moc_wave.cpp: ../Test/wave.h \
 		../Test/inductor.h \
 		../Test/voltage.h \
 		../Test/source.h \
-		../Test/complex.h \
 		../Test/current.h \
 		../Test/gnd.h \
 		../Test/node.h \
@@ -1481,10 +1506,19 @@ debug/moc_wave.cpp: ../Test/wave.h \
 		../Test/simu.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QWidget \
 		../Test/help.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QFileDialog \
+		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qfiledialog.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qdir.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qfile.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qfiledevice.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qfileinfo.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qdatetime.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qcalendar.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qlocale.h \
 		../Test/simdialog.h \
 		debug/moc_predefs.h \
 		C:/Qt/6.1.3/mingw81_64/bin/moc.exe
-	C:\Qt\6.1.3\mingw81_64\bin\moc.exe $(DEFINES) --include C:/Users/user/Desktop/DEMO3/pro1216/build-Test-Desktop_Qt_6_1_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.1.3/mingw81_64/mkspecs/win32-g++ -IC:/Users/user/Desktop/DEMO3/pro1216/Test -IC:/Qt/6.1.3/mingw81_64/include -IC:/Qt/6.1.3/mingw81_64/include/QtWidgets -IC:/Qt/6.1.3/mingw81_64/include/QtGui -IC:/Qt/6.1.3/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\Test\wave.h -o debug\moc_wave.cpp
+	C:\Qt\6.1.3\mingw81_64\bin\moc.exe $(DEFINES) --include D:/NYCU/S3/AOOP/HESPICE/build-Test-Desktop_Qt_6_1_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.1.3/mingw81_64/mkspecs/win32-g++ -ID:/NYCU/S3/AOOP/HESPICE/Test -IC:/Qt/6.1.3/mingw81_64/include -IC:/Qt/6.1.3/mingw81_64/include/QtWidgets -IC:/Qt/6.1.3/mingw81_64/include/QtGui -IC:/Qt/6.1.3/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\Test\wave.h -o debug\moc_wave.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -1657,7 +1691,6 @@ ui_mainwindow.h: ../Test/mainwindow.ui \
 		../Test/inductor.h \
 		../Test/voltage.h \
 		../Test/source.h \
-		../Test/complex.h \
 		../Test/current.h \
 		../Test/gnd.h \
 		../Test/node.h \
@@ -1678,6 +1711,15 @@ ui_mainwindow.h: ../Test/mainwindow.ui \
 		../Test/simu.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QWidget \
 		../Test/help.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QFileDialog \
+		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qfiledialog.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qdir.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qfile.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qfiledevice.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qfileinfo.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qdatetime.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qcalendar.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qlocale.h \
 		../Test/simdialog.h
 	C:\Qt\6.1.3\mingw81_64\bin\uic.exe ..\Test\mainwindow.ui -o ui_mainwindow.h
 
@@ -2095,7 +2137,6 @@ debug/circuit.o: ../Test/circuit.cpp ../Test/circuit.h \
 		../Test/inductor.h \
 		../Test/voltage.h \
 		../Test/source.h \
-		../Test/complex.h \
 		../Test/current.h \
 		../Test/gnd.h \
 		../Test/node.h \
@@ -2116,6 +2157,15 @@ debug/circuit.o: ../Test/circuit.cpp ../Test/circuit.h \
 		../Test/simu.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QWidget \
 		../Test/help.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QFileDialog \
+		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qfiledialog.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qdir.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qfile.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qfiledevice.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qfileinfo.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qdatetime.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qcalendar.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qlocale.h \
 		../Test/simdialog.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtCore/QStack \
 		C:/Qt/6.1.3/mingw81_64/include/QtCore/qstack.h \
@@ -2123,9 +2173,6 @@ debug/circuit.o: ../Test/circuit.cpp ../Test/circuit.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtCore/qqueue.h \
 		../Test/tools.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\circuit.o ..\Test\circuit.cpp
-
-debug/complex.o: ../Test/complex.cpp ../Test/complex.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\complex.o ..\Test\complex.cpp
 
 debug/current.o: ../Test/current.cpp ../Test/current.h \
 		../Test/source.h \
@@ -2171,8 +2218,7 @@ debug/current.o: ../Test/current.cpp ../Test/current.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtCore/qanystringview.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtCore/qutf8stringview.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtCore/qstringtokenizer.h \
-		C:/Qt/6.1.3/mingw81_64/include/QtCore/qstringbuilder.h \
-		../Test/complex.h
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qstringbuilder.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\current.o ..\Test\current.cpp
 
 debug/gnd.o: ../Test/gnd.cpp ../Test/gnd.h \
@@ -2357,7 +2403,17 @@ debug/help.o: ../Test/help.cpp ../Test/help.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtCore/qeventloop.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtGui/qguiapplication.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtGui/qinputmethod.h \
-		C:/Qt/6.1.3/mingw81_64/include/QtCore/qlocale.h
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qlocale.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QTextBrowser \
+		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qtextbrowser.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qtextedit.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qframe.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtGui/qtextdocument.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtGui/qtextoption.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtGui/qtextcursor.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtGui/qtextformat.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtGui/qpen.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\help.o ..\Test\help.cpp
 
 debug/ic.o: ../Test/ic.cpp ../Test/ic.h \
@@ -2472,7 +2528,6 @@ debug/ic.o: ../Test/ic.cpp ../Test/ic.h \
 		../Test/inductor.h \
 		../Test/voltage.h \
 		../Test/source.h \
-		../Test/complex.h \
 		../Test/current.h \
 		../Test/gnd.h \
 		../Test/node.h \
@@ -2707,6 +2762,15 @@ debug/main.o: ../Test/main.cpp ../Test/mainwindow.h \
 		../Test/help.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QDialog \
 		C:/Qt/6.1.3/mingw81_64/include/QtGui/QKeyEvent \
+		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QFileDialog \
+		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qfiledialog.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qdir.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qfile.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qfiledevice.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qfileinfo.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qdatetime.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qcalendar.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qlocale.h \
 		../Test/circuit.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QGraphicsView \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qgraphicsview.h \
@@ -2732,7 +2796,6 @@ debug/main.o: ../Test/main.cpp ../Test/mainwindow.h \
 		../Test/inductor.h \
 		../Test/voltage.h \
 		../Test/source.h \
-		../Test/complex.h \
 		../Test/current.h \
 		../Test/gnd.h \
 		../Test/node.h \
@@ -2749,8 +2812,7 @@ debug/main.o: ../Test/main.cpp ../Test/mainwindow.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtCore/qcoreapplication.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtCore/qeventloop.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtGui/qguiapplication.h \
-		C:/Qt/6.1.3/mingw81_64/include/QtGui/qinputmethod.h \
-		C:/Qt/6.1.3/mingw81_64/include/QtCore/qlocale.h
+		C:/Qt/6.1.3/mingw81_64/include/QtGui/qinputmethod.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\main.o ..\Test\main.cpp
 
 debug/mainwindow.o: ../Test/mainwindow.cpp ../Test/mainwindow.h \
@@ -2896,6 +2958,15 @@ debug/mainwindow.o: ../Test/mainwindow.cpp ../Test/mainwindow.h \
 		../Test/help.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QDialog \
 		C:/Qt/6.1.3/mingw81_64/include/QtGui/QKeyEvent \
+		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QFileDialog \
+		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qfiledialog.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qdir.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qfile.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qfiledevice.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qfileinfo.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qdatetime.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qcalendar.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qlocale.h \
 		ui_mainwindow.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtCore/QVariant \
 		C:/Qt/6.1.3/mingw81_64/include/QtGui/QAction \
@@ -2905,7 +2976,6 @@ debug/mainwindow.o: ../Test/mainwindow.cpp ../Test/mainwindow.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtCore/qeventloop.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtGui/qguiapplication.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtGui/qinputmethod.h \
-		C:/Qt/6.1.3/mingw81_64/include/QtCore/qlocale.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QMenuBar \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qmenubar.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qmenu.h \
@@ -2936,7 +3006,6 @@ debug/mainwindow.o: ../Test/mainwindow.cpp ../Test/mainwindow.h \
 		../Test/inductor.h \
 		../Test/voltage.h \
 		../Test/source.h \
-		../Test/complex.h \
 		../Test/current.h \
 		../Test/gnd.h \
 		../Test/node.h \
@@ -2951,7 +3020,11 @@ debug/mainwindow.o: ../Test/mainwindow.cpp ../Test/mainwindow.h \
 		../Test/simu_time.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtCore/QMap \
 		../Test/wave.h \
-		C:/Qt/6.1.3/mingw81_64/include/QtGui/QPixmap
+		C:/Qt/6.1.3/mingw81_64/include/QtGui/QPixmap \
+		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QLabel \
+		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qlabel.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtGui/qpicture.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtGui/qtextdocument.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\mainwindow.o ..\Test\mainwindow.cpp
 
 debug/node.o: ../Test/node.cpp ../Test/node.h \
@@ -3076,7 +3149,6 @@ debug/node.o: ../Test/node.cpp ../Test/node.h \
 		../Test/inductor.h \
 		../Test/voltage.h \
 		../Test/source.h \
-		../Test/complex.h \
 		../Test/current.h \
 		../Test/gnd.h \
 		../Test/setpcdialog.h \
@@ -3483,7 +3555,6 @@ debug/setpcdialog.o: ../Test/setpcdialog.cpp ../Test/setpcdialog.h \
 		../Test/inductor.h \
 		../Test/voltage.h \
 		../Test/source.h \
-		../Test/complex.h \
 		../Test/current.h \
 		../Test/gnd.h \
 		../Test/node.h \
@@ -3663,7 +3734,6 @@ debug/setsourcedialog.o: ../Test/setsourcedialog.cpp ../Test/setsourcedialog.h \
 		../Test/inductor.h \
 		../Test/voltage.h \
 		../Test/source.h \
-		../Test/complex.h \
 		../Test/current.h \
 		../Test/gnd.h \
 		../Test/node.h \
@@ -3855,6 +3925,15 @@ debug/simu_time.o: ../Test/simu_time.cpp ../Test/simu_time.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QWidget \
 		../Test/help.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtGui/QKeyEvent \
+		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QFileDialog \
+		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qfiledialog.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qdir.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qfile.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qfiledevice.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qfileinfo.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qdatetime.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qcalendar.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qlocale.h \
 		ui_simu_time.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtCore/QVariant \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QApplication \
@@ -3863,7 +3942,6 @@ debug/simu_time.o: ../Test/simu_time.cpp ../Test/simu_time.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtCore/qeventloop.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtGui/qguiapplication.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtGui/qinputmethod.h \
-		C:/Qt/6.1.3/mingw81_64/include/QtCore/qlocale.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QLabel \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qlabel.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qframe.h \
@@ -3924,8 +4002,7 @@ debug/source.o: ../Test/source.cpp ../Test/source.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtCore/qanystringview.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtCore/qutf8stringview.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtCore/qstringtokenizer.h \
-		C:/Qt/6.1.3/mingw81_64/include/QtCore/qstringbuilder.h \
-		../Test/complex.h
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qstringbuilder.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\source.o ..\Test\source.cpp
 
 debug/tools.o: ../Test/tools.cpp ../Test/tools.h
@@ -3975,8 +4052,7 @@ debug/voltage.o: ../Test/voltage.cpp ../Test/voltage.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtCore/qanystringview.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtCore/qutf8stringview.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtCore/qstringtokenizer.h \
-		C:/Qt/6.1.3/mingw81_64/include/QtCore/qstringbuilder.h \
-		../Test/complex.h
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qstringbuilder.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\voltage.o ..\Test\voltage.cpp
 
 debug/wave.o: ../Test/wave.cpp ../Test/wave.h \
@@ -4113,6 +4189,11 @@ debug/wave.o: ../Test/wave.cpp ../Test/wave.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtGui/qpainterpath.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtCore/QVector \
 		C:/Qt/6.1.3/mingw81_64/include/QtCore/qvector.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QLabel \
+		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qlabel.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qframe.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtGui/qpicture.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtGui/qtextdocument.h \
 		../Test/circuit.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QGraphicsView \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qgraphicsview.h \
@@ -4121,7 +4202,6 @@ debug/wave.o: ../Test/wave.cpp ../Test/wave.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtGui/qpen.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qscrollarea.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qabstractscrollarea.h \
-		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qframe.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qgraphicsscene.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtGui/QMouseEvent \
 		C:/Qt/6.1.3/mingw81_64/include/QtGui/QKeyEvent \
@@ -4141,7 +4221,6 @@ debug/wave.o: ../Test/wave.cpp ../Test/wave.h \
 		../Test/inductor.h \
 		../Test/voltage.h \
 		../Test/source.h \
-		../Test/complex.h \
 		../Test/current.h \
 		../Test/gnd.h \
 		../Test/node.h \
@@ -4160,6 +4239,15 @@ debug/wave.o: ../Test/wave.cpp ../Test/wave.h \
 		../Test/simu.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QWidget \
 		../Test/help.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QFileDialog \
+		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qfiledialog.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qdir.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qfile.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qfiledevice.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qfileinfo.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qdatetime.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qcalendar.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/qlocale.h \
 		../Test/simdialog.h \
 		ui_wave.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtCore/QVariant \
@@ -4169,7 +4257,6 @@ debug/wave.o: ../Test/wave.cpp ../Test/wave.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtCore/qeventloop.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtGui/qguiapplication.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtGui/qinputmethod.h \
-		C:/Qt/6.1.3/mingw81_64/include/QtCore/qlocale.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QComboBox \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qcombobox.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qabstractitemdelegate.h \
@@ -4183,23 +4270,11 @@ debug/wave.o: ../Test/wave.cpp ../Test/wave.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qtabbar.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qrubberband.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtCore/qabstractitemmodel.h \
-		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QLabel \
-		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qlabel.h \
-		C:/Qt/6.1.3/mingw81_64/include/QtGui/qpicture.h \
-		C:/Qt/6.1.3/mingw81_64/include/QtGui/qtextdocument.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QPushButton \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qpushbutton.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qabstractbutton.h \
 		../Test/scope.h \
-		C:/Qt/6.1.3/mingw81_64/include/QtCore/QDebug \
-		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QFileDialog \
-		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qfiledialog.h \
-		C:/Qt/6.1.3/mingw81_64/include/QtCore/qdir.h \
-		C:/Qt/6.1.3/mingw81_64/include/QtCore/qfile.h \
-		C:/Qt/6.1.3/mingw81_64/include/QtCore/qfiledevice.h \
-		C:/Qt/6.1.3/mingw81_64/include/QtCore/qfileinfo.h \
-		C:/Qt/6.1.3/mingw81_64/include/QtCore/qdatetime.h \
-		C:/Qt/6.1.3/mingw81_64/include/QtCore/qcalendar.h
+		C:/Qt/6.1.3/mingw81_64/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\wave.o ..\Test\wave.cpp
 
 debug/wire.o: ../Test/wire.cpp ../Test/wire.h \
@@ -4324,7 +4399,6 @@ debug/wire.o: ../Test/wire.cpp ../Test/wire.h \
 		../Test/inductor.h \
 		../Test/voltage.h \
 		../Test/source.h \
-		../Test/complex.h \
 		../Test/current.h \
 		../Test/gnd.h \
 		../Test/setpcdialog.h \

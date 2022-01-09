@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 5.0.1, 2022-01-08T10:45:38. -->
+<!-- Written by QtCreator 5.0.1, 2022-01-09T20:05:37. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -237,14 +237,14 @@
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Test2</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:D:/NYCU/S3/AOOP/pro1216/Test/Test.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">D:/NYCU/S3/AOOP/pro1216/Test/Test.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:D:/NYCU/S3/AOOP/HESPICE/Test/Test.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">D:/NYCU/S3/AOOP/HESPICE/Test/Test.pro</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">D:/NYCU/S3/AOOP/FP/pro1216/build-Test-Desktop_Qt_6_1_3_MinGW_64_bit-Debug</value>
    </valuemap>
    <value type="int" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>

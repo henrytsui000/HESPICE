@@ -1,7 +1,6 @@
 debug/base.o
 debug/capacitor.o
 debug/circuit.o
-debug/complex.o
 debug/current.o
 debug/gnd.o
 debug/help.o

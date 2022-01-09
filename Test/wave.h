@@ -5,6 +5,7 @@
 #include <QPixmap>
 #include <QGraphicsPixmapItem>
 #include <QVector>
+#include <QLabel>
 #include "circuit.h"
 namespace Ui {
 class Wave;
@@ -47,6 +48,8 @@ private:
     int cur_idx = 0;
     double Vmax = -1e6, Vmin = 1e6, Vm;
 
+    QLabel* label_v[9];
+    QLabel* label_h[10];
 };
 
 #endif // WAVE_H

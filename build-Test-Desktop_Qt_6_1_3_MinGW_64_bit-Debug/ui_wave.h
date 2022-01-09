@@ -24,11 +24,6 @@ class Ui_Wave
 public:
     QPushButton *pushButton;
     Scope *graphicsView;
-    QLabel *label;
-    QLabel *label_2;
-    QLabel *label_3;
-    QLabel *label_4;
-    QLabel *label_5;
     QPushButton *pushButton_2;
     QPushButton *pushButton_3;
     QComboBox *comboBox;
@@ -48,21 +43,6 @@ public:
         graphicsView = new Scope(Wave);
         graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
         graphicsView->setGeometry(QRect(100, 10, 802, 602));
-        label = new QLabel(Wave);
-        label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(40, 20, 47, 12));
-        label_2 = new QLabel(Wave);
-        label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setGeometry(QRect(40, 310, 47, 12));
-        label_3 = new QLabel(Wave);
-        label_3->setObjectName(QString::fromUtf8("label_3"));
-        label_3->setGeometry(QRect(40, 590, 47, 21));
-        label_4 = new QLabel(Wave);
-        label_4->setObjectName(QString::fromUtf8("label_4"));
-        label_4->setGeometry(QRect(100, 620, 47, 12));
-        label_5 = new QLabel(Wave);
-        label_5->setObjectName(QString::fromUtf8("label_5"));
-        label_5->setGeometry(QRect(900, 620, 47, 12));
         pushButton_2 = new QPushButton(Wave);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
         pushButton_2->setGeometry(QRect(930, 70, 75, 23));
@@ -94,11 +74,6 @@ public:
     {
         Wave->setWindowTitle(QCoreApplication::translate("Wave", "Dialog", nullptr));
         pushButton->setText(QCoreApplication::translate("Wave", "SHOW", nullptr));
-        label->setText(QCoreApplication::translate("Wave", "TextLabel", nullptr));
-        label_2->setText(QCoreApplication::translate("Wave", "TextLabel", nullptr));
-        label_3->setText(QCoreApplication::translate("Wave", "TextLabel", nullptr));
-        label_4->setText(QCoreApplication::translate("Wave", "TextLabel", nullptr));
-        label_5->setText(QCoreApplication::translate("Wave", "TextLabel", nullptr));
         pushButton_2->setText(QCoreApplication::translate("Wave", "SAVE", nullptr));
         pushButton_3->setText(QCoreApplication::translate("Wave", "Cursor", nullptr));
         label_6->setText(QCoreApplication::translate("Wave", "0", nullptr));

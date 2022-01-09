@@ -27,6 +27,7 @@ public:
     QLabel *label_name;
     QLabel *label_value;
     QPushButton *pushButton_cancel;
+    QLabel *label_value_2;
 
     void setupUi(QDialog *Setpcdialog)
     {
@@ -35,13 +36,13 @@ public:
         Setpcdialog->resize(368, 183);
         pushButton_ok = new QPushButton(Setpcdialog);
         pushButton_ok->setObjectName(QString::fromUtf8("pushButton_ok"));
-        pushButton_ok->setGeometry(QRect(240, 60, 75, 23));
+        pushButton_ok->setGeometry(QRect(260, 60, 75, 23));
         lineEdit_name = new QLineEdit(Setpcdialog);
         lineEdit_name->setObjectName(QString::fromUtf8("lineEdit_name"));
-        lineEdit_name->setGeometry(QRect(80, 60, 113, 20));
+        lineEdit_name->setGeometry(QRect(80, 60, 101, 20));
         lineEdit_value = new QLineEdit(Setpcdialog);
         lineEdit_value->setObjectName(QString::fromUtf8("lineEdit_value"));
-        lineEdit_value->setGeometry(QRect(80, 110, 113, 20));
+        lineEdit_value->setGeometry(QRect(80, 110, 101, 20));
         label_name = new QLabel(Setpcdialog);
         label_name->setObjectName(QString::fromUtf8("label_name"));
         label_name->setGeometry(QRect(30, 60, 47, 12));
@@ -50,7 +51,10 @@ public:
         label_value->setGeometry(QRect(30, 110, 47, 12));
         pushButton_cancel = new QPushButton(Setpcdialog);
         pushButton_cancel->setObjectName(QString::fromUtf8("pushButton_cancel"));
-        pushButton_cancel->setGeometry(QRect(240, 110, 75, 23));
+        pushButton_cancel->setGeometry(QRect(260, 110, 75, 23));
+        label_value_2 = new QLabel(Setpcdialog);
+        label_value_2->setObjectName(QString::fromUtf8("label_value_2"));
+        label_value_2->setGeometry(QRect(190, 110, 47, 21));
 
         retranslateUi(Setpcdialog);
 
@@ -64,6 +68,7 @@ public:
         label_name->setText(QCoreApplication::translate("Setpcdialog", "Name", nullptr));
         label_value->setText(QCoreApplication::translate("Setpcdialog", "value", nullptr));
         pushButton_cancel->setText(QCoreApplication::translate("Setpcdialog", "Cancel", nullptr));
+        label_value_2->setText(QCoreApplication::translate("Setpcdialog", "\316\251 / L / F", nullptr));
     } // retranslateUi
 
 };
