@@ -78,8 +78,7 @@ Press Save to save the signal to the specified location
 ### Simulate Part 
 
 ![](https://i.imgur.com/rkS6714.png)
-
-![](https://i.imgur.com/hULRZjZ.png)
+![](https://i.imgur.com/ZC1wE9e.png)
 
 
 ### Square Wave
@@ -88,5 +87,3 @@ Press Save to save the signal to the specified location
 ## Demo Video
 
 The following link is a basic introduction to using this SPICE
-
-tt
