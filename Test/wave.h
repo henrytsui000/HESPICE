@@ -49,7 +49,9 @@ private:
     double Vmax = -1e6, Vmin = 1e6, Vm;
 
     QLabel* label_v[9];
-    QLabel* label_h[10];
+    QLabel* label_h[11];
+    QGraphicsLineItem* spot_v[9];
+    QGraphicsLineItem* spot_h[11];
 };
 
 #endif // WAVE_H

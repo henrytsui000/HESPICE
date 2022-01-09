@@ -39,13 +39,29 @@ Wave::Wave(QWidget *parent) :
 
     for(int i=0; i<9; i++){
         label_v[i] = new QLabel(this);
-        label_v[i]->setVisible(false);
+        label_v[i]->setVisible(true);
     }
     for(int i=0; i<11; i++){
         label_h[i] = new QLabel(this);
-        label_h[i]->setVisible(false);
+        label_h[i]->setVisible(true);
     }
 
+    for(int i=0; i<9; i++){
+        spot_h[i] = new QGraphicsLineItem;
+        spot_h[i]->setVisible(true);
+        spot_h[i]->setLine(0,10+580.0/8*i,800,10+580.0/8*i);
+        spot_h[i]->setPen(Qt::DashLine);
+        spot_h[i]->setOpacity(0.6);
+        scene->addItem(spot_h[i]);
+    }
+    for(int i=0; i<11; i++){
+        spot_v[i] = new QGraphicsLineItem;
+        spot_v[i]->setVisible(true);
+        spot_v[i]->setLine((800.0/10)*i,0,(800.0/10)*i,600);
+        spot_v[i]->setPen(Qt::DashLine);
+        spot_v[i]->setOpacity(0.6);
+        scene->addItem(spot_v[i]);
+    }
 }
 
 Wave::~Wave()
