@@ -31,6 +31,8 @@ public:
     QLabel *label_7;
     QLabel *label_8;
     QLabel *label_9;
+    QLabel *label;
+    QLabel *label_2;
 
     void setupUi(QDialog *Wave)
     {
@@ -64,6 +66,12 @@ public:
         label_9 = new QLabel(Wave);
         label_9->setObjectName(QString::fromUtf8("label_9"));
         label_9->setGeometry(QRect(960, 200, 47, 12));
+        label = new QLabel(Wave);
+        label->setObjectName(QString::fromUtf8("label"));
+        label->setGeometry(QRect(70, 300, 21, 16));
+        label_2 = new QLabel(Wave);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+        label_2->setGeometry(QRect(930, 620, 21, 16));
 
         retranslateUi(Wave);
 
@@ -80,6 +88,8 @@ public:
         label_7->setText(QCoreApplication::translate("Wave", "V:", nullptr));
         label_8->setText(QCoreApplication::translate("Wave", "T", nullptr));
         label_9->setText(QCoreApplication::translate("Wave", "0", nullptr));
+        label->setText(QCoreApplication::translate("Wave", "V", nullptr));
+        label_2->setText(QCoreApplication::translate("Wave", "s", nullptr));
     } // retranslateUi
 
 };
