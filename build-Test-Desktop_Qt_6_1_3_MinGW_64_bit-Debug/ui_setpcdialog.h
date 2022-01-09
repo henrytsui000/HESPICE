@@ -68,7 +68,7 @@ public:
         label_name->setText(QCoreApplication::translate("Setpcdialog", "Name", nullptr));
         label_value->setText(QCoreApplication::translate("Setpcdialog", "value", nullptr));
         pushButton_cancel->setText(QCoreApplication::translate("Setpcdialog", "Cancel", nullptr));
-        label_value_2->setText(QCoreApplication::translate("Setpcdialog", "\316\251 / L / F", nullptr));
+        label_value_2->setText(QCoreApplication::translate("Setpcdialog", "\316\251 / H / F", nullptr));
     } // retranslateUi
 
 };

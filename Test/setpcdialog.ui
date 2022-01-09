@@ -95,7 +95,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Ω / L / F</string>
+    <string>Ω / H / F</string>
    </property>
   </widget>
  </widget>

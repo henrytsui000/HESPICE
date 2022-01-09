@@ -34,7 +34,7 @@ void IC::set_pic(QString str){
         unit="F";
     } else if(str == "L"){
         tmp=new QPixmap("image/L.png");
-        unit="L";
+        unit="H";
     } else if(str == "V"){
         tmp=new QPixmap("image/V.png");
         unit="V";

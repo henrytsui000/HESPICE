@@ -46,9 +46,10 @@ void Setpcdialog::on_pushButton_ok_clicked()
     QString s = "";
     double tmp = ic->value;
     for(auto &x : mp.toStdMap()){
-        if(ic->value >= x.second && ic->value < x.second*1000){
+        if(ic->value >= x.second && ic->value < x.second*999.99999){
             s = x.first;
             tmp /= x.second;
+            break;
         }
     }
     ic->textitem2->setPlainText(QString::number(tmp)+s+ic->unit);
