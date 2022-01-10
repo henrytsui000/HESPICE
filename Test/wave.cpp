@@ -183,28 +183,33 @@ void Wave::on_pushButton_clicked() {
 
 //save//
 void Wave::on_pushButton_2_clicked() {
-    QString f_str = QFileDialog::getSaveFileName(this, "Save","C:\\", "All Files (*.csv)");
+//    QString f_str = QFileDialog::getSaveFileName(NULL, "Save","C:\\", "All Files (*.csv)");
+
+    QString f_str = QFileDialog::getSaveFileName(NULL, QObject::tr("Text file"),
+        qApp->applicationDirPath(), QObject::tr("All Files (*.txt)"));
     QFile saveFile(f_str);
-    if(!saveFile.open(QIODevice::WriteOnly)){
+
+    if(!saveFile.open(QIODevice::WriteOnly| QIODevice::Text)){
         qDebug() << "Cannot save file: " << f_str;
         return;
     }
-    QDataStream saveStream(&saveFile);
-    saveStream << "T ,";
+    QDataStream out(&saveFile);
+    QString tmp;
+    tmp += "T ,";
     for(int j = 0 ; j < siz ; j++){
-        saveStream << QString::number(j+1) << " ,";
+        tmp += (QString::number(j+1) + " ,");
     }
-    saveStream << "\n";
+    tmp += "\n";
     for(int i = 0 ; i <= 800; i ++){
-        QString tmp = QString::number(i) + " ,";
+        tmp += QString::number(i) + " ,";
         for(int j = 0 ; j < siz ; j++){
 //            qDebug() << i << j  << vec[j][i];
             tmp += QString::number(vec[j][i]) + " ,";
         }
         tmp+="\n";
-        cout << tmp;
-        saveStream << tmp;
     }
+    cout << tmp;
+    out << tmp;
     saveFile.close();
 }
 
