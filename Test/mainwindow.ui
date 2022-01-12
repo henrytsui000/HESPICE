@@ -74,6 +74,7 @@
    <addaction name="actionWAVE"/>
    <addaction name="actionHELP"/>
    <addaction name="actionCLEAR"/>
+   <addaction name="actionSAVE"/>
   </widget>
   <action name="actionR">
    <property name="checkable">
@@ -251,6 +252,15 @@
    </property>
    <property name="text">
     <string>IMAGE</string>
+   </property>
+  </action>
+  <action name="actionSAVE">
+   <property name="icon">
+    <iconset resource="image/resource.qrc">
+     <normaloff>:/pre/SAVE.png</normaloff>:/pre/SAVE.png</iconset>
+   </property>
+   <property name="text">
+    <string>SAVE</string>
    </property>
   </action>
  </widget>

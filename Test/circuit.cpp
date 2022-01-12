@@ -39,39 +39,67 @@ Circuit::Circuit(QWidget *parent): QGraphicsView(parent)
     offset.setX(0);
     offset.setY(0);
 
-    mode="NONE";
+    pic = NULL;
+    mode = "NONE";
+    type = "NONE";
+    action_index = -1;
+    selected_index = -1;
+    draw_wire = false;
 }
 
 Circuit::~Circuit(){
     qDebug() <<"delete Circuit";
 }
-//width/2+(event.x()-width/2)/scale_x
-//width/2+(event.x()-width/2)/scale_x
 
 int Circuit::chx(int x){
-    //return offset_x + width()/2+(x-width()/2)/scale_x;
-    //return scene->width()/2 + (x - width()/2)/scale_x + width()/2;
     return 4999+(x-width()/2)/scale_x+offset.x();
 }
 int Circuit::chy(int y){
-//    return offset_y + height()/2+(y-height()/2)/scale_y;
-    //return scene->height()/2 + (y - height()/2)/scale_y + height()/2;
     return 4999+(y-height()/2)/scale_y+offset.y();
 }
 
 void Circuit::set_op(QString type, QString mode){
-    this->mode=mode;
-    this->type=type;
+    this->mode = mode;
+    this->type = type;
     if(this->mode=="ADD" && type!="W") add_op();
-    else if(this->mode=="ADD" && type=="W") draw_wire=false, add_wire();
-    else if(this->mode=="MOVE") move_index=-1;
+    else if(this->mode=="ADD" && type=="W") add_wire();
+    else if(this->mode=="MOVE") ;
     else if(this->mode=="CLEAR") clear_all();
     else if(this->mode=="IMAGE") add_pic();
+    else if(this->mode=="SAVE") save_file();
+    else if(this->mode=="WAVE") is_showing_wave = true;
     qDebug()<<"succcess set_op "<<mode<<" "<<type;
 }
-void Circuit::add_pic(){
-    if(pic) scene->removeItem(pic);
+void Circuit::save_file(){
 
+    QString filter = "(*.asc)";
+    QString fileName = QFileDialog::getSaveFileName
+            (this, "Save", QDir::currentPath(), filter);
+    qDebug()<<fileName;
+
+    QString data = "Version4\n";
+    QString tmp1, tmp2, tmp3, tmp4;
+    data += "SHEET 1 880 680\n";
+    for(int i=0; i<all_wire.size(); i++){
+        tmp1 = QString::number(all_wire[i]->node[0]->p.x()) + " ";
+        tmp2 = QString::number(all_wire[i]->node[0]->p.y()) + " ";
+        tmp3 = QString::number(all_wire[i]->node[1]->p.x()) + " ";
+        tmp4 = QString::number(all_wire[i]->node[1]->p.y());
+        data += "WIRE " + tmp1 + tmp2 + tmp3 + tmp4 + "\n";
+    }
+    for(int i=0; i<all_IC.size(); i++){
+
+    }
+    mode = "NONE";
+    type = "NONE";
+    w->set_all_unchecked();
+}
+
+void Circuit::add_pic(){
+    if(pic != NULL){
+        scene->removeItem(pic);
+        delete pic;
+    }
     QString str = QFileDialog::getOpenFileName(this);
     if(str=="") return;
 
@@ -87,52 +115,34 @@ void Circuit::add_pic(){
     pic = new QGraphicsPixmapItem(*tmp);
     pic->setPos(pic_pos);
     scene->addItem(pic);
-    mode="NONE";
+    end_last();
 }
 void Circuit::clear_all(){
-    for(int i=0; i<all_IC.size(); i++){
-        scene->removeItem(all_IC[i]->picitem);
-        scene->removeItem(all_IC[i]->node_in->pointitem);
-        scene->removeItem(all_IC[i]->node_out->pointitem);
-        scene->removeItem(all_IC[i]->textitem1);
-        scene->removeItem(all_IC[i]->textitem2);
-    }
-    for(int i=0; i<all_wire.size(); i++){
-        scene->removeItem(all_wire[i]->lineitem);
-        scene->removeItem(all_wire[i]->node[0]->pointitem);
-        scene->removeItem(all_wire[i]->node[1]->pointitem);
+    QList<QGraphicsItem*> l = scene->items();
+    for(int i=0; i<l.size(); i++){
+        scene->removeItem(l[i]);
     }
     all_IC.clear();
     all_wire.clear();
-    scene->removeItem(pic);
+    delete pic;
+    pic = NULL;
+    end_last();
 }
 
 void Circuit::add_op(){
     qDebug()<<"add_op";
-    IC* tmp = new IC(scene);
+    IC* tmp = new IC(scene, type);
     tmp->node_in->ic->push_back(tmp);
     tmp->node_out->ic->push_back(tmp);
-    tmp->node_in->pointitem = scene->addLine(20, 20, 20, 20, *tmp->node_in->pen);
-    tmp->node_out->pointitem = scene->addLine(20, 20, 20, 20, *tmp->node_out->pen);
-    tmp->set_pic(type);
-    tmp->set_center_pos(-100,-100);
-
     all_IC.push_back(tmp);
-//    all_node.push_back(tmp->node_in);
-//    all_node.push_back(tmp->node_out);
 }
+
 void Circuit::add_wire(){
+    qDebug()<<"add_wire";
     Wire* tmp=new Wire(scene);
     tmp->node[0]->wire->push_back(tmp);
     tmp->node[1]->wire->push_back(tmp);
-    //tmp->lineitem = scene->addLine(20, 20, 20, 20, *tmp->pen);
-    scene->addItem(tmp->lineitem);
-    tmp->node[0]->pointitem = scene->addLine(20, 20, 20, 20, *tmp->node[0]->pen);
-    tmp->node[1]->pointitem = scene->addLine(20, 20, 20, 20, *tmp->node[1]->pen);
-
     all_wire.push_back(tmp);
-//    all_node.push_back(tmp->node[0]);
-//    all_node.push_back(tmp->node[1]);
 }
 
 void Circuit::combine_node(Node **node){
@@ -171,7 +181,7 @@ void Circuit::combine_node(Node **node){
     }
 }
 
-void Circuit::check_connection(){
+QString Circuit::check_connection(){
     is_connected=true;
     for(int i=0; i<all_IC.size(); i++){
         all_IC[i]->node_in->visit=false;
@@ -185,6 +195,8 @@ void Circuit::check_connection(){
         if(all_wire[i]->node[0]->connect<2) is_connected=false;
         if(all_wire[i]->node[1]->connect<2) is_connected=false;
     }
+    if(is_connected == false) return "uncompleted circuit";
+
     for(int i=0; i<all_IC.size(); i++){
         if(all_IC[i]->type=="G") DFS(all_IC[i]->node_in);
     }
@@ -196,7 +208,8 @@ void Circuit::check_connection(){
         if(all_wire[i]->node[0]->visit==false) is_connected=false;
         if(all_wire[i]->node[1]->visit==false) is_connected=false;
     }
-    qDebug()<<"is_connected:"<<is_connected;
+    if(is_connected == false) return "not connected to ground";
+    else return "NONE";
 }
 void Circuit::DFS(Node* from){
     from->visit=true;
@@ -214,28 +227,6 @@ void Circuit::DFS(Node* from){
     }
 }
 
-/*
-void Circuit::check_node(void){
-    for(int i=0; i<all_node.size(); i++){
-        for(int j=i; j<all_node.size(); j++){
-            if(all_node[i]->x==all_node[j]->x && all_node[i]->y==all_node[j]->y){
-                for(int k=0; k<all_IC.size(); k++){
-                    if(all_IC[k]->node_in==all_node[j]) all_IC[k]->node_in=all_node[i];
-                    if(all_IC[k]->node_out==all_node[j]) all_IC[k]->node_out=all_node[i];
-                }
-                for(int k=0; k<all_wire.size(); k++){
-                    if(all_wire[k]->node[0]==all_node[j]) all_wire[k]->node[0]=all_node[i];
-                    if(all_wire[k]->node[1]==all_node[j]) all_wire[k]->node[1]=all_node[i];
-                }
-                *all_node[i]->ic += *all_node[j]->ic;
-                *all_node[i]->wire += *all_node[j]->wire;
-                all_node.erase(all_node.begin()+j);
-            }
-        }
-    }
-}
-*/
-
 void Circuit::mouseMoveEvent(QMouseEvent *event){
     if(mode=="ADD" && type=="W"){
         if(draw_wire){
@@ -250,38 +241,46 @@ void Circuit::mouseMoveEvent(QMouseEvent *event){
         aimer[1]->setVisible(true);
     } else if(mode=="ADD"){
         all_IC.back()->set_center_pos(chx(event->x()), chy(event->y()));
-    } else if(mode=="MOVE" && move_index!=-1){
-        if(type=="IC") all_IC[move_index]->set_center_pos(chx(event->x()), chy(event->y()));
-        if(type=="W") all_wire[move_index]->set_center_pos(chx(event->x()), chy(event->y()));
+    } else if(mode=="MOVE" && action_index!=-1){
+        if(type=="IC") all_IC[action_index]->set_center_pos(chx(event->x()), chy(event->y()));
+        if(type=="W") all_wire[action_index]->set_center_pos(chx(event->x()), chy(event->y()));
         if(type=="P"){
             pic_pos.setX(chx(event->x())-pic_size.x()/2);
             pic_pos.setY(chy(event->y())-pic_size.y()/2);
             pic->setPos(pic_pos);
         }
-    } else if(mode=="MOVE" ||mode=="CUT"||mode=="WAVE"){
+    } else if(mode=="MOVE" || mode=="CUT" || mode=="WAVE" || mode=="NONE"){
+        QList<QGraphicsItem*> l = scene->items();
+        for(int i=0; i<l.size(); i++){
+            l[i]->setOpacity(1);
+        }
         for(int i=all_wire.size()-1; i>=0; i--){
             if(all_wire[i]->Inside(chx(event->x()), chy(event->y()))){
                 all_wire[i]->lineitem->setOpacity(0.2);
-            } else {
-                all_wire[i]->lineitem->setOpacity(1);
+                type = "W";
+                selected_index = i;
+                return;
             }
         }
         for(int i=all_IC.size()-1; i>=0; i--){
             if(all_IC[i]->Inside(chx(event->x()),chy(event->y()))){
                 all_IC[i]->picitem->setOpacity(0.3);
-            } else{
-                all_IC[i]->picitem->setOpacity(1);
+                type = "IC";
+                selected_index = i;
+                return;
             }
         }
-        if(pic){
+        if(pic!=NULL){
             if(pic_pos.x()<chx(event->x()) && pic_pos.x()+pic_size.x()>chx(event->x()) &&
                pic_pos.y()<chy(event->y()) && pic_pos.y()+pic_size.y()>chy(event->y())){
                 pic->setOpacity(0.3);
+                type = "P";
+                selected_index = 0;
+                return;
             }
-            else pic->setOpacity(1);
         }
-
-    } else if(mode == "NONE"){
+    }
+    if(mode == "NONE"){
         if(mouse.x()!=-1 && mouse.y()!=-1){
             offset.setX(offset.x()-(event->x()-mouse.x())/scale_x);
             offset.setY(offset.y()-(event->y()-mouse.y())/scale_y);
@@ -296,208 +295,180 @@ void Circuit::mouseMoveEvent(QMouseEvent *event){
 void Circuit::mousePressEvent(QMouseEvent *event){
     if(event->button() == Qt::LeftButton){
         if(mode=="ADD" && type=="W"){
-                if(draw_wire){
-                    combine_node(&all_wire.back()->node[1]);
-                    add_wire();
-                    scene->removeItem(all_wire.back()->node[0]->pointitem);
-                    delete all_wire.back()->node[0];
-                    all_wire.back()->node[0]=all_wire[all_wire.size()-2]->node[1];
-                    all_wire.back()->node[0]->connect++;
-                    all_wire.back()->node[0]->wire->push_back(all_wire.back());
-                }else{
-                    draw_wire=true;
-                    combine_node(&all_wire.back()->node[0]);
-                }
-
+            if(draw_wire){
+                combine_node(&all_wire.back()->node[1]);
+                add_wire();
+                scene->removeItem(all_wire.back()->node[0]->pointitem);
+                delete all_wire.back()->node[0];
+                all_wire.back()->node[0]=all_wire[all_wire.size()-2]->node[1];
+                all_wire.back()->node[0]->connect++;
+                all_wire.back()->node[0]->wire->push_back(all_wire.back());
+            }else{
+                draw_wire=true;
+                combine_node(&all_wire.back()->node[0]);
+            }
         } else if(mode=="ADD"){
             combine_node(&all_IC.back()->node_in);
             combine_node(&all_IC.back()->node_out);
             add_op();
             all_IC.back()->set_center_pos(chx(event->x()), chy(event->y()));
-        } else if(mode=="MOVE" && move_index==-1){
-            for(int i = all_IC.size()-1 ; i >=0; i--){
-                if(all_IC[i]->Inside(chx(event->x()), chy(event->y()))){
-                    this->move_index = i;
-                    type="IC";
-                    if(all_IC[i]->node_in->connect!=1){
-                        for(int j=0; j<all_IC[i]->node_in->ic->size(); j++){
-                            if(all_IC[i]->node_in->ic->at(j)==all_IC[i]) all_IC[i]->node_in->ic->erase(all_IC[i]->node_in->ic->begin()+j);
+        } else if(mode=="MOVE" && action_index==-1 && selected_index!=-1){
+            action_index = selected_index;
+            int i = action_index;
+            selected_index = -1;
+            qDebug()<<selected_index<<type<<mode;
+            if(type == "W"){
+                for(int j=0; j<2; j++){
+                    if(all_wire[i]->node[j]->connect!=1){
+                        for(int k=0; k<all_wire[i]->node[j]->wire->size(); k++){
+                            if(all_wire[i]->node[j]->wire->at(k)==all_wire[i])
+                                all_wire[i]->node[j]->wire->erase(all_wire[i]->node[j]->wire->begin()+k);
                         }
-                        all_IC[i]->node_in->connect--;
-                        all_IC[i]->node_in = new Node(scene);
-                        all_IC[i]->node_in->ic->push_back(all_IC[i]);
+                        all_wire[i]->node[j]->connect--;
+                        all_wire[i]->node[j] = new Node(scene);
+                        all_wire[i]->node[j]->wire->push_back(all_wire[i]);
                     }
-                    if(all_IC[i]->node_out->connect!=1){
-                        for(int j=0; j<all_IC[i]->node_out->ic->size(); j++){
-                            if(all_IC[i]->node_out->ic->at(j)==all_IC[i]) all_IC[i]->node_out->ic->erase(all_IC[i]->node_out->ic->begin()+j);
-                        }
-                        all_IC[i]->node_out->connect--;
-                        all_IC[i]->node_out = new Node(scene);
-                        all_IC[i]->node_out->ic->push_back(all_IC[i]);
-                    }
-                    return;
                 }
             }
-            for(int i = all_wire.size()-1 ; i >=0; i--){
-                if(all_wire[i]->Inside(chx(event->x()), chy(event->y()))){
-                    this->move_index = i;
-                    for(int j=0; j<2; j++){
-                        if(all_wire[i]->node[j]->connect!=1){
-                            for(int k=0; k<all_wire[i]->node[j]->wire->size(); k++){
-                                if(all_wire[i]->node[j]->wire->at(k)==all_wire[i]) all_wire[i]->node[j]->wire->erase(all_wire[i]->node[j]->wire->begin()+k);
-                            }
-                            all_wire[i]->node[j]->connect--;
-                            all_wire[i]->node[j] = new Node(scene);
-                            all_wire[i]->node[j]->wire->push_back(all_wire[i]);
-                        }
+            else if(type == "IC"){
+                if(all_IC[i]->node_in->connect!=1){
+                    for(int j=0; j<all_IC[i]->node_in->ic->size(); j++){
+                        if(all_IC[i]->node_in->ic->at(j)==all_IC[i])
+                            all_IC[i]->node_in->ic->erase(all_IC[i]->node_in->ic->begin()+j);
                     }
-                    type="W";
-                    return;
+                    all_IC[i]->node_in->connect--;
+                    all_IC[i]->node_in = new Node(scene);
+                    all_IC[i]->node_in->ic->push_back(all_IC[i]);
+                }
+                if(all_IC[i]->node_out->connect!=1){
+                    for(int j=0; j<all_IC[i]->node_out->ic->size(); j++){
+                        if(all_IC[i]->node_out->ic->at(j)==all_IC[i])
+                            all_IC[i]->node_out->ic->erase(all_IC[i]->node_out->ic->begin()+j);
+                    }
+                    all_IC[i]->node_out->connect--;
+                    all_IC[i]->node_out = new Node(scene);
+                    all_IC[i]->node_out->ic->push_back(all_IC[i]);
                 }
             }
-            if(pic_pos.x()<chx(event->x()) && pic_pos.x()+pic_size.x()>chx(event->x()) &&
-               pic_pos.y()<chy(event->y()) && pic_pos.y()+pic_size.y()>chy(event->y())){
-                this->move_index = -2;
-                type = "P";
-                qDebug()<<"pic_select";
-            }
-        } else if(mode=="MOVE" && move_index!=-1){
+
+        } else if(mode=="MOVE" && action_index!=-1){
             if(type=="IC"){
-                combine_node(&all_IC[move_index]->node_in);
-                combine_node(&all_IC[move_index]->node_out);
+                combine_node(&all_IC[action_index]->node_in);
+                combine_node(&all_IC[action_index]->node_out);
             } else if(type=="W"){
-                combine_node(&all_wire[move_index]->node[0]);
-                combine_node(&all_wire[move_index]->node[1]);
+                combine_node(&all_wire[action_index]->node[0]);
+                combine_node(&all_wire[action_index]->node[1]);
             }
-            move_index=-1;
-        } else if(mode=="CUT"){
-            for(int i = all_IC.size()-1 ; i >=0; i--){
-                if(all_IC[i]->Inside(chx(event->x()), chy(event->y()))){
-          //          scene->removeItem(all_IC[i]->picitem);
-                    if(all_IC[i]->node_in->connect==1){
-                        scene->removeItem(all_IC[i]->node_in->pointitem);
-                    } else{
-                        for(int j=0; j<all_IC[i]->node_in->ic->size(); j++){
-                            if(all_IC[i]->node_in->ic->at(j)==all_IC[i]) all_IC[i]->node_in->ic->erase(all_IC[i]->node_in->ic->begin()+j);
-                        }
-                    }
-                    if(all_IC[i]->node_out->connect==1){
-                        scene->removeItem(all_IC[i]->node_out->pointitem);
-                    } else{
-                        for(int j=0; j<all_IC[i]->node_out->ic->size(); j++){
-                            if(all_IC[i]->node_out->ic->at(j)==all_IC[i]) all_IC[i]->node_out->ic->erase(all_IC[i]->node_out->ic->begin()+j);
-                        }
-                    }
-                    delete all_IC[i];
-                    all_IC.erase(all_IC.begin()+i);
-                    return;
-                }
+            action_index=-1;
+        } else if(mode=="CUT" && selected_index!=-1){
+            int i = selected_index;
+            if(type == "W"){
+                delete all_wire[i];
+                all_wire.erase(all_wire.begin()+i);
+                return;
             }
-            for(int i = all_wire.size()-1 ; i >=0; i--){
-                if(all_wire[i]->Inside(chx(event->x()), chy(event->y()))){
-//                    scene->removeItem(all_wire[i]->lineitem);
-                    for(int j=0; j<2; j++){
-                        if(all_wire[i]->node[j]->connect!=1){
-                            for(int k=0; k<all_wire[i]->node[j]->wire->size(); k++){
-                                if(all_wire[i]->node[j]->wire->at(k)==all_wire[i]) all_wire[i]->node[j]->wire->erase(all_wire[i]->node[j]->wire->begin()+k);
-                            }
-                        } else{
-                            scene->removeItem(all_wire[i]->node[j]->pointitem);
-                        }
-                    }
-                    delete all_wire[i];
-                    all_wire.erase(all_wire.begin()+i);
-                    return;
-                }
+            else if(type == "IC"){
+                delete all_IC[i];
+                all_IC.erase(all_IC.begin()+i);
+                return;
             }
-            if(pic){
-                if(pic_pos.x()<chx(event->x()) && pic_pos.x()+pic_size.x()>chx(event->x()) &&
-                   pic_pos.y()<chy(event->y()) && pic_pos.y()+pic_size.y()>chy(event->y())){
-                    scene->removeItem(pic);
-                    delete pic;
-                }
+            else if(type =="P"){
+                scene->removeItem(pic);
+                delete pic;
+                pic = NULL;
             }
         } else if(mode=="NONE"){
             qDebug()<<"NONE";
             mouse.setX(event->x());
             mouse.setY(event->y());
-            //offset.setX(offset.x()/scale_x);
-            //offset.setY(offset.y()/scale_y);
         } else if(mode=="WAVE"){
             qDebug()<<"WAVE";
-            for(int i = all_wire.size()-1 ; i >=0; i--){
-                if(all_wire[i]->Inside(chx(event->x()), chy(event->y()))){
-
-                    wave_node.insert(all_wire[i]->node[0]);
-                    qDebug()<<"wave_node"<<i;
-                    w->draw();
-                    return;
-                }
-            }
-            for(int i = all_IC.size()-1; i>=0; i--){
-                if(all_IC[i]->Inside(chx(event->x()), chy(event->y()))){
-                    wave_ic.insert(all_IC[i]);
-                    qDebug()<<"wave_ic"<<i;
-                    return ;
-                }
-            }
-        }
-    } else if(event->button() == Qt::RightButton){
-        if(mode=="ADD" && type=="W"){
-            if(draw_wire){
-//                scene->removeItem(all_wire.back()->lineitem);
-                if(all_wire.back()->node[0]->connect==1) scene->removeItem(all_wire.back()->node[0]->pointitem);
-                if(all_wire.back()->node[1]->connect==1) scene->removeItem(all_wire.back()->node[1]->pointitem);
-                all_wire.back()->node[0]->wire->erase(all_wire.back()->node[0]->wire->end()-1);
-                delete all_wire.back();
-                all_wire.erase(all_wire.end()-1);
-                add_wire();
-                draw_wire=false;
-            } else{
-//                scene->removeItem(all_wire.back()->lineitem);
-                if(all_wire.back()->node[0]->connect==1) scene->removeItem(all_wire.back()->node[0]->pointitem);
-                if(all_wire.back()->node[1]->connect==1) scene->removeItem(all_wire.back()->node[1]->pointitem);
-                delete all_wire.back();
-                all_wire.erase(all_wire.end()-1);
-                mode="NONE";
-                w->set_all_unchecked();
-                aimer[0]->setVisible(false);
-                aimer[1]->setVisible(false);
-            }
-        } else if(mode=="ADD"){
-//            scene->removeItem(all_IC.back()->picitem);
-            if(all_IC.back()->node_in->connect==1) scene->removeItem(all_IC.back()->node_in->pointitem);
-            if(all_IC.back()->node_out->connect==1) scene->removeItem(all_IC.back()->node_out->pointitem);
-            delete all_IC.back();
-            all_IC.erase(all_IC.end()-1);
-            mode="NONE";
-            w->set_all_unchecked();
-        } else if(mode=="MOVE"){
-            move_index=-1;
-            mode="NONE";
-            w->set_all_unchecked();
-        } else if(mode=="CUT"){
-            mode="NONE";
-            w->set_all_unchecked();
-        } else if(mode=="NONE"){
-            for(int i=0; i<all_IC.size(); i++){
-                if(all_IC[i]->Inside(chx(event->x()), chy(event->y()))){
-                    if(all_IC[i]->type=="R" || all_IC[i]->type=="L" || all_IC[i]->type=="C"){
-                        Setpcdialog setpcdialog;
-                        setpcdialog.initialization(all_IC[i], i);
-                        setpcdialog.setModal(true);
-                        setpcdialog.exec();
-                    } else if(all_IC[i]->type=="V" || all_IC[i]->type=="I" ){
-                        Setsourcedialog setsourcedialog;
-                        setsourcedialog.initialization(all_IC[i], i);
-                        setsourcedialog.setModal(true);
-                        setsourcedialog.exec();
+            int i = selected_index;
+            if(type=="W"){
+                bool add = true;
+                for(int j=0; j<wave_node.size(); j++){
+                    if(rela[wave_node[j]]==rela[all_wire[i]->node[0]]){
+                        add = false;
+                        wave_node.erase(wave_node.begin()+j);
+                        break;
                     }
                 }
+
+                if(add){
+                    wave_node.push_back(all_wire[i]->node[0]);
+                }
+                qDebug()<<"wave_node"<<i;
             }
+            else if(type=="IC"){
+                wave_ic.insert(all_IC[i]);
+                qDebug()<<"wave_ic"<<i;
+            }
+            wave->on_pushButton_clicked();
+        }
+    } else if(event->button() == Qt::RightButton){
+        if(mode=="NONE"){
+            if(type=="IC"){
+                int i = selected_index;
+                if(all_IC[i]->type=="R" || all_IC[i]->type=="L" || all_IC[i]->type=="C"){
+                    Setpcdialog setpcdialog;
+                    setpcdialog.initialization(all_IC[i], i);
+                    setpcdialog.setModal(true);
+                    setpcdialog.exec();
+                } else if(all_IC[i]->type=="V" || all_IC[i]->type=="I" ){
+                    Setsourcedialog setsourcedialog;
+                    setsourcedialog.initialization(all_IC[i], i);
+                    setsourcedialog.setModal(true);
+                    setsourcedialog.exec();
+                }
+                type = "NONE";
+                selected_index = -1;
+            }
+        } else if(mode=="ADD" && type=="W" && draw_wire){
+            delete all_wire.back();
+            all_wire.erase(all_wire.end()-1);
+            add_wire();
+            draw_wire=false;
+        } else {
+            if(mode=="ADD" && type=="W"){
+                delete all_wire.back();
+                all_wire.erase(all_wire.end()-1);
+                aimer[0]->setVisible(false);
+                aimer[1]->setVisible(false);
+            } else if(mode=="ADD"){
+                delete all_IC.back();
+                all_IC.erase(all_IC.end()-1);
+            }
+            mode = "NONE";
+            type = "NONE";
+            selected_index = -1;
+            action_index = -1;
+            w->set_all_unchecked();
         }
     }
-
+}
+void Circuit::end_last(){
+    if(mode=="ADD" && type=="W" && draw_wire){
+        delete all_wire.back();
+        all_wire.erase(all_wire.end()-1);
+        add_wire();
+        draw_wire=false;
+        end_last();
+    } else {
+        if(mode=="ADD" && type=="W"){
+            delete all_wire.back();
+            all_wire.erase(all_wire.end()-1);
+            aimer[0]->setVisible(false);
+            aimer[1]->setVisible(false);
+        } else if(mode=="ADD"){
+            delete all_IC.back();
+            all_IC.erase(all_IC.end()-1);
+        }
+        mode = "NONE";
+        type = "NONE";
+        selected_index = -1;
+        action_index = -1;
+        w->set_all_unchecked();
+    }
 }
 void Circuit::mouseReleaseEvent(QMouseEvent *event){
     mouse.setX(-1);
@@ -505,17 +476,16 @@ void Circuit::mouseReleaseEvent(QMouseEvent *event){
 }
 void Circuit::keyPressEvent(QKeyEvent *event){
     if(event->key()=='R'){
-        if((mode=="MOVE" && move_index!=-1 && type!="W")||(mode=="ADD" && type!="W")){
-            if(mode=="ADD" && type!="W") move_index=all_IC.size()-1;
-            QTransform trans = all_IC[move_index]->picitem->transform();
-            int w = all_IC[move_index]->width/2;
-            int h = all_IC[move_index]->height/2;
-            trans.translate(w+h, h-w);
-            all_IC[move_index]->rotate=(all_IC[move_index]->rotate+1)%4;
-            trans.rotate(90);
-            all_IC[move_index]->picitem->setTransform(trans);
-            qDebug()<<"success";
-            all_IC[move_index]->set_center_pos(all_IC[move_index]->mouse.x(),all_IC[move_index]->mouse.y());
+        if((mode=="MOVE" && action_index!=-1 && type!="W" && type!="P")||(mode=="ADD" && type!="W" && type!="P")){
+            if(mode=="ADD") action_index = all_IC.size()-1;
+                QTransform trans = all_IC[action_index]->picitem->transform();
+                int w = all_IC[action_index]->width/2;
+                int h = all_IC[action_index]->height/2;
+                trans.translate(w+h, h-w);
+                all_IC[action_index]->rotate=(all_IC[action_index]->rotate+1)%4;
+                trans.rotate(90);
+                all_IC[action_index]->picitem->setTransform(trans);
+                all_IC[action_index]->set_center_pos(all_IC[action_index]->mouse.x(),all_IC[action_index]->mouse.y());
         }
     }
     if(event->key()=='V' || event->key()=='v') w->on_actionV_triggered();
@@ -529,7 +499,6 @@ void Circuit::keyPressEvent(QKeyEvent *event){
     if(event->key()=='M' || event->key()=='m') w->on_actionMOVE_triggered();
     if(event->key()=='+') w->on_actionZOOM_IN_triggered();
     if(event->key()=='-') w->on_actionZOOM_OUT_triggered();
-    int kk;
 }
 
 complex<double> Circuit::imp(IC *p, double f){

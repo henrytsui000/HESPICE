@@ -17,6 +17,7 @@
         <file>HELP.png</file>
         <file>CLEAR.png</file>
         <file>IMAGE.png</file>
+        <file>SAVE.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

@@ -13,6 +13,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDialog>
+#include <QtWidgets/QGroupBox>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <scope.h>
@@ -33,6 +34,7 @@ public:
     QLabel *label_9;
     QLabel *label;
     QLabel *label_2;
+    QGroupBox *groupBox;
 
     void setupUi(QDialog *Wave)
     {
@@ -44,7 +46,7 @@ public:
         pushButton->setGeometry(QRect(930, 20, 75, 23));
         graphicsView = new Scope(Wave);
         graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
-        graphicsView->setGeometry(QRect(100, 10, 802, 602));
+        graphicsView->setGeometry(QRect(80, 10, 802, 602));
         pushButton_2 = new QPushButton(Wave);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
         pushButton_2->setGeometry(QRect(930, 70, 75, 23));
@@ -68,10 +70,17 @@ public:
         label_9->setGeometry(QRect(960, 200, 47, 12));
         label = new QLabel(Wave);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(70, 300, 21, 16));
+        label->setGeometry(QRect(50, 300, 21, 16));
+        QFont font;
+        font.setPointSize(12);
+        label->setFont(font);
         label_2 = new QLabel(Wave);
         label_2->setObjectName(QString::fromUtf8("label_2"));
         label_2->setGeometry(QRect(930, 620, 21, 16));
+        label_2->setFont(font);
+        groupBox = new QGroupBox(Wave);
+        groupBox->setObjectName(QString::fromUtf8("groupBox"));
+        groupBox->setGeometry(QRect(890, 230, 120, 80));
 
         retranslateUi(Wave);
 
@@ -90,6 +99,7 @@ public:
         label_9->setText(QCoreApplication::translate("Wave", "0", nullptr));
         label->setText(QCoreApplication::translate("Wave", "V", nullptr));
         label_2->setText(QCoreApplication::translate("Wave", "s", nullptr));
+        groupBox->setTitle(QCoreApplication::translate("Wave", "GroupBox", nullptr));
     } // retranslateUi
 
 };

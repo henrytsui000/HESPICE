@@ -11,7 +11,7 @@
 #include <QKeyEvent>
 #include <QFileDialog>
 
-//#include "wave.h"
+#include "wave.h"
 class Help;
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -25,7 +25,6 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void set_all_unchecked(void);
-    void draw();
 private slots:
     void on_actionR_triggered();
     void on_actionL_triggered();
@@ -44,8 +43,8 @@ private slots:
     friend class Circuit;
     void on_actionHELP_triggered();
     void on_actionCLEAR_triggered();
-
     void on_actionIMAGE_triggered();
+    void on_actionSAVE_triggered();
 
 private:
     Ui::MainWindow *ui;

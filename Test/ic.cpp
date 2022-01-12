@@ -10,16 +10,18 @@ IC::IC()
     freq=0;
     phase=0;
 }
-IC::IC(QGraphicsScene* scene)
+IC::IC(QGraphicsScene* scene, QString type)
 {
-    node_in = new Node();
-    node_out = new Node();
+    node_in = new Node(scene);
+    node_out = new Node(scene);
     this->scene = scene;
     vertical = true;
     rotate=0;
     value=0;
     freq=0;
     phase=0;
+
+    set_pic(type);
 }
 void IC::set_pic(QString str){
     QPixmap* tmp;
@@ -99,6 +101,7 @@ void IC::set_center_pos(int x, int y){
 
     x=(center.x()-width/2);
     y=(center.y()-height/2);
+    qDebug()<<x<<y;
     this->picitem->setPos(x,y);
     if(type!="G"){
         if(rotate%2==0){
@@ -131,6 +134,20 @@ bool IC::Inside(int x, int y){
     }
 }
 IC::~IC(){
+
+    for(int j=0; j<node_in->wire->size(); j++){
+        if(node_in->ic->at(j) == this){
+            node_in->ic->erase(node_in->ic->begin()+j);
+            break;
+        }
+    }
+    for(int j=0; j<node_out->wire->size(); j++){
+        if(node_out->ic->at(j) == this){
+            node_out->ic->erase(node_out->ic->begin()+j);
+            break;
+        }
+    }
+
     node_in->connect--;
     node_out->connect--;
     if(node_in->connect==0) delete node_in;

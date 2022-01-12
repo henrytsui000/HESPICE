@@ -14,8 +14,8 @@ Wire::Wire()
 }
 Wire::Wire(QGraphicsScene* scene)
 {
-    node[0] = new Node();
-    node[1] = new Node();
+    node[0] = new Node(scene);
+    node[1] = new Node(scene);
     pen = new QPen();
     lineitem = new QGraphicsLineItem();
 
@@ -29,6 +29,14 @@ Wire::Wire(QGraphicsScene* scene)
     this->scene = scene;
 }
 Wire::~Wire(){
+    for(int i=0; i<2; i++){
+        for(int j=0; j<node[i]->wire->size(); j++){
+            if(node[i]->wire->at(j) == this){
+                node[i]->wire->erase(node[i]->wire->begin()+j);
+                break;
+            }
+        }
+    }
     node[0]->connect--;
     node[1]->connect--;
     if(node[0]->connect==0) delete node[0];

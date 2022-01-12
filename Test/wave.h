@@ -4,9 +4,16 @@
 #include <QDialog>
 #include <QPixmap>
 #include <QGraphicsPixmapItem>
+#include <QGraphicsLineItem>
+#include <QGraphicsTextItem>
 #include <QVector>
 #include <QLabel>
+#include <QVBoxLayout>
+#include <QRadioButton>
+#include <QButtonGroup>
 #include "circuit.h"
+
+class Circuit;
 namespace Ui {
 class Wave;
 }
@@ -22,7 +29,11 @@ public:
     Circuit* circuit;
     void gogo();
 
+    friend class Circuit;
 private slots:
+    void myslot(int);
+    void myslot(QString);
+    void myslot(void);
     void mouseMoveEvent(QMouseEvent*) override;
     void on_pushButton_clicked();
     void on_pushButton_2_clicked();
@@ -52,6 +63,12 @@ private:
     QLabel* label_h[11];
     QGraphicsLineItem* spot_v[9];
     QGraphicsLineItem* spot_h[11];
+    QVector<QGraphicsItem*> wave_vec;
+    QVector<QGraphicsItem*> label_vec;
+    QVector<QLayoutItem*> button_vec;
+    QVBoxLayout box;
+    QButtonGroup butgrp;
+    QVector<QAbstractButton*> absbut_vec;
 };
 
 #endif // WAVE_H

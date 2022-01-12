@@ -16,9 +16,10 @@
 #include "wire.h"
 #include "ic.h"
 #include "simdialog.h"
+#include "wave.h"
 
 
-
+class Wave;
 class MainWindow;
 class Circuit : public QGraphicsView
 {
@@ -35,14 +36,17 @@ public:
     void combine_node(Node** node);
     void clear_all(void);
     void add_pic(void);
-    void check_connection();
+    QString check_connection();
     void DFS(Node* from);
+    void save_file();
     int chx(int x);
     int chy(int y);
     void run();
+    void end_last();
     std::complex<double> imp(IC*, double);
     MainWindow* w;
     Simu* simu;
+    Wave* wave;
     int index_is_setting;
 
     friend class Setpcdialog;
@@ -51,11 +55,13 @@ public:
     friend class Wave;
 private:
     bool is_connected;
+    bool is_showing_wave;
     QVector<Wire*> all_wire;
     QVector<IC*> all_IC;
     QString type;
     QString mode;
-    int move_index;
+    int action_index;
+    int selected_index;
     bool draw_wire;
     double scale_x;
     double scale_y;
@@ -63,7 +69,8 @@ private:
     QPoint mouse;
     double simu_time;
     QSet<Node*> all_node;
-    QSet<Node*> wave_node;
+//    QSet<Node*> wave_node;
+    QVector<Node*> wave_node;
     QSet<IC*> wave_ic;
     double freq;
     QVector<Node*> clr_node;

@@ -21,6 +21,7 @@ public:
     QVector<IC*> *ic;    
     QPen *pen;
     QGraphicsLineItem *pointitem;
+    QGraphicsScene* scene;
     Node();
     Node(QGraphicsScene* scene);
     ~Node();

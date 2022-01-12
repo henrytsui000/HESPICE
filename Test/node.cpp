@@ -17,6 +17,7 @@ Node::Node()
 }
 Node::Node(QGraphicsScene* scene)
 {
+    this->scene = scene;
     visit=false;
     connect=1;
     p.setX(0);
@@ -32,10 +33,12 @@ Node::Node(QGraphicsScene* scene)
 }
 
 Node::~Node(){
+    scene->removeItem(pointitem);
     delete wire;
     delete ic;
     delete pointitem;
     delete pen;
+
 }
 void Node::set_node(){
     pointitem->setLine(QLine(p,p));

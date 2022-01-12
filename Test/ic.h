@@ -43,7 +43,7 @@ public:
     QGraphicsPixmapItem* get_pic(void);
     bool Inside(int x, int y);
     IC();
-    IC(QGraphicsScene* scene);
+    IC(QGraphicsScene* scene, QString type);
     ~IC();
     friend class Circuit;
     friend class Setpcdialog;

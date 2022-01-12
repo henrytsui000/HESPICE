@@ -40,6 +40,7 @@ public:
     QAction *actionHELP;
     QAction *actionCLEAR;
     QAction *actionIMAGE;
+    QAction *actionSAVE;
     QWidget *centralwidget;
     Circuit *graphicsview;
     QMenuBar *menubar;
@@ -143,6 +144,11 @@ public:
         QIcon icon15;
         icon15.addFile(QString::fromUtf8(":/pre/IMAGE.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionIMAGE->setIcon(icon15);
+        actionSAVE = new QAction(MainWindow);
+        actionSAVE->setObjectName(QString::fromUtf8("actionSAVE"));
+        QIcon icon16;
+        icon16.addFile(QString::fromUtf8(":/pre/SAVE.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionSAVE->setIcon(icon16);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         graphicsview = new Circuit(centralwidget);
@@ -179,6 +185,7 @@ public:
         toolBar->addAction(actionWAVE);
         toolBar->addAction(actionHELP);
         toolBar->addAction(actionCLEAR);
+        toolBar->addAction(actionSAVE);
 
         retranslateUi(MainWindow);
 
@@ -204,6 +211,7 @@ public:
         actionHELP->setText(QCoreApplication::translate("MainWindow", "HELP", nullptr));
         actionCLEAR->setText(QCoreApplication::translate("MainWindow", "CLEAR", nullptr));
         actionIMAGE->setText(QCoreApplication::translate("MainWindow", "IMAGE", nullptr));
+        actionSAVE->setText(QCoreApplication::translate("MainWindow", "SAVE", nullptr));
         toolBar->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar", nullptr));
     } // retranslateUi
 

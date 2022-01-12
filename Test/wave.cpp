@@ -18,6 +18,7 @@ Wave::Wave(QWidget *parent) :
     painter->fillRect(0,0,800,600, Qt::white);
     itempixmap = new QGraphicsPixmapItem(*pixmap);
     scene->addItem(itempixmap);
+
 //define aimer2
     aimer[0] = new QGraphicsLineItem();
     aimer[1] = new QGraphicsLineItem();
@@ -36,6 +37,8 @@ Wave::Wave(QWidget *parent) :
     aimer[0]->setVisible(cur);
     aimer[1]->setVisible(cur);
     aimer[2]->setVisible(cur);
+
+
 
     for(int i=0; i<9; i++){
         label_v[i] = new QLabel(this);
@@ -62,6 +65,12 @@ Wave::Wave(QWidget *parent) :
         spot_v[i]->setOpacity(0.6);
         scene->addItem(spot_v[i]);
     }
+
+//    box.setGeometry(QRect(600,300,200,200));
+//    connect(&butgrp, SIGNAL(buttonClicked(QAbstractButton*)), this, SLOT(myslot()));
+//    connect(&butgrp, SIGNAL(id(QAbstractButton *button)), this, SLOT(myslot()));
+//      connect(&butgrp, SIGNAL(QButtonGroup::idClicked(0)), this, SLOT(myslot()));
+//    QButtonGroup::id(QAbstractButton *button)
 }
 
 Wave::~Wave()
@@ -75,6 +84,25 @@ void Wave::gogo(){
 
 //show//
 void Wave::on_pushButton_clicked() {
+    for(int i=0; i<label_vec.size(); i++){
+        scene->removeItem(label_vec[i]);
+    }
+    label_vec.clear();
+    for(int i=0; i<wave_vec.size(); i++){
+        scene->removeItem(wave_vec[i]);
+    }
+    wave_vec.clear();
+    for(int i=0; i<button_vec.size(); i++){
+        box.removeItem(button_vec[i]);
+        delete button_vec[i];
+    }
+    button_vec.clear();
+    for(int i=0; i<absbut_vec.size(); i++){
+        butgrp.removeButton(absbut_vec[i]);
+    }
+
+
+
     qDebug() << "deb";
     qDebug() << circuit->all_IC[0]->value;
     Stime = std::max(1e-12, Stime);
@@ -84,7 +112,7 @@ void Wave::on_pushButton_clicked() {
             cout << V.real() << V.imag();
         cout << ' ';
     }
-
+/*
     QSet<Node*> tmp, nw;
     qDebug() << "wave_node: " << circuit->wave_node.size();
     for(auto x: circuit->wave_node){
@@ -96,6 +124,7 @@ void Wave::on_pushButton_clicked() {
                 cout << V.real() << V.imag();
     }
     circuit->wave_node = nw;
+*/
     qDebug() << "wave_node n: " << circuit->wave_node.size();
     Vmax = -1e6, Vmin = 1e6;
     int r = 0;
@@ -152,13 +181,7 @@ void Wave::on_pushButton_clicked() {
 
     pen->setStyle(Qt::SolidLine);
     pen->setWidth(1);
-    /*
-        ui->label->setText(QString::number(Vmax, 'f', 3));
-        ui->label_2->setText(QString::number(Vm, 'f', 3));
-        ui->label_3->setText(QString::number(Vmin, 'f', 3));
-        ui->label_4->setText(QString::number(0, 'f', 3));
-        ui->label_5->setText(QString::number(Stime, 'f', 3));
-    */
+
         for(int i=0; i<9; i++){
             label_v[i]->setText(QString::number(Vmax-(Vmax-Vmin)/8*i, 'f', 3));
             label_v[i]->setGeometry(20,15+380.0/8*i,50,25+380.0/8*i);
@@ -173,12 +196,35 @@ void Wave::on_pushButton_clicked() {
         pen->setColor(col[i%10]);
         for(int j=0; j<vec[i].size()-1; j++){
             //qDebug() << 'S' << i << j << vec[i][j];
-            scene->addLine(j, 300-(vec[i][j]-Vm)/(Vmax-Vm+1e-6)*290, j+1, 300-(vec[i][j+1]-Vm)/(Vmax-Vm+1e-6)*290, *pen);
+            QGraphicsLineItem* tmpl = new QGraphicsLineItem(j, 300-(vec[i][j]-Vm)/(Vmax-Vm+1e-6)*290, j+1, 300-(vec[i][j+1]-Vm)/(Vmax-Vm+1e-6)*290);
+            tmpl->setPen(*pen);
+            wave_vec.push_back(tmpl);
+            scene->addItem(tmpl);
+            if(j==0){
+                QString str = "Wave_N"+QString::number(i);
+
+                QRadioButton* tmpbut = new QRadioButton(str);
+                tmpbut->setPalette(col[i]);
+                butgrp.addButton(tmpbut);
+                absbut_vec.push_back(tmpbut);
+                box.addWidget(tmpbut);
+                button_vec.push_back(box.itemAt(i));
+
+                str = "V_N"+QString::number(i);
+                QGraphicsTextItem* tmpt = new QGraphicsTextItem(str);
+                tmpt->setDefaultTextColor(col[i]);
+                tmpt->setPos(700,20+i*25);
+                tmpt->setScale(2);
+                label_vec.push_back(tmpt);
+                scene->addItem(tmpt);
+            }
         }
     }
 //    itempixmap = new QGraphicsPixmapItem(*pixmap);
 //    scene->addItem(itempixmap);
     siz = circuit->wave_node.size();
+    ui->groupBox->setLayout(&box);
+    ui->groupBox->setGeometry(900,240,120,button_vec.size()*30+20);
 }
 
 //save//
@@ -257,4 +303,14 @@ void Wave::on_pushButton_3_clicked() {
 void Wave::on_comboBox_currentIndexChanged(int index)
 {
     cur_idx = index;
+}
+
+void Wave::myslot(int a){
+    qDebug()<<a;
+}
+void Wave::myslot(QString a){
+    qDebug()<<a;
+}
+void Wave::myslot(void){
+    qDebug()<<"lalala";
 }
