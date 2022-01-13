@@ -88,7 +88,6 @@ void IC::set_center_pos(int x, int y){
         tmp[0] = QPoint(x,y)-QPoint(-height/2,0), tmp[1] = QPoint(x,y)+QPoint(-height/2,0);
     }
 
-
     tmp[0] = QPoint((tmp[0].x()+20)-(tmp[0].x()+20)%40,(tmp[0].y()+20)-(tmp[0].y()+20)%40);
     tmp[1] = QPoint((tmp[1].x()+20)-(tmp[1].x()+20)%40,(tmp[1].y()+20)-(tmp[1].y()+20)%40);
     node_in->p=tmp[0];
@@ -101,7 +100,6 @@ void IC::set_center_pos(int x, int y){
 
     x=(center.x()-width/2);
     y=(center.y()-height/2);
-    qDebug()<<x<<y;
     this->picitem->setPos(x,y);
     if(type!="G"){
         if(rotate%2==0){
