@@ -68,6 +68,11 @@ Sweep::Sweep(QWidget *parent) :
 
 Sweep::~Sweep()
 {
+    for(int i=0; i<circuit->label_text.size(); i++){
+        circuit->scene->removeItem(circuit->label_text[i]);
+        delete circuit->label_text[i];
+    }
+    circuit->label_text.clear();
     delete ui;
 }
 
@@ -107,6 +112,13 @@ void Sweep::on_Show_clicked()
         label_v[i]->setText(QString::number(Vmax-(Vmax-Vmin)/8*i, 'f', 3));
         label_v[i]->setGeometry(20,15+380.0/8*i,50,25+380.0/8*i);
         label_v[i]->setVisible(true);
+    }
+    for(int i=0; i<11; i++){
+        double lgn = (((double)i/10))*log(circuit->sef/circuit->ssf);
+        double tim = pow(M_E, lgn)*circuit->ssf;
+        label_h[i]->setText(QString::number(tim, 'E', 3));
+        label_h[i]->setGeometry(60+(800.0/10)*i,420,80+(800.0/10)*i,430);
+        label_h[i]->setVisible(true);
     }
 
 
@@ -157,6 +169,7 @@ void Sweep::on_Show_clicked()
 
 void Sweep::on_Cursor_clicked()
 {
+
 }
 
 void Sweep::mouseMoveEvent(QMouseEvent *event) {
@@ -179,4 +192,7 @@ void Sweep::mouseMoveEvent(QMouseEvent *event) {
         aimer[1]->setLine(event->x()-100, sit, event->x()-100, sit+1);
         aimer[2]->setLine(0, sit, 10000, sit);
     }
+}
+void Sweep::closeEvent(QCloseEvent *event) {
+    delete this;
 }

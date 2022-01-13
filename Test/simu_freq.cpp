@@ -9,7 +9,7 @@ Simu_freq::Simu_freq(QWidget *parent) :
     qDebug()<<"simu_freq";
     ui->setupUi(this);
     ui->lineEdit_l->setText("1");
-    ui->lineEdit_h->setText("10");
+    ui->lineEdit_h->setText("10M");
     mp['m'] = 1e-3;
     mp['u'] = 1e-6;
     mp['n'] = 1e-9;

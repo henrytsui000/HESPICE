@@ -28,6 +28,8 @@ public:
     QLabel *label_2;
     QLabel *label_3;
     QLabel *label_4;
+    QLabel *label;
+    QLabel *label_6;
 
     void setupUi(QDialog *Sweep)
     {
@@ -56,6 +58,12 @@ public:
         label_4 = new QLabel(Sweep);
         label_4->setObjectName(QString::fromUtf8("label_4"));
         label_4->setGeometry(QRect(980, 190, 71, 16));
+        label = new QLabel(Sweep);
+        label->setObjectName(QString::fromUtf8("label"));
+        label->setGeometry(QRect(60, 290, 47, 12));
+        label_6 = new QLabel(Sweep);
+        label_6->setObjectName(QString::fromUtf8("label_6"));
+        label_6->setGeometry(QRect(890, 600, 47, 12));
 
         retranslateUi(Sweep);
 
@@ -71,6 +79,8 @@ public:
         label_2->setText(QCoreApplication::translate("Sweep", "V:", nullptr));
         label_3->setText(QCoreApplication::translate("Sweep", "freq:", nullptr));
         label_4->setText(QCoreApplication::translate("Sweep", "0", nullptr));
+        label->setText(QCoreApplication::translate("Sweep", "V", nullptr));
+        label_6->setText(QCoreApplication::translate("Sweep", "1/S", nullptr));
     } // retranslateUi
 
 };

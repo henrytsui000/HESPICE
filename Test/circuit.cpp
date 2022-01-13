@@ -583,6 +583,9 @@ void Circuit::mousePressEvent(QMouseEvent *event){
             }
             if(mode=="WAVE")
                 wave->on_pushButton_clicked();
+            if(mode=="SWEEP"){
+                swp->on_Show_clicked();
+            }
         }
     } else if(event->button() == Qt::RightButton){
         if(mode=="NONE"){
@@ -974,7 +977,9 @@ void Circuit::sweep(){
         x->Current.clear();
         x->Frequen.clear();
     }
-
+    cout << "SSS:"<< ssf << sef;
+    ssf = w->fre_l, sef = w->fre_h;
+    cout << ssf << sef;
     qDebug()<<"run for loop";
     for(int v_idx = 0 ; v_idx < vs.size(); v_idx++){
 
@@ -1043,6 +1048,7 @@ void Circuit::sweep(){
                     Z[i][j] = 0;
             }
             double freq_tmp = vs[v_idx]->freq;
+
             double now_sf = log(sef/ssf)*st/100;
             now_sf = pow(M_E, now_sf)*ssf;
             cout << "pow :" << now_sf ;

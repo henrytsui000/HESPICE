@@ -199,7 +199,7 @@ void Wave::on_pushButton_clicked() {
     }
     for(int i=0; i<11; i++){
         label_h[i]->setText(QString::number((Stime-0)/10*i, 'f', 3));
-        label_h[i]->setGeometry(90+(800.0/10)*i,420,110+(800.0/10)*i,430);
+        label_h[i]->setGeometry(70+(800.0/10)*i,420,90+(800.0/10)*i,430);
         label_h[i]->setVisible(true);
     }
     for(int i = 0 ; i < circuit->wave_node.size(); i++){

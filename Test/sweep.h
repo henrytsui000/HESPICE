@@ -63,6 +63,8 @@ private:
     QVBoxLayout box;
     QButtonGroup butgrp;
     QVector<QRadioButton*> absbut_vec;
+
+    void closeEvent(QCloseEvent *event) override;
 };
 
 #endif // SWEEP_H
