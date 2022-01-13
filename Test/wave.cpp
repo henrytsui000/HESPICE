@@ -312,7 +312,7 @@ void Wave::on_pushButton_3_clicked() {
     ui->comboBox->clear();
     if(cur) {
         for(int i = 0; i < siz; i++){
-            ui->comboBox->addItem("LINE"+QString::number(i));
+            ui->comboBox->addItem("V_N"+QString::number(i));
         }
     }
     qDebug() << cur;
