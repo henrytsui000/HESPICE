@@ -104,9 +104,8 @@ void Circuit::save_file(){
             fout << " " << all_IC[i]->value;
             fout << " " << all_IC[i]->freq;
             fout << " " << all_IC[i]->phase;
-            fout << " " << all_IC[i]->rotate;
         }
-
+        fout << " " << all_IC[i]->rotate;
         fout << " " << all_IC[i]->node_in->p.x();
         fout << " " << all_IC[i]->node_in->p.y();
         if(all_IC[i]->type != "G"){
@@ -129,9 +128,16 @@ void Circuit::open_file(){
     qDebug()<<fileName;
 
     ifstream fin(fileName.toStdString(), ios::in);
+    if(!fin){
+        qDebug()<<"wrong format";
+        mode = "NONE";
+        type = "NONE";
+        end_last();
+    }
+
 //    QString tmp_str;
     string tmp_str;
-    int tmp_int;
+    int tmp_int, tmp_size, tmpx, tmpy, tmpx2, tmpy2;
     double tmp_double;
     fin >> tmp_str;
     if(tmp_str != "HESWEEP:"){
@@ -141,22 +147,87 @@ void Circuit::open_file(){
         type = "NONE";
         end_last();
     }
-    fin>>tmp_int;
-    for(int i=0; i<tmp_int; i++){
+
+    fin>>tmp_size;
+    for(int i=0; i<tmp_size; i++){
+        qDebug()<<"add_wire";
         fin>>tmp_str;
+        Wire* tmp = new Wire(scene);
+        tmp->node[0]->wire->push_back(tmp);
+        tmp->node[1]->wire->push_back(tmp);
+        all_wire.push_back(tmp);
 
+        fin >> tmpx;
+        fin >> tmpy;
+        all_wire.back()->set_pos(0 ,tmpx, tmpy);
+        fin >> tmpx;
+        fin >> tmpy;
+        all_wire.back()->set_pos(1 ,tmpx, tmpy);
+    }  
+    fin>>tmp_size;
+    for(int i=0; i<tmp_size; i++){
+        qDebug()<<"add_op";
+        fin>>tmp_str;
+        IC* tmp = new IC(scene, QString::fromStdString(tmp_str));
+        tmp->node_in->ic->push_back(tmp);
+        tmp->node_out->ic->push_back(tmp);
+        all_IC.push_back(tmp);
+
+
+        if(all_IC.back()->type != "G") {
+            fin >> tmp_str;
+            all_IC.back()->name = QString::fromStdString(tmp_str);
+            fin >> tmp_str;
+            all_IC.back()->unit = QString::fromStdString(tmp_str);
+            if(all_IC.back()->type == "V" || all_IC.back()->type == "I"){
+                fin >> tmp_str;
+                all_IC.back()->wave_type = QString::fromStdString(tmp_str);
+            }
+            fin >> all_IC.back()->value;
+            fin >> all_IC.back()->freq;
+            fin >> all_IC.back()->phase;
+        }
+        fin >> tmp_int;
+        for(int i=0; i<tmp_int; i++){
+            QTransform trans = all_IC.back()->picitem->transform();
+            int w = all_IC.back()->width/2;
+            int h = all_IC.back()->height/2;
+            trans.translate(w+h, h-w);
+            all_IC.back()->rotate=(all_IC.back()->rotate+1)%4;
+            trans.rotate(90);
+            all_IC.back()->picitem->setTransform(trans);
+        }
+        fin >> tmpx;
+        fin >> tmpy;
+
+        if(all_IC.back()->type != "G"){
+            fin >> tmpx2;
+            fin >> tmpy2;
+            tmpx = (tmpx + tmpx2)/2;
+            tmpy = (tmpy + tmpy2)/2;
+        }
+        all_IC.back()->set_center_pos(tmpx,tmpy);
     }
-
-
-
-
-
+    fin >> tmp_str;
+    if(tmp_str=="end"){
+        qDebug()<<"success read file";
+    }
+    fin.close();
 
     mode = "NONE";
     type = "NONE";
     end_last();
 }
-
+/*
+QTransform trans = all_IC[action_index]->picitem->transform();
+int w = all_IC[action_index]->width/2;
+int h = all_IC[action_index]->height/2;
+trans.translate(w+h, h-w);
+all_IC[action_index]->rotate=(all_IC[action_index]->rotate+1)%4;
+trans.rotate(90);
+all_IC[action_index]->picitem->setTransform(trans);
+all_IC[action_index]->set_center_pos(all_IC[action_index]->mouse.x(),all_IC[action_index]->mouse.y());
+*/
 
 
 void Circuit::add_pic(){
@@ -187,6 +258,9 @@ void Circuit::clear_all(){
     for(int i=0; i<l.size(); i++){
         scene->removeItem(l[i]);
     }
+    scene->addItem(aimer[0]);
+    scene->addItem(aimer[1]);
+
     all_IC.clear();
     all_wire.clear();
     delete pic;
@@ -208,6 +282,7 @@ void Circuit::add_wire(){
     tmp->node[0]->wire->push_back(tmp);
     tmp->node[1]->wire->push_back(tmp);
     all_wire.push_back(tmp);
+
 }
 
 void Circuit::combine_node(Node **node){
