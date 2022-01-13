@@ -239,7 +239,7 @@ void Wave::on_pushButton_clicked() {
             }
         }
         wave_vec.push_back(wave_vec_tmp);
-    }
+    }  
     siz = circuit->wave_node.size();
     ui->groupBox->setLayout(&box);
     ui->groupBox->setGeometry(900,240,120,button_vec.size()*30+20);

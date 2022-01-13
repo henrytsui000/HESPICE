@@ -54,6 +54,7 @@ Circuit::~Circuit(){
 int Circuit::chx(int x){
     return 4999+(x-width()/2)/scale_x+offset.x();
 }
+
 int Circuit::chy(int y){
     return 4999+(y-height()/2)/scale_y+offset.y();
 }
@@ -70,6 +71,7 @@ void Circuit::set_op(QString type, QString mode){
     else if(this->mode=="WAVE") is_showing_wave = true;
     qDebug()<<"succcess set_op "<<mode<<" "<<type;
 }
+
 void Circuit::save_file(){
 
     QString filter = "(*.asc)";
@@ -77,7 +79,27 @@ void Circuit::save_file(){
             (this, "Save", QDir::currentPath(), filter);
     qDebug()<<fileName;
 
-    QString data = "Version4\n";
+    QString data = "HESWEEP:\n";
+
+    for(int i=0; i<all_wire.size(); i++){
+        data += "WIRE";
+        data += " " + QString::number(all_wire[i]->node[0]->p.x());
+        data += " " + QString::number(all_wire[i]->node[0]->p.x());
+        data += "\n";
+    }
+    for(int i=0; i<all_IC.size(); i++){
+        data += all_IC[i]->type;
+        data += all_IC[i]->name;
+        data +=
+        data += " " + QString::number(all_IC[i]->node_in->p.x());
+        if(all_IC[i]->type != "G")
+            data += " " + QString::number(all_IC[i]->node_out->p.x());
+        data += " " + QString::number(all_IC[i]->rotate);
+        data += "\n";
+    }
+
+
+
     QString tmp1, tmp2, tmp3, tmp4;
     data += "SHEET 1 880 680\n";
     for(int i=0; i<all_wire.size(); i++){
@@ -92,7 +114,7 @@ void Circuit::save_file(){
     }
     mode = "NONE";
     type = "NONE";
-    w->set_all_unchecked();
+    end_last();
 }
 
 void Circuit::add_pic(){
@@ -117,6 +139,7 @@ void Circuit::add_pic(){
     scene->addItem(pic);
     end_last();
 }
+
 void Circuit::clear_all(){
     QList<QGraphicsItem*> l = scene->items();
     for(int i=0; i<l.size(); i++){
@@ -147,6 +170,7 @@ void Circuit::add_wire(){
 
 void Circuit::combine_node(Node **node){
     for(int i=0; i<all_IC.size(); i++){
+
         if(all_IC[i]->node_in->p==(*node)->p && all_IC[i]->node_in!=(*node)){
             *all_IC[i]->node_in->wire += *(*node)->wire;
             *all_IC[i]->node_in->ic += *(*node)->ic;
@@ -156,6 +180,7 @@ void Circuit::combine_node(Node **node){
             (*node)=all_IC[i]->node_in;
             return;
         }
+
         if(all_IC[i]->node_out->p==(*node)->p && all_IC[i]->node_out!=(*node)){
             *all_IC[i]->node_out->wire += *(*node)->wire;
             *all_IC[i]->node_out->ic += *(*node)->ic;
@@ -165,6 +190,7 @@ void Circuit::combine_node(Node **node){
             (*node)=all_IC[i]->node_out;
             return;
         }
+
     }
     for(int i=0; i<all_wire.size(); i++){
         for(int j=0; j<2; j++){
