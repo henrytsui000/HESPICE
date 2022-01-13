@@ -91,7 +91,7 @@ void Sweep::on_Show_clicked()
         }
         r++;
     }
-    Vmax = -1e6, Vmin = 1e6;
+    Vmax = -1e6, Vmin = 0;
     for(int i = 0; i < r; i++){
         for(int j = 0; j < 101; j++){
             Vmax = std::max(Vmax, vec[i][j]);
@@ -111,7 +111,7 @@ void Sweep::on_Show_clicked()
 
 
     for(int i = 0 ; i < circuit->wave_node.size(); i++){
-        pen->setColor(col[i%10]);
+        pen->setColor(col[i%10+1]);
         QVector<QGraphicsItem*> wave_vec_tmp;
         for(int j=0; j<vec[i].size()-1; j++){
             //qDebug() << 'S' << i << j << vec[i][j];
@@ -147,31 +147,36 @@ void Sweep::on_Show_clicked()
         wave_vec.push_back(wave_vec_tmp);
     }
     siz = circuit->wave_node.size();
-    ui->Cursor->setCheckable(true);
+    ui->Cursor->setEnabled(true);
+    cur = true;
+    aimer[0]->setVisible(cur);
+    aimer[1]->setVisible(cur);
+    aimer[2]->setVisible(cur);
 }
 
 
 void Sweep::on_Cursor_clicked()
 {
-
 }
 
 void Sweep::mouseMoveEvent(QMouseEvent *event) {
-    /*
-    cout << event->x() << event->y();
+//    cout << event->x() << event->y();
     pen->setStyle(Qt::DashLine);
     pen->setColor(Qt::black);
-    int idx = std::max(std::min(900, event->x()), 100);
+    int idx = std::max(std::min(899, event->x()), 100)-100;
     aimer[0]->setLine(event->x()-100, 0, event->x()-100, 10000);
-    if(ui->comboBox->count()){
-        int sit =  300-(vec[cur_idx][idx-100]-Vm)/(Vmax-Vm+1e-6)*290;
+    if(cur){
+        double av = (vec[0][idx/8]*(8-idx%8)+vec[0][idx/8+1]*(idx%8))/8;
+        cout << vec[0][idx/8] << "*" << (10-idx%10) << "+" << vec[0][idx/8+1] << "*" << (idx%10);
+        int sit =  300-(av-Vm)/(Vmax-Vm+1e-6)*290;
         cout << "sit:" << sit;
-        ui->label_6->setText(QString::number(vec[cur_idx][idx-100], 'f', 3));
-        ui->label_9->setText(QString::number((double)(idx-100)/800*Stime, 'f', 3));
+        double lgn = (((double)idx/800))*log(circuit->sef/circuit->ssf);
+        cout << "LG" << lgn << ((double)idx/800) << log(circuit->sef/circuit->ssf);
+        double tim = pow(M_E, lgn)*circuit->ssf;
+        ui->label_5->setText(QString::number(av, 'f', 3));
+
+        ui->label_4->setText(QString::number(tim, 'E', 2));
         aimer[1]->setLine(event->x()-100, sit, event->x()-100, sit+1);
         aimer[2]->setLine(0, sit, 10000, sit);
     }
-    */
 }
-
-

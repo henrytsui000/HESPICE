@@ -27,7 +27,6 @@ public:
     QLabel *label_2;
     QLabel *label_3;
     QPushButton *pushButton;
-    QPushButton *pushButton_2;
 
     void setupUi(QDialog *Simu_freq)
     {
@@ -51,10 +50,7 @@ public:
         label_3->setGeometry(QRect(260, 120, 21, 16));
         pushButton = new QPushButton(Simu_freq);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(300, 90, 75, 23));
-        pushButton_2 = new QPushButton(Simu_freq);
-        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setGeometry(QRect(300, 130, 75, 23));
+        pushButton->setGeometry(QRect(300, 120, 75, 23));
 
         retranslateUi(Simu_freq);
 
@@ -68,7 +64,6 @@ public:
         label_2->setText(QCoreApplication::translate("Simu_freq", "~", nullptr));
         label_3->setText(QCoreApplication::translate("Simu_freq", "1/s", nullptr));
         pushButton->setText(QCoreApplication::translate("Simu_freq", "OK", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("Simu_freq", "Cancel", nullptr));
     } // retranslateUi
 
 };

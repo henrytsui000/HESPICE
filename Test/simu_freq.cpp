@@ -45,9 +45,11 @@ void Simu_freq::on_pushButton_clicked()
     }
     qDebug() << "freq_l: " << freq_l;
 
-    w->fre_l = freq_l;
-    w->fre_h = freq_h;
-    w->on_actionSWEEP_2();
-    this->close();
+    if(freq_l<freq_h){
+        w->fre_l = freq_l;
+        w->fre_h = freq_h;
+        w->on_actionSWEEP_2();
+        this->close();
+    }
 }
 

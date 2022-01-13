@@ -140,8 +140,6 @@ void MainWindow::on_actionWAVE_2(){
     ui->actionWAVE->setEnabled(false);
 }
 
-
-
 void MainWindow::on_actionZOOM_IN_triggered()
 {
     ui->graphicsview->scale_x*=1.15;
@@ -211,7 +209,7 @@ void MainWindow::on_actionSWEEP_2()
     ui->graphicsview->swp = sw;
     ui->actionWAVE->setEnabled(false);
     ui->graphicsview->set_op("NONE","SWEEP");
-//    ui->graphicsview->sweep();
+    ui->graphicsview->sweep();
 }
 
 

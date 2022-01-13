@@ -76,26 +76,13 @@
    <property name="geometry">
     <rect>
      <x>300</x>
-     <y>90</y>
+     <y>120</y>
      <width>75</width>
      <height>23</height>
     </rect>
    </property>
    <property name="text">
     <string>OK</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_2">
-   <property name="geometry">
-    <rect>
-     <x>300</x>
-     <y>130</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Cancel</string>
    </property>
   </widget>
  </widget>
