@@ -18,15 +18,17 @@
 class IC : public Voltage, public Current, public Resistor, public Inductor, public Capacitor, public GND
 {
 private:
+    QString type;
+    QString name;
     QPoint mouse;
     bool vertical;
-    QString name;
+
     QString unit;
     double value;
     double freq;
     double phase;
     QString wave_type;
-    QString type;
+
     int width;
     int height;
     QPoint center;

@@ -68,6 +68,7 @@ void Circuit::set_op(QString type, QString mode){
     else if(this->mode=="CLEAR") clear_all();
     else if(this->mode=="IMAGE") add_pic();
     else if(this->mode=="SAVE") save_file();
+    else if(this->mode=="OPEN") open_file();
     else if(this->mode=="WAVE") is_showing_wave = true;
     else if(this->mode=="SWEEP") is_showing_sweep = true;
     qDebug()<<"succcess set_op "<<mode<<" "<<type;
@@ -75,48 +76,88 @@ void Circuit::set_op(QString type, QString mode){
 
 void Circuit::save_file(){
 
-    QString filter = "(*.asc)";
+    QString filter = "(*.hesp)";
     QString fileName = QFileDialog::getSaveFileName
             (this, "Save", QDir::currentPath(), filter);
     qDebug()<<fileName;
 
-    QString data = "HESWEEP:\n";
+    ofstream fout(fileName.toStdString(), ios::out);
 
+    fout << "HESWEEP:\n";
+    fout << all_wire.size()<< "\n";
     for(int i=0; i<all_wire.size(); i++){
-        data += "WIRE";
-        data += " " + QString::number(all_wire[i]->node[0]->p.x());
-        data += " " + QString::number(all_wire[i]->node[0]->p.x());
-        data += "\n";
+        fout << "W";
+        fout << " " << all_wire[i]->node[0]->p.x();
+        fout << " " << all_wire[i]->node[0]->p.y();
+        fout << " " << all_wire[i]->node[1]->p.x();
+        fout << " " << all_wire[i]->node[1]->p.y();
+        fout << "\n";
     }
+    fout << all_IC.size()<< "\n";
     for(int i=0; i<all_IC.size(); i++){
-        data += all_IC[i]->type;
-        data += all_IC[i]->name;
-        data +=
-        data += " " + QString::number(all_IC[i]->node_in->p.x());
-        if(all_IC[i]->type != "G")
-            data += " " + QString::number(all_IC[i]->node_out->p.x());
-        data += " " + QString::number(all_IC[i]->rotate);
-        data += "\n";
+        fout << all_IC[i]->type.toStdString();
+        if(all_IC[i]->type != "G") {
+            fout << " " << all_IC[i]->name.toStdString();
+            fout << " " << all_IC[i]->unit.toStdString();
+            if(all_IC[i]->type == "V" || all_IC[i]->type == "I")
+                fout << " " << all_IC[i]->wave_type.toStdString();
+            fout << " " << all_IC[i]->value;
+            fout << " " << all_IC[i]->freq;
+            fout << " " << all_IC[i]->phase;
+            fout << " " << all_IC[i]->rotate;
+        }
+
+        fout << " " << all_IC[i]->node_in->p.x();
+        fout << " " << all_IC[i]->node_in->p.y();
+        if(all_IC[i]->type != "G"){
+            fout << " " << all_IC[i]->node_out->p.x();
+            fout << " " << all_IC[i]->node_out->p.y();
+        }
+        fout <<"\n";
     }
+    fout <<"end";
 
-
-
-    QString tmp1, tmp2, tmp3, tmp4;
-    data += "SHEET 1 880 680\n";
-    for(int i=0; i<all_wire.size(); i++){
-        tmp1 = QString::number(all_wire[i]->node[0]->p.x()) + " ";
-        tmp2 = QString::number(all_wire[i]->node[0]->p.y()) + " ";
-        tmp3 = QString::number(all_wire[i]->node[1]->p.x()) + " ";
-        tmp4 = QString::number(all_wire[i]->node[1]->p.y());
-        data += "WIRE " + tmp1 + tmp2 + tmp3 + tmp4 + "\n";
-    }
-    for(int i=0; i<all_IC.size(); i++){
-
-    }
+    fout.close();
     mode = "NONE";
     type = "NONE";
     end_last();
 }
+void Circuit::open_file(){
+    QString filter = "(*.hesp)";
+    QString fileName = QFileDialog::getOpenFileName
+            (this, "Open", QDir::currentPath(), filter);
+    qDebug()<<fileName;
+
+    ifstream fin(fileName.toStdString(), ios::in);
+//    QString tmp_str;
+    string tmp_str;
+    int tmp_int;
+    double tmp_double;
+    fin >> tmp_str;
+    if(tmp_str != "HESWEEP:"){
+        fin.close();
+        qDebug()<<"wrong format";
+        mode = "NONE";
+        type = "NONE";
+        end_last();
+    }
+    fin>>tmp_int;
+    for(int i=0; i<tmp_int; i++){
+        fin>>tmp_str;
+
+    }
+
+
+
+
+
+
+    mode = "NONE";
+    type = "NONE";
+    end_last();
+}
+
+
 
 void Circuit::add_pic(){
     if(pic != NULL){

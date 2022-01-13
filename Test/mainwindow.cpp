@@ -194,3 +194,11 @@ void MainWindow::on_actionSWEEP_triggered()
     ui->actionWAVE->setEnabled(false);
 }
 
+
+void MainWindow::on_actionOPEN_triggered()
+{
+    ui->graphicsview->end_last();
+    ui->graphicsview->set_op("NONE","OPEN");
+    set_all_unchecked();
+}
+

@@ -49,6 +49,8 @@ private slots:
 
     void on_actionSWEEP_triggered();
 
+    void on_actionOPEN_triggered();
+
 private:
     Ui::MainWindow *ui;
 //    Simdialog *simdialog;

@@ -41,6 +41,8 @@ public:
     QAction *actionCLEAR;
     QAction *actionIMAGE;
     QAction *actionSAVE;
+    QAction *actionSWEEP;
+    QAction *actionOPEN;
     QWidget *centralwidget;
     Circuit *graphicsview;
     QMenuBar *menubar;
@@ -130,7 +132,6 @@ public:
         actionZOOM_OUT->setIcon(icon12);
         actionHELP = new QAction(MainWindow);
         actionHELP->setObjectName(QString::fromUtf8("actionHELP"));
-        actionHELP->setCheckable(true);
         QIcon icon13;
         icon13.addFile(QString::fromUtf8(":/pre/HELP.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionHELP->setIcon(icon13);
@@ -149,6 +150,16 @@ public:
         QIcon icon16;
         icon16.addFile(QString::fromUtf8(":/pre/SAVE.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionSAVE->setIcon(icon16);
+        actionSWEEP = new QAction(MainWindow);
+        actionSWEEP->setObjectName(QString::fromUtf8("actionSWEEP"));
+        QIcon icon17;
+        icon17.addFile(QString::fromUtf8(":/pre/SWEEP.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionSWEEP->setIcon(icon17);
+        actionOPEN = new QAction(MainWindow);
+        actionOPEN->setObjectName(QString::fromUtf8("actionOPEN"));
+        QIcon icon18;
+        icon18.addFile(QString::fromUtf8(":/pre/OPEN.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionOPEN->setIcon(icon18);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         graphicsview = new Circuit(centralwidget);
@@ -169,23 +180,29 @@ public:
         toolBar->setIconSize(QSize(36, 36));
         MainWindow->addToolBar(Qt::TopToolBarArea, toolBar);
 
-        toolBar->addAction(actionIMAGE);
+        toolBar->addAction(actionOPEN);
+        toolBar->addAction(actionSAVE);
         toolBar->addAction(actionR);
         toolBar->addAction(actionL);
         toolBar->addAction(actionC);
         toolBar->addAction(actionV);
         toolBar->addAction(actionI);
         toolBar->addAction(actionGND);
+        toolBar->addSeparator();
+        toolBar->addSeparator();
         toolBar->addAction(actionWIRE);
         toolBar->addAction(actionCUT);
         toolBar->addAction(actionMOVE);
         toolBar->addAction(actionZOOM_IN);
         toolBar->addAction(actionZOOM_OUT);
+        toolBar->addAction(actionCLEAR);
+        toolBar->addSeparator();
+        toolBar->addSeparator();
         toolBar->addAction(actionBUILD);
         toolBar->addAction(actionWAVE);
+        toolBar->addAction(actionSWEEP);
+        toolBar->addAction(actionIMAGE);
         toolBar->addAction(actionHELP);
-        toolBar->addAction(actionCLEAR);
-        toolBar->addAction(actionSAVE);
 
         retranslateUi(MainWindow);
 
@@ -212,6 +229,8 @@ public:
         actionCLEAR->setText(QCoreApplication::translate("MainWindow", "CLEAR", nullptr));
         actionIMAGE->setText(QCoreApplication::translate("MainWindow", "IMAGE", nullptr));
         actionSAVE->setText(QCoreApplication::translate("MainWindow", "SAVE", nullptr));
+        actionSWEEP->setText(QCoreApplication::translate("MainWindow", "SWEEP", nullptr));
+        actionOPEN->setText(QCoreApplication::translate("MainWindow", "OPEN", nullptr));
         toolBar->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar", nullptr));
     } // retranslateUi
 

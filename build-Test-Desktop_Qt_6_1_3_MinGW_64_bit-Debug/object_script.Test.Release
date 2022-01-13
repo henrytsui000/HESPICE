@@ -16,6 +16,7 @@ release/setpcdialog.o
 release/setsourcedialog.o
 release/simu_time.o
 release/source.o
+release/sweep.o
 release/tools.o
 release/voltage.o
 release/wave.o
@@ -28,4 +29,5 @@ release/moc_scope.o
 release/moc_setpcdialog.o
 release/moc_setsourcedialog.o
 release/moc_simu_time.o
+release/moc_sweep.o
 release/moc_wave.o

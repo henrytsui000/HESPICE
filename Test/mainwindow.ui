@@ -58,6 +58,7 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionOPEN"/>
    <addaction name="actionSAVE"/>
    <addaction name="actionR"/>
    <addaction name="actionL"/>
@@ -272,6 +273,15 @@
    </property>
    <property name="text">
     <string>SWEEP</string>
+   </property>
+  </action>
+  <action name="actionOPEN">
+   <property name="icon">
+    <iconset resource="image/resource.qrc">
+     <normaloff>:/pre/OPEN.png</normaloff>:/pre/OPEN.png</iconset>
+   </property>
+   <property name="text">
+    <string>OPEN</string>
    </property>
   </action>
  </widget>

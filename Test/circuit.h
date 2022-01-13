@@ -18,6 +18,7 @@
 #include "simdialog.h"
 #include "wave.h"
 #include "sweep.h"
+#include <fstream>
 
 
 class Wave;
@@ -41,6 +42,7 @@ public:
     QString check_connection();
     void DFS(Node* from);
     void save_file();
+    void open_file();
     int chx(int x);
     int chy(int y);
     void run();
