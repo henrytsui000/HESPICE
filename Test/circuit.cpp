@@ -68,6 +68,7 @@ void Circuit::set_op(QString type, QString mode){
     else if(this->mode=="IMAGE") add_pic();
     else if(this->mode=="SAVE") save_file();
     else if(this->mode=="WAVE") is_showing_wave = true;
+    else if(this->mode=="SWEEP") is_showing_sweep = true;
     qDebug()<<"succcess set_op "<<mode<<" "<<type;
 }
 void Circuit::save_file(){
@@ -776,4 +777,8 @@ void Circuit::run(){
         }
     }
     cout << "CKS" << clr_node.size();
+}
+
+void Circuit::sweep(){
+
 }

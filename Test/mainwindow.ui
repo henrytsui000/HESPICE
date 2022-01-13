@@ -58,23 +58,28 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionIMAGE"/>
+   <addaction name="actionSAVE"/>
    <addaction name="actionR"/>
    <addaction name="actionL"/>
    <addaction name="actionC"/>
    <addaction name="actionV"/>
    <addaction name="actionI"/>
    <addaction name="actionGND"/>
+   <addaction name="separator"/>
+   <addaction name="separator"/>
    <addaction name="actionWIRE"/>
    <addaction name="actionCUT"/>
    <addaction name="actionMOVE"/>
    <addaction name="actionZOOM_IN"/>
    <addaction name="actionZOOM_OUT"/>
+   <addaction name="actionCLEAR"/>
+   <addaction name="separator"/>
+   <addaction name="separator"/>
    <addaction name="actionBUILD"/>
    <addaction name="actionWAVE"/>
+   <addaction name="actionSWEEP"/>
+   <addaction name="actionIMAGE"/>
    <addaction name="actionHELP"/>
-   <addaction name="actionCLEAR"/>
-   <addaction name="actionSAVE"/>
   </widget>
   <action name="actionR">
    <property name="checkable">
@@ -225,9 +230,6 @@
    </property>
   </action>
   <action name="actionHELP">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
    <property name="icon">
     <iconset resource="image/resource.qrc">
      <normaloff>:/pre/HELP.png</normaloff>:/pre/HELP.png</iconset>
@@ -261,6 +263,15 @@
    </property>
    <property name="text">
     <string>SAVE</string>
+   </property>
+  </action>
+  <action name="actionSWEEP">
+   <property name="icon">
+    <iconset resource="image/resource.qrc">
+     <normaloff>:/pre/SWEEP.png</normaloff>:/pre/SWEEP.png</iconset>
+   </property>
+   <property name="text">
+    <string>SWEEP</string>
    </property>
   </action>
  </widget>

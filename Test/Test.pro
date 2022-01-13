@@ -27,6 +27,7 @@ SOURCES += \
     setsourcedialog.cpp \
     simu_time.cpp \
     source.cpp \
+    sweep.cpp \
     tools.cpp \
     voltage.cpp \
     wave.cpp \
@@ -50,6 +51,7 @@ HEADERS += \
     setsourcedialog.h \
     simu_time.h \
     source.h \
+    sweep.h \
     tools.h \
     voltage.h \
     wave.h \
@@ -61,6 +63,7 @@ FORMS += \
     setpcdialog.ui \
     setsourcedialog.ui \
     simu_time.ui \
+    sweep.ui \
     wave.ui
 
 # Default rules for deployment.
