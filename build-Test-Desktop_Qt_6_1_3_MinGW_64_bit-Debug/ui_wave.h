@@ -99,7 +99,7 @@ public:
         label_9->setText(QCoreApplication::translate("Wave", "0", nullptr));
         label->setText(QCoreApplication::translate("Wave", "V", nullptr));
         label_2->setText(QCoreApplication::translate("Wave", "s", nullptr));
-        groupBox->setTitle(QCoreApplication::translate("Wave", "GroupBox", nullptr));
+        groupBox->setTitle(QCoreApplication::translate("Wave", "WIRES", nullptr));
     } // retranslateUi
 
 };

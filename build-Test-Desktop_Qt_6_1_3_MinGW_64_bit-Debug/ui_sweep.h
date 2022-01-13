@@ -10,10 +10,10 @@
 #define UI_SWEEP_H
 
 #include <QtCore/QVariant>
-#include <QtWidgets/QAbstractButton>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QDialog>
-#include <QtWidgets/QDialogButtonBox>
+#include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QPushButton>
 
 QT_BEGIN_NAMESPACE
@@ -21,26 +21,30 @@ QT_BEGIN_NAMESPACE
 class Ui_Sweep
 {
 public:
-    QDialogButtonBox *buttonBox;
-    QPushButton *pushButton;
+    QGraphicsView *graphicsView;
+    QPushButton *Show;
+    QPushButton *Cursor;
+    QComboBox *comboBox;
 
     void setupUi(QDialog *Sweep)
     {
         if (Sweep->objectName().isEmpty())
             Sweep->setObjectName(QString::fromUtf8("Sweep"));
-        Sweep->resize(400, 300);
-        buttonBox = new QDialogButtonBox(Sweep);
-        buttonBox->setObjectName(QString::fromUtf8("buttonBox"));
-        buttonBox->setGeometry(QRect(290, 20, 81, 241));
-        buttonBox->setOrientation(Qt::Vertical);
-        buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
-        pushButton = new QPushButton(Sweep);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(180, 160, 75, 23));
+        Sweep->resize(1062, 680);
+        graphicsView = new QGraphicsView(Sweep);
+        graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
+        graphicsView->setGeometry(QRect(60, 20, 802, 602));
+        Show = new QPushButton(Sweep);
+        Show->setObjectName(QString::fromUtf8("Show"));
+        Show->setGeometry(QRect(920, 50, 75, 23));
+        Cursor = new QPushButton(Sweep);
+        Cursor->setObjectName(QString::fromUtf8("Cursor"));
+        Cursor->setGeometry(QRect(920, 100, 75, 23));
+        comboBox = new QComboBox(Sweep);
+        comboBox->setObjectName(QString::fromUtf8("comboBox"));
+        comboBox->setGeometry(QRect(920, 140, 69, 22));
 
         retranslateUi(Sweep);
-        QObject::connect(buttonBox, &QDialogButtonBox::accepted, Sweep, qOverload<>(&QDialog::accept));
-        QObject::connect(buttonBox, &QDialogButtonBox::rejected, Sweep, qOverload<>(&QDialog::reject));
 
         QMetaObject::connectSlotsByName(Sweep);
     } // setupUi
@@ -48,7 +52,8 @@ public:
     void retranslateUi(QDialog *Sweep)
     {
         Sweep->setWindowTitle(QCoreApplication::translate("Sweep", "Dialog", nullptr));
-        pushButton->setText(QCoreApplication::translate("Sweep", "PushButton", nullptr));
+        Show->setText(QCoreApplication::translate("Sweep", "SHOW", nullptr));
+        Cursor->setText(QCoreApplication::translate("Sweep", "Cursor", nullptr));
     } // retranslateUi
 
 };

@@ -165,6 +165,8 @@ void Circuit::open_file(){
         fin >> tmpx;
         fin >> tmpy;
         all_wire.back()->set_pos(1 ,tmpx, tmpy);
+        combine_node(&tmp->node[0]);
+        combine_node(&tmp->node[1]);
     }  
     fin>>tmp_size;
     for(int i=0; i<tmp_size; i++){
@@ -219,6 +221,8 @@ void Circuit::open_file(){
             else if(all_IC.back()->rotate==3) tmpx +=20;
         }
         all_IC.back()->set_center_pos(tmpx,tmpy);
+        combine_node(&tmp->node_in);
+        combine_node(&tmp->node_out);
     }
     fin >> tmp_str;
     if(tmp_str=="end"){
