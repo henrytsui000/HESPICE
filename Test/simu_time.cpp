@@ -20,6 +20,7 @@ simu_time::simu_time(QWidget *parent) :
 
 simu_time::~simu_time()
 {
+    qDebug()<<"simu delete";
     delete ui;
 }
 

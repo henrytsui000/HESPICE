@@ -31,9 +31,7 @@ public:
 
     friend class Circuit;
 private slots:
-    void myslot(int);
-    void myslot(QString);
-    void myslot(void);
+    void wave_slot(int);
     void mouseMoveEvent(QMouseEvent*) override;
     void on_pushButton_clicked();
     void on_pushButton_2_clicked();
@@ -63,12 +61,14 @@ private:
     QLabel* label_h[11];
     QGraphicsLineItem* spot_v[9];
     QGraphicsLineItem* spot_h[11];
-    QVector<QGraphicsItem*> wave_vec;
+    QVector<QVector<QGraphicsItem*>> wave_vec;
     QVector<QGraphicsItem*> label_vec;
     QVector<QLayoutItem*> button_vec;
     QVBoxLayout box;
     QButtonGroup butgrp;
-    QVector<QAbstractButton*> absbut_vec;
+    QVector<QRadioButton*> absbut_vec;
+
+    void closeEvent(QCloseEvent *event) override;
 };
 
 #endif // WAVE_H

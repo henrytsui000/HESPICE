@@ -251,6 +251,8 @@ void Circuit::mouseMoveEvent(QMouseEvent *event){
         }
     } else if(mode=="MOVE" || mode=="CUT" || mode=="WAVE" || mode=="NONE"){
         QList<QGraphicsItem*> l = scene->items();
+        type = "NONE";
+        selected_index = -1;
         for(int i=0; i<l.size(); i++){
             l[i]->setOpacity(1);
         }
@@ -390,11 +392,18 @@ void Circuit::mousePressEvent(QMouseEvent *event){
                     if(rela[wave_node[j]]==rela[all_wire[i]->node[0]]){
                         add = false;
                         wave_node.erase(wave_node.begin()+j);
+                        scene->removeItem(label_text[j]);
+                        delete label_text[j];
+                        label_text.erase(label_text.begin()+j);
                         break;
                     }
                 }
-
                 if(add){
+                    QGraphicsTextItem* tmp = new QGraphicsTextItem("N"+QString::number(label_text.size()));
+                    label_text.push_back(tmp);
+                    tmp->setScale(2);
+                    tmp->setPos((all_wire[i]->node[0]->p + all_wire[i]->node[1]->p)/2);
+                    scene->addItem(tmp);
                     wave_node.push_back(all_wire[i]->node[0]);
                 }
                 qDebug()<<"wave_node"<<i;

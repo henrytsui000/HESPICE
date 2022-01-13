@@ -82,6 +82,7 @@ private:
     QPoint pic_pos, pic_size;
     QPen *pen;
     QGraphicsScene *scene;
+    QVector<QGraphicsTextItem*> label_text;
 private slots:
     void mouseMoveEvent(QMouseEvent*) override;
     void mousePressEvent(QMouseEvent*) override;

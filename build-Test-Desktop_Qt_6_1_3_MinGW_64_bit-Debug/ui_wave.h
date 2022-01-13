@@ -80,7 +80,7 @@ public:
         label_2->setFont(font);
         groupBox = new QGroupBox(Wave);
         groupBox->setObjectName(QString::fromUtf8("groupBox"));
-        groupBox->setGeometry(QRect(890, 230, 120, 80));
+        groupBox->setGeometry(QRect(890, 230, 120, 371));
 
         retranslateUi(Wave);
 

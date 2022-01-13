@@ -67,14 +67,22 @@ Wave::Wave(QWidget *parent) :
     }
 
 //    box.setGeometry(QRect(600,300,200,200));
-//    connect(&butgrp, SIGNAL(buttonClicked(QAbstractButton*)), this, SLOT(myslot()));
-//    connect(&butgrp, SIGNAL(id(QAbstractButton *button)), this, SLOT(myslot()));
-//      connect(&butgrp, SIGNAL(QButtonGroup::idClicked(0)), this, SLOT(myslot()));
+//      connect(&butgrp, SIGNAL(buttonClicked(QAbstractButton*)), this, SLOT(myslot()));
+//      connect(&butgrp, SIGNAL(id(QAbstractButton *button)), this, SLOT(myslot()));
+      connect(&butgrp, SIGNAL(idClicked(int)), this, SLOT(wave_slot(int)));
 //    QButtonGroup::id(QAbstractButton *button)
+      butgrp.setExclusive(false);
+
 }
 
 Wave::~Wave()
 {
+    qDebug()<<"hello";
+    for(int i=0; i<circuit->label_text.size(); i++){
+        circuit->scene->removeItem(circuit->label_text[i]);
+        delete circuit->label_text[i];
+    }
+    circuit->label_text.clear();
     delete ui;
 }
 
@@ -89,7 +97,9 @@ void Wave::on_pushButton_clicked() {
     }
     label_vec.clear();
     for(int i=0; i<wave_vec.size(); i++){
-        scene->removeItem(wave_vec[i]);
+        for(int j=0; j<wave_vec[i].size(); j++){
+            scene->removeItem(wave_vec[i][j]);
+        }
     }
     wave_vec.clear();
     for(int i=0; i<button_vec.size(); i++){
@@ -99,7 +109,9 @@ void Wave::on_pushButton_clicked() {
     button_vec.clear();
     for(int i=0; i<absbut_vec.size(); i++){
         butgrp.removeButton(absbut_vec[i]);
+        delete absbut_vec[i];
     }
+    absbut_vec.clear();
 
 
 
@@ -194,37 +206,44 @@ void Wave::on_pushButton_clicked() {
         }
     for(int i = 0 ; i < circuit->wave_node.size(); i++){
         pen->setColor(col[i%10]);
+        QVector<QGraphicsItem*> wave_vec_tmp;
         for(int j=0; j<vec[i].size()-1; j++){
             //qDebug() << 'S' << i << j << vec[i][j];
             QGraphicsLineItem* tmpl = new QGraphicsLineItem(j, 300-(vec[i][j]-Vm)/(Vmax-Vm+1e-6)*290, j+1, 300-(vec[i][j+1]-Vm)/(Vmax-Vm+1e-6)*290);
             tmpl->setPen(*pen);
-            wave_vec.push_back(tmpl);
+            wave_vec_tmp.push_back(tmpl);
             scene->addItem(tmpl);
             if(j==0){
                 QString str = "Wave_N"+QString::number(i);
-
                 QRadioButton* tmpbut = new QRadioButton(str);
-                tmpbut->setPalette(col[i]);
-                butgrp.addButton(tmpbut);
+//                tmpbut->setPalette(col[i]);
+                tmpbut->setAutoExclusive(false);
+                tmpbut->setCheckable(true);
+                tmpbut->setChecked(true);
+                butgrp.addButton(tmpbut,i);
                 absbut_vec.push_back(tmpbut);
                 box.addWidget(tmpbut);
                 button_vec.push_back(box.itemAt(i));
 
+                str = "N"+QString::number(i);
+                circuit->label_text[i]->setPlainText(str);
+                circuit->label_text[i]->setDefaultTextColor(col[i]);
+
                 str = "V_N"+QString::number(i);
                 QGraphicsTextItem* tmpt = new QGraphicsTextItem(str);
                 tmpt->setDefaultTextColor(col[i]);
-                tmpt->setPos(700,20+i*25);
+                tmpt->setPos(700,20+i*40);
                 tmpt->setScale(2);
                 label_vec.push_back(tmpt);
                 scene->addItem(tmpt);
             }
         }
+        wave_vec.push_back(wave_vec_tmp);
     }
-//    itempixmap = new QGraphicsPixmapItem(*pixmap);
-//    scene->addItem(itempixmap);
     siz = circuit->wave_node.size();
     ui->groupBox->setLayout(&box);
     ui->groupBox->setGeometry(900,240,120,button_vec.size()*30+20);
+    ui->groupBox->update();
 }
 
 //save//
@@ -305,12 +324,13 @@ void Wave::on_comboBox_currentIndexChanged(int index)
     cur_idx = index;
 }
 
-void Wave::myslot(int a){
+void Wave::wave_slot(int a){
     qDebug()<<a;
+    for(int i=0; i<wave_vec[a].size(); i++){
+        wave_vec[a][i]->setVisible(!wave_vec[a][i]->isVisible());
+    }
+    label_vec[a]->setVisible(!label_vec[a]->isVisible());
 }
-void Wave::myslot(QString a){
-    qDebug()<<a;
-}
-void Wave::myslot(void){
-    qDebug()<<"lalala";
+void Wave::closeEvent(QCloseEvent *event) {
+    delete this;
 }
