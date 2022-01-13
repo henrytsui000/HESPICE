@@ -12,6 +12,7 @@
 #include <QFileDialog>
 
 #include "wave.h"
+#include "sweep.h"
 class Help;
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -45,6 +46,8 @@ private slots:
     void on_actionCLEAR_triggered();
     void on_actionIMAGE_triggered();
     void on_actionSAVE_triggered();
+
+    void on_actionSWEEP_triggered();
 
 private:
     Ui::MainWindow *ui;

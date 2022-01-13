@@ -18,6 +18,7 @@
         <file>CLEAR.png</file>
         <file>IMAGE.png</file>
         <file>SAVE.png</file>
+        <file>SWEEP.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

@@ -181,3 +181,16 @@ void MainWindow::on_actionSAVE_triggered()
     set_all_unchecked();
 }
 
+
+void MainWindow::on_actionSWEEP_triggered()
+{
+    ui->graphicsview->end_last();
+    ui->graphicsview->set_op("NONE","SWEEP");
+//    ui->graphicsview->sweep();
+    Sweep *sw = new Sweep();
+    sw->circuit = ui->graphicsview;
+    sw->show();
+    ui->graphicsview->swp = sw;
+    ui->actionWAVE->setEnabled(false);
+}
+

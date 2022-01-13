@@ -27,8 +27,8 @@ Wave::Wave(QWidget *parent) :
     pen->setStyle(Qt::DashLine);
     pen->setWidth(1);
     pen->setColor(Qt::black);
-    aimer[0] = scene->addLine( 0, 0, 70, 70, *pen);
-    aimer[2] = scene->addLine( 0, 70, 0, 70, *pen);
+    aimer[0] = scene->addLine( 0, 0, 0, 0, *pen);
+    aimer[2] = scene->addLine( 0, 0, 0, 0, *pen);
     pen->setColor(Qt::red);
     pen->setWidth(10);
     aimer[1] = scene->addLine(1000, 1000, 1000, 1000, *pen);
@@ -54,15 +54,15 @@ Wave::Wave(QWidget *parent) :
         spot_h[i]->setVisible(true);
         spot_h[i]->setLine(0,10+580.0/8*i,800,10+580.0/8*i);
         spot_h[i]->setPen(Qt::DashLine);
-        spot_h[i]->setOpacity(0.6);
+        spot_h[i]->setOpacity(0.2);
         scene->addItem(spot_h[i]);
     }
-    for(int i=0; i<11; i++){
+    for(int i=1; i<11; i++){
         spot_v[i] = new QGraphicsLineItem;
         spot_v[i]->setVisible(true);
         spot_v[i]->setLine((800.0/10)*i,0,(800.0/10)*i,600);
         spot_v[i]->setPen(Qt::DashLine);
-        spot_v[i]->setOpacity(0.6);
+        spot_v[i]->setOpacity(0.2);
         scene->addItem(spot_v[i]);
     }
 

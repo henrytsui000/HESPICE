@@ -17,9 +17,11 @@
 #include "ic.h"
 #include "simdialog.h"
 #include "wave.h"
+#include "sweep.h"
 
 
 class Wave;
+class Sweep;
 class MainWindow;
 class Circuit : public QGraphicsView
 {
@@ -42,11 +44,13 @@ public:
     int chx(int x);
     int chy(int y);
     void run();
+    void sweep();
     void end_last();
     std::complex<double> imp(IC*, double);
     MainWindow* w;
     Simu* simu;
     Wave* wave;
+    Sweep* swp;
     int index_is_setting;
 
     friend class Setpcdialog;
@@ -56,6 +60,7 @@ public:
 private:
     bool is_connected;
     bool is_showing_wave;
+    bool is_showing_sweep;
     QVector<Wire*> all_wire;
     QVector<IC*> all_IC;
     QString type;
