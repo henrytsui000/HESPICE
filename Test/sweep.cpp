@@ -75,9 +75,6 @@ Sweep::~Sweep()
 void Sweep::on_Show_clicked()
 {
     for(int i=0; i<100; i++) vec[i].clear();
-    for(auto &x: vec)
-        for(int i = 0 ; i <= 801; i++)
-            x.push_back(0);
 
     cout << circuit->wave_node.size();
     int r = 0;
@@ -85,17 +82,71 @@ void Sweep::on_Show_clicked()
         for(int v_idx = 0 ; v_idx < x->Voltage_SWEEP.size(); v_idx++){
             cout << "VIDX::" << v_idx ;
             double R = x->Voltage_SWEEP[v_idx].real(), I = x->Voltage_SWEEP[v_idx].imag();
-            cout << "RI:" << R << I;
             double c = sqrt(R*R + I*I), d = (R==0)? ((I>0)?M_PI/2:-M_PI/2) : atan(I/(R));
-            for(int i = 0; i < 20; i++){
-                cout << r << v_idx << c*cos(i*10/x->Frequen[v_idx]);
+            cout << "RI:" << R << I << v_idx << c;
+            vec[r].push_back(c);
+            if(R<0){
+                d-=M_PI;
             }
-            double Vt = c*cos(2*M_PI/(x->Frequen[v_idx])/4+d);
-            vec[r][v_idx]+=Vt;
-//            cout << r << v_idx << Vt << x->Frequen[v_idx];
         }
         r++;
     }
+    Vmax = -1e6, Vmin = 1e6;
+    for(int i = 0; i < r; i++){
+        for(int j = 0; j < 101; j++){
+            Vmax = std::max(Vmax, vec[i][j]);
+            Vmin = std::min(Vmin, vec[i][j]);
+        }
+    }
+    Vm = (Vmax+Vmin)/2;
+
+    pen->setStyle(Qt::SolidLine);
+    pen->setWidth(1);
+
+    for(int i=0; i<9; i++){
+        label_v[i]->setText(QString::number(Vmax-(Vmax-Vmin)/8*i, 'f', 3));
+        label_v[i]->setGeometry(20,15+380.0/8*i,50,25+380.0/8*i);
+        label_v[i]->setVisible(true);
+    }
+
+
+    for(int i = 0 ; i < circuit->wave_node.size(); i++){
+        pen->setColor(col[i%10]);
+        QVector<QGraphicsItem*> wave_vec_tmp;
+        for(int j=0; j<vec[i].size()-1; j++){
+            //qDebug() << 'S' << i << j << vec[i][j];
+            QGraphicsLineItem* tmpl = new QGraphicsLineItem(j*8, 300-(vec[i][j]-Vm)/(Vmax-Vm+1e-6)*290, (j+1)*8, 300-(vec[i][j+1]-Vm)/(Vmax-Vm+1e-6)*290);
+            tmpl->setPen(*pen);
+            wave_vec_tmp.push_back(tmpl);
+            scene->addItem(tmpl);
+            if(j==0){
+                QString str = "Wave_N"+QString::number(i);
+                QRadioButton* tmpbut = new QRadioButton(str);
+//                tmpbut->setPalette(col[i]);
+                tmpbut->setAutoExclusive(false);
+                tmpbut->setCheckable(true);
+                tmpbut->setChecked(true);
+                butgrp.addButton(tmpbut,i);
+                absbut_vec.push_back(tmpbut);
+                box.addWidget(tmpbut);
+                button_vec.push_back(box.itemAt(i));
+
+                str = "N"+QString::number(i);
+                circuit->label_text[i]->setPlainText(str);
+                circuit->label_text[i]->setDefaultTextColor(col[i]);
+
+                str = "V_N"+QString::number(i);
+                QGraphicsTextItem* tmpt = new QGraphicsTextItem(str);
+                tmpt->setDefaultTextColor(col[i]);
+                tmpt->setPos(700,20+i*40);
+                tmpt->setScale(2);
+                label_vec.push_back(tmpt);
+                scene->addItem(tmpt);
+            }
+        }
+        wave_vec.push_back(wave_vec_tmp);
+    }
+    siz = circuit->wave_node.size();
 }
 
 
