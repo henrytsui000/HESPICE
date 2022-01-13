@@ -79,7 +79,6 @@ private:
     QPoint mouse;
     double simu_time;
     QSet<Node*> all_node;
-//    QSet<Node*> wave_node;
     QVector<Node*> wave_node;
     QSet<IC*> wave_ic;
     double freq;

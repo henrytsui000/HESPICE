@@ -75,10 +75,13 @@ void Circuit::set_op(QString type, QString mode){
 }
 
 void Circuit::save_file(){
-
+    QDir dir("../File");
     QString filter = "(*.hesp)";
     QString fileName = QFileDialog::getSaveFileName
-            (this, "Save", QDir::currentPath(), filter);
+            (this, "Save",
+             dir.path(),
+//             QDir::currentPath(),
+             filter);
     qDebug()<<fileName;
 
     ofstream fout(fileName.toStdString(), ios::out);
@@ -125,8 +128,13 @@ void Circuit::save_file(){
 }
 void Circuit::open_file(){
     QString filter = "(*.hesp)";
+    QDir dir("../File");
     QString fileName = QFileDialog::getOpenFileName
-            (this, "Open", QDir::currentPath(), filter);
+            (this, "Open",
+             dir.path(),
+//             QDir::currentPath(),
+             filter);
+
     qDebug()<<fileName;
 
     ifstream fin(fileName.toStdString(), ios::in);
@@ -135,6 +143,7 @@ void Circuit::open_file(){
         mode = "NONE";
         type = "NONE";
         end_last();
+        return;
     }
 
 //    QString tmp_str;
