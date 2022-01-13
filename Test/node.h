@@ -27,6 +27,7 @@ public:
     ~Node();
     void set_node();
     QVector<std::complex<double>> Voltage;
+    QVector<std::complex<double>> Voltage_SWEEP;
     QVector<std::complex<double>> Current;
     QVector<double> Frequen;
 };

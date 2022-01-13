@@ -59,6 +59,7 @@ public:
     friend class Setsourcedialog;
     friend class MainWindow;
     friend class Wave;
+    friend class Sweep;
 private:
     bool is_connected;
     bool is_showing_wave;
