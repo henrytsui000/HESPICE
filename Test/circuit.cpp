@@ -341,7 +341,8 @@ void Circuit::combine_node(Node **node){
 }
 
 QString Circuit::check_connection(){
-    is_connected=true;
+    is_connected = true;
+    can_sweep = true;
     for(int i=0; i<all_IC.size(); i++){
         all_IC[i]->node_in->visit=false;
         all_IC[i]->node_out->visit=false;
@@ -368,7 +369,16 @@ QString Circuit::check_connection(){
         if(all_wire[i]->node[1]->visit==false) is_connected=false;
     }
     if(is_connected == false) return "not connected to ground";
-    else return "NONE";
+
+    for(int i=0; i<all_IC.size(); i++){
+        if(all_IC[i]->type == "V"){
+            if(all_IC[i]->wave_type!="AC"){
+                can_sweep = false;
+                return "not sine wave cannot sweep";
+            }
+        }
+    }
+    return "NONE";
 }
 void Circuit::DFS(Node* from){
     from->visit=true;

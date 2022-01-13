@@ -157,6 +157,7 @@ void Sweep::on_Cursor_clicked()
 }
 
 void Sweep::mouseMoveEvent(QMouseEvent *event) {
+    /*
     cout << event->x() << event->y();
     pen->setStyle(Qt::DashLine);
     pen->setColor(Qt::black);
@@ -170,5 +171,7 @@ void Sweep::mouseMoveEvent(QMouseEvent *event) {
         aimer[1]->setLine(event->x()-100, sit, event->x()-100, sit+1);
         aimer[2]->setLine(0, sit, 10000, sit);
     }
+    */
 }
+
 

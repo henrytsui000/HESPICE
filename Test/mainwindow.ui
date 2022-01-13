@@ -269,7 +269,9 @@
   <action name="actionSWEEP">
    <property name="icon">
     <iconset resource="image/resource.qrc">
-     <normaloff>:/pre/SWEEP.png</normaloff>:/pre/SWEEP.png</iconset>
+     <normaloff>:/pre/SWEEP.png</normaloff>
+     <disabledoff>:/pre/SWEEP2.png</disabledoff>
+     <disabledon>:/pre/SWEEP2.png</disabledon>:/pre/SWEEP.png</iconset>
    </property>
    <property name="text">
     <string>SWEEP</string>

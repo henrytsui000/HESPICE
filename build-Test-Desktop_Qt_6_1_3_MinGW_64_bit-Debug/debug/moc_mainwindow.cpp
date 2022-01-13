@@ -23,8 +23,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    const uint offsetsAndSize[42];
-    char stringdata0[462];
+    const uint offsetsAndSize[46];
+    char stringdata0[495];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(offsetof(qt_meta_stringdata_MainWindow_t, stringdata0) + ofs), len 
@@ -43,14 +43,16 @@ QT_MOC_LITERAL(163, 23), // "on_actionMOVE_triggered"
 QT_MOC_LITERAL(187, 23), // "on_actionWIRE_triggered"
 QT_MOC_LITERAL(211, 24), // "on_actionBUILD_triggered"
 QT_MOC_LITERAL(236, 23), // "on_actionWAVE_triggered"
-QT_MOC_LITERAL(260, 26), // "on_actionZOOM_IN_triggered"
-QT_MOC_LITERAL(287, 27), // "on_actionZOOM_OUT_triggered"
-QT_MOC_LITERAL(315, 23), // "on_actionHELP_triggered"
-QT_MOC_LITERAL(339, 24), // "on_actionCLEAR_triggered"
-QT_MOC_LITERAL(364, 24), // "on_actionIMAGE_triggered"
-QT_MOC_LITERAL(389, 23), // "on_actionSAVE_triggered"
-QT_MOC_LITERAL(413, 24), // "on_actionSWEEP_triggered"
-QT_MOC_LITERAL(438, 23) // "on_actionOPEN_triggered"
+QT_MOC_LITERAL(260, 15), // "on_actionWAVE_2"
+QT_MOC_LITERAL(276, 26), // "on_actionZOOM_IN_triggered"
+QT_MOC_LITERAL(303, 27), // "on_actionZOOM_OUT_triggered"
+QT_MOC_LITERAL(331, 23), // "on_actionHELP_triggered"
+QT_MOC_LITERAL(355, 24), // "on_actionCLEAR_triggered"
+QT_MOC_LITERAL(380, 24), // "on_actionIMAGE_triggered"
+QT_MOC_LITERAL(405, 23), // "on_actionSAVE_triggered"
+QT_MOC_LITERAL(429, 24), // "on_actionSWEEP_triggered"
+QT_MOC_LITERAL(454, 16), // "on_actionSWEEP_2"
+QT_MOC_LITERAL(471, 23) // "on_actionOPEN_triggered"
 
     },
     "MainWindow\0on_actionR_triggered\0\0"
@@ -59,14 +61,14 @@ QT_MOC_LITERAL(438, 23) // "on_actionOPEN_triggered"
     "on_actionGND_triggered\0on_actionCUT_triggered\0"
     "on_actionMOVE_triggered\0on_actionWIRE_triggered\0"
     "on_actionBUILD_triggered\0"
-    "on_actionWAVE_triggered\0"
+    "on_actionWAVE_triggered\0on_actionWAVE_2\0"
     "on_actionZOOM_IN_triggered\0"
     "on_actionZOOM_OUT_triggered\0"
     "on_actionHELP_triggered\0"
     "on_actionCLEAR_triggered\0"
     "on_actionIMAGE_triggered\0"
     "on_actionSAVE_triggered\0"
-    "on_actionSWEEP_triggered\0"
+    "on_actionSWEEP_triggered\0on_actionSWEEP_2\0"
     "on_actionOPEN_triggered"
 };
 #undef QT_MOC_LITERAL
@@ -77,7 +79,7 @@ static const uint qt_meta_data_MainWindow[] = {
        9,       // revision
        0,       // classname
        0,    0, // classinfo
-      19,   14, // methods
+      21,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -85,27 +87,31 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,  128,    2, 0x08,    0 /* Private */,
-       3,    0,  129,    2, 0x08,    1 /* Private */,
-       4,    0,  130,    2, 0x08,    2 /* Private */,
-       5,    0,  131,    2, 0x08,    3 /* Private */,
-       6,    0,  132,    2, 0x08,    4 /* Private */,
-       7,    0,  133,    2, 0x08,    5 /* Private */,
-       8,    0,  134,    2, 0x08,    6 /* Private */,
-       9,    0,  135,    2, 0x08,    7 /* Private */,
-      10,    0,  136,    2, 0x08,    8 /* Private */,
-      11,    0,  137,    2, 0x08,    9 /* Private */,
-      12,    0,  138,    2, 0x08,   10 /* Private */,
-      13,    0,  139,    2, 0x08,   11 /* Private */,
-      14,    0,  140,    2, 0x08,   12 /* Private */,
-      15,    0,  141,    2, 0x08,   13 /* Private */,
-      16,    0,  142,    2, 0x08,   14 /* Private */,
-      17,    0,  143,    2, 0x08,   15 /* Private */,
-      18,    0,  144,    2, 0x08,   16 /* Private */,
-      19,    0,  145,    2, 0x08,   17 /* Private */,
-      20,    0,  146,    2, 0x08,   18 /* Private */,
+       1,    0,  140,    2, 0x08,    0 /* Private */,
+       3,    0,  141,    2, 0x08,    1 /* Private */,
+       4,    0,  142,    2, 0x08,    2 /* Private */,
+       5,    0,  143,    2, 0x08,    3 /* Private */,
+       6,    0,  144,    2, 0x08,    4 /* Private */,
+       7,    0,  145,    2, 0x08,    5 /* Private */,
+       8,    0,  146,    2, 0x08,    6 /* Private */,
+       9,    0,  147,    2, 0x08,    7 /* Private */,
+      10,    0,  148,    2, 0x08,    8 /* Private */,
+      11,    0,  149,    2, 0x08,    9 /* Private */,
+      12,    0,  150,    2, 0x08,   10 /* Private */,
+      13,    0,  151,    2, 0x08,   11 /* Private */,
+      14,    0,  152,    2, 0x08,   12 /* Private */,
+      15,    0,  153,    2, 0x08,   13 /* Private */,
+      16,    0,  154,    2, 0x08,   14 /* Private */,
+      17,    0,  155,    2, 0x08,   15 /* Private */,
+      18,    0,  156,    2, 0x08,   16 /* Private */,
+      19,    0,  157,    2, 0x08,   17 /* Private */,
+      20,    0,  158,    2, 0x08,   18 /* Private */,
+      21,    0,  159,    2, 0x08,   19 /* Private */,
+      22,    0,  160,    2, 0x08,   20 /* Private */,
 
  // slots: parameters
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -146,14 +152,16 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 8: _t->on_actionWIRE_triggered(); break;
         case 9: _t->on_actionBUILD_triggered(); break;
         case 10: _t->on_actionWAVE_triggered(); break;
-        case 11: _t->on_actionZOOM_IN_triggered(); break;
-        case 12: _t->on_actionZOOM_OUT_triggered(); break;
-        case 13: _t->on_actionHELP_triggered(); break;
-        case 14: _t->on_actionCLEAR_triggered(); break;
-        case 15: _t->on_actionIMAGE_triggered(); break;
-        case 16: _t->on_actionSAVE_triggered(); break;
-        case 17: _t->on_actionSWEEP_triggered(); break;
-        case 18: _t->on_actionOPEN_triggered(); break;
+        case 11: _t->on_actionWAVE_2(); break;
+        case 12: _t->on_actionZOOM_IN_triggered(); break;
+        case 13: _t->on_actionZOOM_OUT_triggered(); break;
+        case 14: _t->on_actionHELP_triggered(); break;
+        case 15: _t->on_actionCLEAR_triggered(); break;
+        case 16: _t->on_actionIMAGE_triggered(); break;
+        case 17: _t->on_actionSAVE_triggered(); break;
+        case 18: _t->on_actionSWEEP_triggered(); break;
+        case 19: _t->on_actionSWEEP_2(); break;
+        case 20: _t->on_actionOPEN_triggered(); break;
         default: ;
         }
     }
@@ -168,7 +176,7 @@ const QMetaObject MainWindow::staticMetaObject = { {
     nullptr,
 qt_incomplete_metaTypeArray<qt_meta_stringdata_MainWindow_t
 
-, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>
+, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>
 
 
 >,
@@ -195,13 +203,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 19)
+        if (_id < 21)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 19;
+        _id -= 21;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 19)
+        if (_id < 21)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 19;
+        _id -= 21;
     }
     return _id;
 }

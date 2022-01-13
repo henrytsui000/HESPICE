@@ -7,6 +7,7 @@
 #include <QResizeEvent>
 #include <QToolBar>
 #include <simu.h>
+#include <simu_freq.h>
 #include "help.h"
 #include <QKeyEvent>
 #include <QFileDialog>
@@ -42,6 +43,7 @@ private slots:
     void on_actionZOOM_IN_triggered();
     void on_actionZOOM_OUT_triggered();
     friend class simu_time;
+    friend class Simu_freq;
     friend class Circuit;
     void on_actionHELP_triggered();
     void on_actionCLEAR_triggered();
@@ -49,7 +51,7 @@ private slots:
     void on_actionSAVE_triggered();
 
     void on_actionSWEEP_triggered();
-
+    void on_actionSWEEP_2();
     void on_actionOPEN_triggered();
 
 private:
@@ -58,6 +60,8 @@ private:
     Simu *sIMu;
 //    Wave *wc;
     double Stime;
+    double fre_l;
+    double fre_h;
     void resizeEvent(QResizeEvent *event) override;
 };
 #endif // MAINWINDOW_H

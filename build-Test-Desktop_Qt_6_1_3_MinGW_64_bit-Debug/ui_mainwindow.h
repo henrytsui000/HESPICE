@@ -154,6 +154,8 @@ public:
         actionSWEEP->setObjectName(QString::fromUtf8("actionSWEEP"));
         QIcon icon17;
         icon17.addFile(QString::fromUtf8(":/pre/SWEEP.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon17.addFile(QString::fromUtf8(":/pre/SWEEP2.png"), QSize(), QIcon::Disabled, QIcon::Off);
+        icon17.addFile(QString::fromUtf8(":/pre/SWEEP2.png"), QSize(), QIcon::Disabled, QIcon::On);
         actionSWEEP->setIcon(icon17);
         actionOPEN = new QAction(MainWindow);
         actionOPEN->setObjectName(QString::fromUtf8("actionOPEN"));

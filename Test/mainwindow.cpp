@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->graphicsview->w=this;
     ui->actionWAVE->setEnabled(false);
+    ui->actionSWEEP->setEnabled(false);
 
 }
 
@@ -107,10 +108,12 @@ void MainWindow::on_actionBUILD_triggered()
     QString str = ui->graphicsview->check_connection();
     if(ui->graphicsview->is_connected){
         ui->actionWAVE->setEnabled(true);
-//        simu_time *st = new simu_time();
-//        st->w = this;
-//        st->show();
-//        qDebug() << "AF" << Stime;
+        if(ui->graphicsview->can_sweep){
+            ui->actionSWEEP->setEnabled(true);
+        } else{
+            ui->actionSWEEP->setEnabled(false);
+            QMessageBox::information(this,"Notice", str);
+        }
     } else{
         ui->actionWAVE->setEnabled(false);
         QMessageBox::critical(this,"Failed", str);
@@ -193,14 +196,24 @@ void MainWindow::on_actionSAVE_triggered()
 void MainWindow::on_actionSWEEP_triggered()
 {
     ui->graphicsview->end_last();
-    ui->graphicsview->set_op("NONE","SWEEP");
-    ui->graphicsview->sweep();
+    Simu_freq *sf = new Simu_freq();
+    sf->w = this;
+    sf->show();
+    qDebug() << "AF" << Stime;
+
+    ui->graphicsview->run();
+}
+void MainWindow::on_actionSWEEP_2()
+{
     Sweep *sw = new Sweep();
     sw->circuit = ui->graphicsview;
     sw->show();
     ui->graphicsview->swp = sw;
     ui->actionWAVE->setEnabled(false);
+    ui->graphicsview->set_op("NONE","SWEEP");
+//    ui->graphicsview->sweep();
 }
+
 
 
 void MainWindow::on_actionOPEN_triggered()

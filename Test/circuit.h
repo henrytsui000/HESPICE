@@ -62,6 +62,7 @@ public:
     friend class Sweep;
 private:
     bool is_connected;
+    bool can_sweep;
     bool is_showing_wave;
     bool is_showing_sweep;
     QVector<Wire*> all_wire;

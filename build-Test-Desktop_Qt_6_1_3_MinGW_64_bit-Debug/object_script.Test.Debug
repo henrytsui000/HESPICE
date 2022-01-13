@@ -14,6 +14,7 @@ debug/resistor.o
 debug/scope.o
 debug/setpcdialog.o
 debug/setsourcedialog.o
+debug/simu_freq.o
 debug/simu_time.o
 debug/source.o
 debug/sweep.o
@@ -28,6 +29,7 @@ debug/moc_mainwindow.o
 debug/moc_scope.o
 debug/moc_setpcdialog.o
 debug/moc_setsourcedialog.o
+debug/moc_simu_freq.o
 debug/moc_simu_time.o
 debug/moc_sweep.o
 debug/moc_wave.o

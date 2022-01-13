@@ -25,6 +25,7 @@ SOURCES += \
     scope.cpp \
     setpcdialog.cpp \
     setsourcedialog.cpp \
+    simu_freq.cpp \
     simu_time.cpp \
     source.cpp \
     sweep.cpp \
@@ -49,6 +50,7 @@ HEADERS += \
     scope.h \
     setpcdialog.h \
     setsourcedialog.h \
+    simu_freq.h \
     simu_time.h \
     source.h \
     sweep.h \
@@ -62,6 +64,7 @@ FORMS += \
     mainwindow.ui \
     setpcdialog.ui \
     setsourcedialog.ui \
+    simu_freq.ui \
     simu_time.ui \
     sweep.ui \
     wave.ui

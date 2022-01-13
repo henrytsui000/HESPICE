@@ -11,7 +11,6 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QComboBox>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QPushButton>
@@ -24,7 +23,6 @@ public:
     QGraphicsView *graphicsView;
     QPushButton *Show;
     QPushButton *Cursor;
-    QComboBox *comboBox;
 
     void setupUi(QDialog *Sweep)
     {
@@ -33,16 +31,14 @@ public:
         Sweep->resize(1062, 680);
         graphicsView = new QGraphicsView(Sweep);
         graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
-        graphicsView->setGeometry(QRect(60, 20, 802, 602));
+        graphicsView->setGeometry(QRect(80, 10, 802, 602));
         Show = new QPushButton(Sweep);
         Show->setObjectName(QString::fromUtf8("Show"));
         Show->setGeometry(QRect(920, 50, 75, 23));
         Cursor = new QPushButton(Sweep);
         Cursor->setObjectName(QString::fromUtf8("Cursor"));
         Cursor->setGeometry(QRect(920, 100, 75, 23));
-        comboBox = new QComboBox(Sweep);
-        comboBox->setObjectName(QString::fromUtf8("comboBox"));
-        comboBox->setGeometry(QRect(920, 140, 69, 22));
+        Cursor->setCheckable(true);
 
         retranslateUi(Sweep);
 
