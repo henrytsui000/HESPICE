@@ -780,5 +780,199 @@ void Circuit::run(){
 }
 
 void Circuit::sweep(){
+    qDebug() << "i'm running SwEeP!";
+
+    wave_node.clear();
+    QVector<IC*> vs, cp;
+
+    for(auto x: all_IC){
+        if(x->type == "V"){
+            vs.push_back(x);
+        } else if(x->type != "G"){
+            cp.push_back(x);
+        }
+    }
+    all_node.clear();
+    for(auto x: all_wire){
+        all_node.insert(x->node[0]);
+        all_node.insert(x->node[1]);
+    }
+    for(auto x: all_node){
+        x->Voltage.clear();
+        x->Current.clear();
+        x->Frequen.clear();
+    }
+
+    qDebug()<<"run for loop";
+    for(int v_idx = 0 ; v_idx < vs.size(); v_idx++){
+
+        clr_node.clear();
+        rela.clear();
+        rela_idx.clear();
+
+        QQueue<Node*> sta;
+
+        qDebug() << "all IC size: " << all_IC.size();
+        int idx = 0;
+        for(auto x: all_node){
+            if(!rela[x]){
+                clr_node.append(new Node);
+                rela[x] = clr_node.back();
+                rela_idx[clr_node.back()] = idx++;
+                sta.append(x);
+                while(sta.size() > 0){
+                    for(auto y: *sta.front()->wire){
+                        for(int i = 0 ; i < 2; i++){
+                            if(!rela[y->node[i]]){
+                                rela[y->node[i]] = rela[x];
+                                sta.append(y->node[i]);
+                            }
+                        }
+                    }
+                    for(auto y: *sta.front()->ic){
+                        if(y->type=="V" || y->type=="I"){
+                            if(y==vs[v_idx]){
+                                clr_node.back()->ic->push_back(y);
+                            } else {
+                                if(y->node_in != sta.front() && !rela[y->node_in]){
+                                    rela[y->node_in] = rela[x];
+                                    sta.append(y->node_in);
+                                }
+                                if(y->node_out != sta.front() && !rela[y->node_out]){
+                                    rela[y->node_out] = rela[x];
+                                    sta.append(y->node_out);
+                                }
+                            }
+                        }
+                    }
+                    sta.pop_front();
+                }
+            }
+        }
+        qDebug() << "clr_node.size" << clr_node.size();
+        for(auto x: clr_node){
+            qDebug() << "this node: ";
+            for(auto y: *x->ic)
+                qDebug() << y->name;
+        }
+
+        int gnd_idx;
+        for(auto x: all_IC){
+            if(x->type == "G")
+                gnd_idx = rela_idx[rela[x->node_in]];
+        }
+        for(int st = 0; st <= 100; st++) {
+            int MSZ = clr_node.size()+1;
+            complex<double> **Z = new complex<double>*[MSZ];
+
+            rep(i, MSZ){
+                Z[i]=new complex<double>[MSZ];
+                rep(j, MSZ)
+                    Z[i][j] = 0;
+            }
+            double freq_tmp = vs[v_idx]->freq;
+            double now_sf = log(sef/ssf)*st/100;
+            now_sf = pow(M_E, now_sf)*ssf;
+            cout << "pow :" << now_sf ;
+            vs[v_idx]->freq = now_sf;
+            for(int i = 0; i < cp.size(); i++) {
+                int a = rela_idx[rela[cp[i]->node_in]];
+                int b = rela_idx[rela[cp[i]->node_out]];
+                Z[a][b] -= imp(cp[i], vs[v_idx]->freq);
+                Z[b][a] -= imp(cp[i], vs[v_idx]->freq);
+
+                Z[a][a] += imp(cp[i], vs[v_idx]->freq);
+                Z[b][b] += imp(cp[i], vs[v_idx]->freq);
+            }
+            cout << "check point1: " << now_sf;
+
+            int a = rela_idx[rela[vs[v_idx]->node_in]];
+            int b = rela_idx[rela[vs[v_idx]->node_out]];
+            Z[MSZ-1][a] = Z[a][MSZ-1] = 1;
+            Z[MSZ-1][b] = Z[b][MSZ-1] = -1;
+            MSZ--;
+
+            complex<double> **Zp = new complex<double>*[MSZ];
+            rep(i, MSZ){
+                Zp[i]=new complex<double>[MSZ];
+                rep(j, MSZ){
+                    Zp[i][j] = Z[i+(gnd_idx<=i)][j+(gnd_idx<=j)];
+                }
+            }
+
+
+            complex<double> V[MSZ];
+            V[MSZ-1] = complex<double>(vs[v_idx]->value*cos(vs[v_idx]->phase-M_PI/2),
+                                       vs[v_idx]->value*sin(vs[v_idx]->phase-M_PI/2));
+            complex<double> **inverse=new complex<double>*[MSZ];
+            for(int i=0;i<MSZ;i++){
+                inverse[i]=new complex<double>[MSZ];
+            }
+            tools::getInverse(Zp,inverse,MSZ);
+
+            complex<double> *result=new complex<double>[MSZ];
+            rep(i, MSZ){
+                result[i] = 0;
+                rep(j, MSZ)
+                    result[i] += inverse[i][j]*V[j];
+            }
+
+            for(auto &x: all_node){
+                int idx = rela_idx[rela[x]];
+                if(idx != gnd_idx){
+                    x->Voltage.push_back(result[idx - (idx >= gnd_idx)]);
+                    x->Frequen.push_back(vs[v_idx]->freq);
+//                    cout << x->Voltage[v_idx].real() << result[rela_idx[rela[x]]].real();
+                }else {
+                    x->Voltage.push_back(0);
+                    x->Frequen.push_back(vs[v_idx]->freq);
+                }
+            }
+            vs[v_idx]->freq = freq_tmp;
+
+            //endend
+            rep(i, MSZ){
+                delete [] inverse[i];
+                delete [] Zp[i];
+            }
+            delete [] Zp;
+            delete [] inverse;
+            delete [] result;
+            rep(i, MSZ+1)
+                delete [] Z[i];
+            delete [] Z;
+
+        }
+    }
+
+    QQueue<Node*> sta;
+    int idx = 0;
+
+    rela.clear();
+    rela_idx.clear();
+    clr_node.clear();
+    for(auto x: all_node){
+        if(!rela[x]){
+            clr_node.append(new Node);
+            rela[x] = clr_node.back();
+            rela_idx[clr_node.back()] = idx++;
+            sta.append(x);
+            while(sta.size() > 0){
+                for(auto y: *sta.front()->wire){
+                    for(int i = 0 ; i < 2; i++){
+                        if(!rela[y->node[i]]){
+                            rela[y->node[i]] = rela[x];
+                            sta.append(y->node[i]);
+                        }
+                    }
+                }
+                for(auto y: *sta.front()->ic){
+                    clr_node.back()->ic->push_back(y);
+                }
+                sta.pop_front();
+            }
+        }
+    }
+    cout << "CKS" << clr_node.size();
 
 }

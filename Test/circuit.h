@@ -70,6 +70,7 @@ private:
     bool draw_wire;
     double scale_x;
     double scale_y;
+    double ssf = 10, sef = 1e7;
     QPoint offset;
     QPoint mouse;
     double simu_time;
