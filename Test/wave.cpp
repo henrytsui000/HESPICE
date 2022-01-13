@@ -113,8 +113,6 @@ void Wave::on_pushButton_clicked() {
     }
     absbut_vec.clear();
 
-
-
     qDebug() << "deb";
     qDebug() << circuit->all_IC[0]->value;
     Stime = std::max(1e-12, Stime);
@@ -194,16 +192,16 @@ void Wave::on_pushButton_clicked() {
     pen->setStyle(Qt::SolidLine);
     pen->setWidth(1);
 
-        for(int i=0; i<9; i++){
-            label_v[i]->setText(QString::number(Vmax-(Vmax-Vmin)/8*i, 'f', 3));
-            label_v[i]->setGeometry(20,15+380.0/8*i,50,25+380.0/8*i);
-            label_v[i]->setVisible(true);
-        }
-        for(int i=0; i<11; i++){
-            label_h[i]->setText(QString::number((Stime-0)/10*i, 'f', 3));
-            label_h[i]->setGeometry(90+(800.0/10)*i,420,110+(800.0/10)*i,430);
-            label_h[i]->setVisible(true);
-        }
+    for(int i=0; i<9; i++){
+        label_v[i]->setText(QString::number(Vmax-(Vmax-Vmin)/8*i, 'f', 3));
+        label_v[i]->setGeometry(20,15+380.0/8*i,50,25+380.0/8*i);
+        label_v[i]->setVisible(true);
+    }
+    for(int i=0; i<11; i++){
+        label_h[i]->setText(QString::number((Stime-0)/10*i, 'f', 3));
+        label_h[i]->setGeometry(90+(800.0/10)*i,420,110+(800.0/10)*i,430);
+        label_h[i]->setVisible(true);
+    }
     for(int i = 0 ; i < circuit->wave_node.size(); i++){
         pen->setColor(col[i%10]);
         QVector<QGraphicsItem*> wave_vec_tmp;

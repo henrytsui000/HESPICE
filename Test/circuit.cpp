@@ -404,7 +404,7 @@ void Circuit::mouseMoveEvent(QMouseEvent *event){
             pic_pos.setY(chy(event->y())-pic_size.y()/2);
             pic->setPos(pic_pos);
         }
-    } else if(mode=="MOVE" || mode=="CUT" || mode=="WAVE" || mode=="NONE"){
+    } else if(mode=="MOVE" || mode=="CUT" || mode=="WAVE" || mode=="NONE"|| mode=="SWEEP"){
         QList<QGraphicsItem*> l = scene->items();
         type = "NONE";
         selected_index = -1;
@@ -538,8 +538,8 @@ void Circuit::mousePressEvent(QMouseEvent *event){
             qDebug()<<"NONE";
             mouse.setX(event->x());
             mouse.setY(event->y());
-        } else if(mode=="WAVE"){
-            qDebug()<<"WAVE";
+        } else if(mode=="WAVE" || mode == "SWEEP"){
+            qDebug()<<mode;
             int i = selected_index;
             if(type=="W"){
                 bool add = true;
@@ -567,7 +567,8 @@ void Circuit::mousePressEvent(QMouseEvent *event){
                 wave_ic.insert(all_IC[i]);
                 qDebug()<<"wave_ic"<<i;
             }
-            wave->on_pushButton_clicked();
+            if(mode=="WAVE")
+                wave->on_pushButton_clicked();
         }
     } else if(event->button() == Qt::RightButton){
         if(mode=="NONE"){
@@ -707,6 +708,7 @@ void Circuit::run(){
 
     for(auto x: all_node){
         x->Voltage.clear();
+        x->Voltage_SWEEP.clear();
         x->Current.clear();
         x->Frequen.clear();
     }
@@ -954,6 +956,7 @@ void Circuit::sweep(){
     }
     for(auto x: all_node){
         x->Voltage.clear();
+        x->Voltage_SWEEP.clear();
         x->Current.clear();
         x->Frequen.clear();
     }
@@ -1045,8 +1048,14 @@ void Circuit::sweep(){
             int b = rela_idx[rela[vs[v_idx]->node_out]];
             Z[MSZ-1][a] = Z[a][MSZ-1] = 1;
             Z[MSZ-1][b] = Z[b][MSZ-1] = -1;
-            MSZ--;
 
+            rep(i, MSZ){
+                rep(j, MSZ){
+                    cout << Z[i][j].real() << ' ' << Z[i][j].imag();
+                }
+                cout << ' ' ;
+            }
+            MSZ--;
             complex<double> **Zp = new complex<double>*[MSZ];
             rep(i, MSZ){
                 Zp[i]=new complex<double>[MSZ];
@@ -1075,11 +1084,11 @@ void Circuit::sweep(){
             for(auto &x: all_node){
                 int idx = rela_idx[rela[x]];
                 if(idx != gnd_idx){
-                    x->Voltage.push_back(result[idx - (idx >= gnd_idx)]);
+                    x->Voltage_SWEEP.push_back(result[idx - (idx >= gnd_idx)]);
                     x->Frequen.push_back(vs[v_idx]->freq);
 //                    cout << x->Voltage[v_idx].real() << result[rela_idx[rela[x]]].real();
                 }else {
-                    x->Voltage.push_back(0);
+                    x->Voltage_SWEEP.push_back(0);
                     x->Frequen.push_back(vs[v_idx]->freq);
                 }
             }
