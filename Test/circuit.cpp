@@ -82,8 +82,7 @@ void Circuit::save_file(){
     qDebug()<<fileName;
 
     ofstream fout(fileName.toStdString(), ios::out);
-
-    fout << "HESWEEP:\n";
+    fout << "HESPICE:\n";
     fout << all_wire.size()<< "\n";
     for(int i=0; i<all_wire.size(); i++){
         fout << "W";
@@ -104,6 +103,9 @@ void Circuit::save_file(){
             fout << " " << all_IC[i]->value;
             fout << " " << all_IC[i]->freq;
             fout << " " << all_IC[i]->phase;
+            fout << "\n";
+            fout << all_IC[i]->text2.toStdString();
+            fout << "\n";
         }
         fout << " " << all_IC[i]->rotate;
         fout << " " << all_IC[i]->node_in->p.x();
@@ -140,7 +142,7 @@ void Circuit::open_file(){
     int tmp_int, tmp_size, tmpx, tmpy, tmpx2, tmpy2;
     double tmp_double;
     fin >> tmp_str;
-    if(tmp_str != "HESWEEP:"){
+    if(tmp_str != "HESPICE:"){
         fin.close();
         qDebug()<<"wrong format";
         mode = "NONE";
@@ -173,7 +175,6 @@ void Circuit::open_file(){
         tmp->node_out->ic->push_back(tmp);
         all_IC.push_back(tmp);
 
-
         if(all_IC.back()->type != "G") {
             fin >> tmp_str;
             all_IC.back()->name = QString::fromStdString(tmp_str);
@@ -186,6 +187,12 @@ void Circuit::open_file(){
             fin >> all_IC.back()->value;
             fin >> all_IC.back()->freq;
             fin >> all_IC.back()->phase;
+
+            getline(fin, tmp_str);
+            getline(fin, tmp_str);
+            all_IC.back()->text2 = QString::fromStdString(tmp_str);
+            all_IC.back()->textitem1->setPlainText(all_IC.back()->name);
+            all_IC.back()->textitem2->setPlainText(all_IC.back()->text2);
         }
         fin >> tmp_int;
         for(int i=0; i<tmp_int; i++){
@@ -205,6 +212,11 @@ void Circuit::open_file(){
             fin >> tmpy2;
             tmpx = (tmpx + tmpx2)/2;
             tmpy = (tmpy + tmpy2)/2;
+        } else {
+            if(all_IC.back()->rotate==0) tmpy +=20;
+            else if(all_IC.back()->rotate==1) tmpx -=20;
+            else if(all_IC.back()->rotate==2) tmpy -=20;
+            else if(all_IC.back()->rotate==3) tmpx +=20;
         }
         all_IC.back()->set_center_pos(tmpx,tmpy);
     }
@@ -629,15 +641,16 @@ void Circuit::mouseReleaseEvent(QMouseEvent *event){
 void Circuit::keyPressEvent(QKeyEvent *event){
     if(event->key()=='R'){
         if((mode=="MOVE" && action_index!=-1 && type!="W" && type!="P")||(mode=="ADD" && type!="W" && type!="P")){
-            if(mode=="ADD") action_index = all_IC.size()-1;
-                QTransform trans = all_IC[action_index]->picitem->transform();
-                int w = all_IC[action_index]->width/2;
-                int h = all_IC[action_index]->height/2;
-                trans.translate(w+h, h-w);
-                all_IC[action_index]->rotate=(all_IC[action_index]->rotate+1)%4;
-                trans.rotate(90);
-                all_IC[action_index]->picitem->setTransform(trans);
-                all_IC[action_index]->set_center_pos(all_IC[action_index]->mouse.x(),all_IC[action_index]->mouse.y());
+            if(mode=="ADD")
+                action_index = all_IC.size()-1;
+            QTransform trans = all_IC[action_index]->picitem->transform();
+            int w = all_IC[action_index]->width/2;
+            int h = all_IC[action_index]->height/2;
+            trans.translate(w+h, h-w);
+            all_IC[action_index]->rotate=(all_IC[action_index]->rotate+1)%4;
+            trans.rotate(90);
+            all_IC[action_index]->picitem->setTransform(trans);
+            all_IC[action_index]->set_center_pos(all_IC[action_index]->mouse.x(),all_IC[action_index]->mouse.y());
         }
     }
     if(event->key()=='V' || event->key()=='v') w->on_actionV_triggered();

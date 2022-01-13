@@ -91,12 +91,9 @@ void Setsourcedialog::on_pushButton_OK_clicked()
         if(ic->wave_type == "DC")
             str = "DC " + QString::number(tmp[0]) + s[0] + ic->unit;
         ic->textitem2->setPlainText(str);
+        ic->text2 = str;
     }
 
-    /*else {
-        ic->textitem2->setPlainText(QString::number(ic->value));
-    }
-    */
     this->close();
 }
 

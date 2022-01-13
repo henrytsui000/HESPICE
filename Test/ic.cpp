@@ -69,6 +69,7 @@ void IC::set_pic(QString str){
         textitem1->setZValue(2);
 
         textitem2 = new QGraphicsTextItem(QString::number(value));
+        text2 = QString::number(value);
         scene->addItem(textitem2);
         textitem2->setScale(2);
         textitem2->setZValue(2);
@@ -90,13 +91,21 @@ void IC::set_center_pos(int x, int y){
 
     tmp[0] = QPoint((tmp[0].x()+20)-(tmp[0].x()+20)%40,(tmp[0].y()+20)-(tmp[0].y()+20)%40);
     tmp[1] = QPoint((tmp[1].x()+20)-(tmp[1].x()+20)%40,(tmp[1].y()+20)-(tmp[1].y()+20)%40);
-    node_in->p=tmp[0];
-    if(type!="G") node_out->p=tmp[1];
+
+    if(type!="G"){
+        node_in->p=tmp[0];
+        node_out->p=tmp[1];
+    } else{
+        node_in->p=tmp[0];
+        if(rotate==3) node_in->p -= QPoint(40,0);
+    }
+
     node_in->set_node();
     node_out->set_node();
 
     center.setX((tmp[0].x()+tmp[1].x())/2);
     center.setY((tmp[0].y()+tmp[1].y())/2);
+
 
     x=(center.x()-width/2);
     y=(center.y()-height/2);

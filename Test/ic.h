@@ -37,6 +37,7 @@ private:
     QGraphicsPixmapItem* picitem;
     QGraphicsTextItem* textitem1;
     QGraphicsTextItem* textitem2;
+    QString text2;
     QGraphicsScene* scene;
     int rotate;
 public:

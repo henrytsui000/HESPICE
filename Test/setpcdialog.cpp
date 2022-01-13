@@ -53,6 +53,7 @@ void Setpcdialog::on_pushButton_ok_clicked()
         }
     }
     ic->textitem2->setPlainText(QString::number(tmp)+s+ic->unit);
+    ic->text2 = QString::number(tmp)+s+ic->unit;
     this->close();
 }
 
