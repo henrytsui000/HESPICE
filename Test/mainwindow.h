@@ -38,6 +38,7 @@ private slots:
     void on_actionWIRE_triggered();
     void on_actionBUILD_triggered();
     void on_actionWAVE_triggered();
+    void on_actionWAVE_2();
     void on_actionZOOM_IN_triggered();
     void on_actionZOOM_OUT_triggered();
     friend class simu_time;

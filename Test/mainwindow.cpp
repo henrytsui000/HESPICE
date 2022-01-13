@@ -107,10 +107,10 @@ void MainWindow::on_actionBUILD_triggered()
     QString str = ui->graphicsview->check_connection();
     if(ui->graphicsview->is_connected){
         ui->actionWAVE->setEnabled(true);
-        simu_time *st = new simu_time();
-        st->w = this;
-        st->show();
-        qDebug() << "AF" << Stime;
+//        simu_time *st = new simu_time();
+//        st->w = this;
+//        st->show();
+//        qDebug() << "AF" << Stime;
     } else{
         ui->actionWAVE->setEnabled(false);
         QMessageBox::critical(this,"Failed", str);
@@ -119,16 +119,24 @@ void MainWindow::on_actionBUILD_triggered()
 
 
 void MainWindow::on_actionWAVE_triggered() {
-      ui->graphicsview->end_last();
+      ui->graphicsview->end_last();      
+      simu_time *st = new simu_time();
+      st->w = this;
+      st->show();
+      qDebug() << "AF" << Stime;
+
       ui->graphicsview->run();
-      Wave *wa = new Wave();
-      wa->circuit = ui->graphicsview;
-      wa->Stime = Stime;
-      wa->show();
-      ui->graphicsview->wave = wa;
-      ui->graphicsview->set_op("NONE","WAVE");
-      ui->actionWAVE->setEnabled(false);
 }
+void MainWindow::on_actionWAVE_2(){
+    Wave *wa = new Wave();
+    wa->circuit = ui->graphicsview;
+    wa->Stime = Stime;
+    wa->show();
+    ui->graphicsview->wave = wa;
+    ui->graphicsview->set_op("NONE","WAVE");
+    ui->actionWAVE->setEnabled(false);
+}
+
 
 
 void MainWindow::on_actionZOOM_IN_triggered()

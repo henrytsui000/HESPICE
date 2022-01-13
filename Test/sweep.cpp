@@ -147,11 +147,28 @@ void Sweep::on_Show_clicked()
         wave_vec.push_back(wave_vec_tmp);
     }
     siz = circuit->wave_node.size();
+    ui->Cursor->setCheckable(true);
 }
 
 
 void Sweep::on_Cursor_clicked()
 {
 
+}
+
+void Sweep::mouseMoveEvent(QMouseEvent *event) {
+    cout << event->x() << event->y();
+    pen->setStyle(Qt::DashLine);
+    pen->setColor(Qt::black);
+    int idx = std::max(std::min(900, event->x()), 100);
+    aimer[0]->setLine(event->x()-100, 0, event->x()-100, 10000);
+    if(ui->comboBox->count()){
+        int sit =  300-(vec[cur_idx][idx-100]-Vm)/(Vmax-Vm+1e-6)*290;
+        cout << "sit:" << sit;
+        ui->label_6->setText(QString::number(vec[cur_idx][idx-100], 'f', 3));
+        ui->label_9->setText(QString::number((double)(idx-100)/800*Stime, 'f', 3));
+        aimer[1]->setLine(event->x()-100, sit, event->x()-100, sit+1);
+        aimer[2]->setLine(0, sit, 10000, sit);
+    }
 }
 

@@ -31,6 +31,7 @@ public:
     friend class Circuit;
 private slots:
 
+    void mouseMoveEvent(QMouseEvent*) override;
     void on_Show_clicked();
 
     void on_Cursor_clicked();

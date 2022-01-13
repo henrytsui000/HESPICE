@@ -36,6 +36,7 @@ void simu_time::on_pushButton_clicked() {
     }
     qDebug() << "simu time: " << Stime;
     w->Stime = Stime;
+    w->on_actionWAVE_2();
     this->close();
 }
 
