@@ -88,4 +88,4 @@ Press Save to save the signal to the specified location
 
 The following link is a basic introduction to using this SPICE
 
-[![click this image will lead you to tutorial video](https://img.youtube.com/vi/AgX4oohcWC8/0.jpg)](https://youtu.be/AgX4oohcWC8)
+[![click this image will lead you to tutorial video](https://img.youtube.com/vi/AgX4oohcWC8/0.jpg)](https://youtu.be/Jb9Ymae8cco)
